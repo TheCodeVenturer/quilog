@@ -52,7 +52,6 @@ export default async function PostbyId({params}){
     return <div >Not Found</div>
   }
   const likeClick = (e) => {
-    console.log("hello");
     setLiked((isliked) => !isliked);
   };
   return (
@@ -61,7 +60,7 @@ export default async function PostbyId({params}){
         <div className="w-9 h-9 bg-red-900 rounded-full"></div>
         <p className="ml-3 font-bold text-md">User</p>
       </Link>
-      <PostBottom style={`border-y-4 w-full m-auto my-1 p-4 `} title={post.title} content={post.data} suppressHydrationWarning />
+      <PostBottom style={`border-y-4 w-full m-auto my-1 p-4`} title={post[0].title} content={post[0].data} suppressHydrationWarning />
       <div className={`border-y-4 flex items-start justify-between px-10 `}>
         <div className="text-center">
           <button
