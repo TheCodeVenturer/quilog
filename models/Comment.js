@@ -4,17 +4,10 @@ const CommentSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    userId: {
+    user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },
-    userName:{
-        type: String,
-        required: true,                                                                                         
-    },
-    userImage:{
-        type: String,
-    }
 }, {timestamps: true})
 
 export default mongoose?.models?.Comment || mongoose.model("Comment", CommentSchema)

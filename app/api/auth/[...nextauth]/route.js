@@ -3,11 +3,12 @@ import GoogleProvider from "next-auth/providers/google"
 import GithubProvider from "next-auth/providers/github"
 // import { MongoDBAdapter } from "@next-auth/mongodb-adapter"
 // import clientPromise from "../../../../lib/mongodb"
+import { NextAuthOptions } from "next-auth"
 import db from "../../../../lib/db"
 import CredentialsProvider from "next-auth/providers/credentials"
 import User from "@/models/User"
 import { compare } from "bcrypt"
-const handler =  NextAuth({
+export const authOptions =  {
   providers: [
     GithubProvider({
       clientId: process.env.GitHub_Client_Id,
@@ -42,12 +43,16 @@ const handler =  NextAuth({
     session: async ({ session, token }) => {
       if (session?.user) {
         session.user.id = token.uid;
+        session.user.username = token.username;
+        session.user.image = token.image;
       }
       return session;
     },
     jwt: async ({ user, token }) => {
       if (user) {
         token.uid = user.id;
+        token.username = user.username;
+        token.image = user.image;
       }
       return token;
     },
@@ -58,6 +63,6 @@ const handler =  NextAuth({
   jwt:{
     secret:process.env.JWT_SECRET
   },
-})
-
+}
+const handler = NextAuth(authOptions)
 export {handler as GET , handler as POST}

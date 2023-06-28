@@ -12,7 +12,7 @@ const deactiveStyle = "text-slate-200";
 export default function NewPost() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [activeBox, setActiveBox] = useState(true);
+  const [activeEdit, setActiveEdit] = useState(true);
   const router = useRouter();
   const {session,status} = useAppState()
   if(status === "unauthenticated"){
@@ -47,20 +47,20 @@ export default function NewPost() {
         <div className="flex">
         <button
             className={`px-1 mx-2 text-sm sm:text-lg font-semibold tracking-wider ${
-              activeBox ? activeStyle : deactiveStyle
+              activeEdit ? activeStyle : deactiveStyle
             } hover:text-blue-500`}
-            disabled={activeBox ? true : false}
-            onClick={() => setActiveBox(true)}
+            disabled={activeEdit ? true : false}
+            onClick={() => setActiveEdit(true)}
           >
             Write
           </button>
           <div className="border-l-2"></div>
           <button
             className={`px-1 mx-2 text-sm sm:text-lg font-semibold tracking-wider ${
-              activeBox ? deactiveStyle : activeStyle
+              activeEdit ? deactiveStyle : activeStyle
             } hover:text-blue-500`}
-            disabled={activeBox ? false : true}
-            onClick={() => setActiveBox(false)}
+            disabled={activeEdit ? false : true}
+            onClick={() => setActiveEdit(false)}
           >
             Preview
           </button>
@@ -73,22 +73,18 @@ export default function NewPost() {
 
         <div className="border-b-2 border-zinc-400 mt-2"></div>
         <div className="p-3">
-          {activeBox && (
-            <>
-            <input value={title} onChange={e=>setTitle(e.target.value)} autoFocus className="w-full outline-0 p-1 pl-3 text-xl rounded-md border-0 bg-zinc-800 text-[#f7cb90]" placeholder="Enter Title"/>
+            <div className={`${activeEdit?"block":"hidden"}`}>
+            <input value={title} onChange={e=>setTitle(e.target.value)} autoFocus className={`w-full outline-0 p-1 pl-3 text-xl rounded-md border-0 bg-zinc-800 text-[#f7cb90]`} placeholder="Enter Title"/>
               <TextBox content={content} setContent={setContent} />
-            </>
-          )}
-          {!activeBox && (
-            <PostBottom style={`min-h-[80vh] ${content?"":"text-zinc-600"}`} title={title} content={content?content:"#### Nothing to Show Here"} />
-          )}
+            </div>
+            <PostBottom style={`min-h-[80vh] ${content?"":"text-zinc-600"} ${activeEdit?"hidden":"block"}`} title={title} content={content?content:"#### Nothing to Show Here"} />
         </div>
       </div>
     </>
   );
 }
 
-const TextBox = ({ content, setContent }) => {
+export const TextBox = ({ content, setContent }) => {
   const textareaRef = useRef(null);
   function handleChange(e) {
     setContent(e.target.value);

@@ -1,8 +1,9 @@
-import PostBox from "../components/post"
-export default async function User(){
+'use client'
+import Image from "next/image"
+export default function User({params}){
     return(
         <div className="">
-        <PostBox/>
+            {params.userId}
         </div>
     )
 }

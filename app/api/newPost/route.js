@@ -7,15 +7,17 @@ export async function POST(req){
         const {userId,title,content} = await req.json()
         // console.log(name, email, pass)
         await db.connect()
-        const isExisting = await User.findOne({_id:userId})
+        const user = await User.findOne({_id:userId})
         
-        if(!isExisting){
+        if(!user){
             throw new Error("You are not authorized to create a post")
         }
 
-        const newPost = await Post.create({userId,title,data:content})
-
+        
+        const newPost = await Post.create({user:userId,title,data:content})
         const postId = newPost._doc._id
+        user.posts.push(postId)
+        user.save()
 
         return new Response(JSON.stringify(postId), {status: 201})
     } catch (error) {

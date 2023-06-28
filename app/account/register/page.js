@@ -14,6 +14,7 @@ export default function Register(){
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(data)
         })
+        redirect('/')
     }
     if (status === "authenticated") {
         redirect('/')
@@ -22,11 +23,11 @@ export default function Register(){
         return <div>Loading...</div>
     return(
         <>
-        input name: <input type="text" value={name} onChange={e => setName(e.target.value)} />
+        input name: <input className="text-red-600" type="text" value={name} onChange={e => setName(e.target.value)} />
         <br/>
-        input email: <input type="email" value={email} onChange={e => setEmail(e.target.value)} />
+        input email: <input className="text-red-600" type="email" value={email} onChange={e => setEmail(e.target.value)} />
         <br/>
-        input password: <input type="password" value={password} onChange={e => setPassword(e.target.value)} />
+        input password: <input className="text-red-600" type="password" value={password} onChange={e => setPassword(e.target.value)} />
         <br/>
         <button onClick={handleSubmit}>Submit</button>
         </>

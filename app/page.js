@@ -1,7 +1,5 @@
 'use client'
 import Link from "next/link"
-import { useState } from "react"
-import {useSession} from 'next-auth/react'
 import { useAppState } from "./context/stateContext"
 
 
@@ -11,8 +9,10 @@ export default function Home() {
     return <div className="text-red-400">
       Welcome to Next.js!
       <br/>
-      <Link href="/account/register">Register{session.user.id}</Link>
     </div>
   }
-  return <div>loading...</div>
+  return <div>
+  <Link href="/account/register">Register</Link>
+  <Link href="/account/login">Login</Link>
+  </div>
 }

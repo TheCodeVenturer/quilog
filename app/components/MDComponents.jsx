@@ -3,7 +3,7 @@ import { synthwave84} from 'react-syntax-highlighter/dist/cjs/styles/prism';
 
 const CustomImage = ({ src, children }) => {
   return (
-    <img src={src} alt={children} className ="w-[80%] m-auto" width={"80%"}/>
+    <img src={src} alt={children} className ="w-[80%] m-auto rounded-md" width={"80%"}/>
   )
 }
 
@@ -21,12 +21,12 @@ const CodeBlock = ({ node, inline, className, children, ...props }) => {
         color:"red"
       }}
         customStyle={{
-          background: '#0f0f0f',
           backgroundImage:"none",
+          backgroundColor: 'rgba(0, 0, 0, 0.2) !important',
           margin:"10px",
           borderRadius: "20px",
           padding: "10px",
-          border: "3px solid #242424",
+          border: "3px solid rgba(0, 0, 0, 0.4)",
         }}
         {...props}
       >{String(children).replace(/\n$/, '')}</SyntaxHighlighter>
@@ -80,17 +80,17 @@ const Anchor = ({children})=>{
 }
 const UnorderedList = ({children})=>{
   return(
-    <ul className="ml-1 p-1 sm:p-2 bg-[#5a59595e] text-base rounded-md my-2">{children}</ul>
+    <ul className="ml-1 p-1 sm:p-2 min-w-[60%] w-fit bg-[#5a59595e] text-base rounded-md my-2">{children}</ul>
   )
 }
 const OrderedList = ({children})=>{
   return(
-    <ol className="ml-1 p-1 sm:p-2 text-base bg-[#5a59595e] rounded-md my-2 ">{children}</ol>
+    <ol className="ml-1 p-1 sm:p-2 min-w-[60%] w-fit text-base bg-[#5a59595e] rounded-md my-2 ">{children}</ol>
   )
 }
 const ListItem = ({children})=>{
   return(
-    <li className="ml-1 p-1 rounded text-lg text-sky-500 bg-[#5a59595e] my-2">{children}</li>
+    <li className="ml-1 p-1 rounded text-lg text-sky-400 bg-[#5a59595e] my-2">{children}</li>
   )
 }
 const HorizontalRule = ({children})=>{

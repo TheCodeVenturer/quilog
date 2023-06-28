@@ -1,6 +1,8 @@
+'use client'
 import './globals.css'
 import { Inter } from 'next/font/google'
 import { NextAuthProvider } from './sessionProvider'
+import { Toaster } from 'react-hot-toast'
 import { StateContext } from './context/stateContext'
 const inter = Inter({ subsets: ['latin'] })
 export const metadata = {
@@ -14,6 +16,7 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
       
       <NextAuthProvider>
+        <Toaster />
           <StateContext>
             {children}
           </StateContext>
