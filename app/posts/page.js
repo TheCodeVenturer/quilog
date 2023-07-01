@@ -7,6 +7,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { useSearchParams } from "next/navigation";
 
 
+
 export default function Page(){
 
     const [pageNo,setPageNo] = useState(1)

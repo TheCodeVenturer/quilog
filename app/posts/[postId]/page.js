@@ -4,6 +4,8 @@ import PostBottom from "@/app/components/postBottom";
 import { useAppState } from "@/app/context/stateContext";
 
 import Link from "next/link";
+import Image from "next/image";
+
 import { useState,  useEffect ,useRef } from "react";
 
 import useSWR from "swr";
@@ -89,6 +91,7 @@ export default function PostById({ params: { postId } }) {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ comment }),
+      cache:"no-cache"
     });
     const response = await res.json();
     if (response.error) {
@@ -103,11 +106,11 @@ export default function PostById({ params: { postId } }) {
   if (isLoading) return <div>Loading...</div>;
   if (!data) return <div>Post not found</div>;
   return (
-    <div className="w-full sm:w-[400px] my-3 rounded-xl bg-gray-900 m-auto md:w-[65%]">
-      <Link className="w-fit m-1 p-1 md:m-2 md:p-2 flex items-center" href="#">
-        <div className="w-9 h-9 bg-red-900 rounded-full"></div>
-        <p className="ml-3 font-bold text-md">User</p>
-      </Link>
+    <div className="w-full sm:w-[400px] my-3 rounded-xl bg-gray-900 mx-auto md:w-[65%]">
+      <Link className="w-fit p-4 flex items-center" href={`/${data.post.user._id}`}>
+          <Image className="w-9 h-9 bg-black rounded-full" src={`${data.post.user.image}`} height={100} width = {100} alt={`${data.post.user.username}`}/>
+          <p className="ml-3 font-bold text-md">{data.post.user.username}</p>
+        </Link>
       <PostBottom
         style={`border-y-2 w-full m-auto my-1 p-5 md:px-10`}
         title={data.post.title}
