@@ -1,62 +1,41 @@
-'use client'
-import { useEffect,useState } from "react";
-import PostBox from "../components/post";
 
-import InfiniteScroll from "react-infinite-scroll-component";
+import User from "@/models/User";
+import db from "@/lib/db";
+import PostPage from "../components/allPostsPage";
+import { redirect } from 'next/navigation'
 
-import { useSearchParams } from "next/navigation";
-
-
-
-export default function Page(){
-
-    const [pageNo,setPageNo] = useState(1)
-    const [postArray,setPostArray] = useState([])
-    const [loading,setLoading] = useState(true)
-    const [totalPosts,setTotalPosts] = useState(0)
-
-    const searchParams = useSearchParams()
-    
-    async function fetchPosts() {
-        var searchQueries = ""
-        if(searchParams.has("likedPost")){
-            searchQueries = searchQueries + `&likedPost=${searchParams.get("likedPost")}`
-        }
-        if(searchParams.has("userId")){
-            searchQueries = searchQueries + `&userId=${searchParams.get("userId")}`
-        }
-        const fetchedPost = await fetch(`/api/post?pageNo=${pageNo}${searchQueries}`);
-        const data = await fetchedPost.json();
-        if(pageNo==1) setTotalPosts(data.count)
-        console.log(data);
-        setPostArray([...postArray,...data.posts])
-        setPageNo(pageNo+1)
+export async function generateMetadata({searchParams}){
+    var title="Posts"
+    if(Object.keys(searchParams).length && !searchParams.userId){
+        console.log("redirecting");
+        redirect("/posts")
     }
-    useEffect(()=>{
-        const fetchInitialPosts = async ()=>{
-            await fetchPosts()
+    if(searchParams.likedPost && searchParams.userId){
+        try{
+            db.connect()
+            const user = await User.findOne({_id:searchParams.userId})
+            title = `${user.name}'s liked posts`
         }
-        fetchInitialPosts()
-    },[])
-    
-    
-    return(
-        <div>
-        <InfiniteScroll
-          dataLength={postArray.length}
-          next={fetchPosts}
-          hasMore={postArray.length<totalPosts}
-          loader={<h4>Loading...</h4>}
-        >
-        {
-            postArray.map((post)=>{
-                return(
-                    <PostBox key={post._id} post={post}/>
-                )
-            })
+        catch(error){
+            redirect('/posts')
         }
-        </InfiniteScroll>
-        </div>
-    )
+    }
+    else if(searchParams.userId){
+        try{
+            db.connect()
+            const user = await User.findOne({_id:searchParams.userId})
+            title = `${user.name}'s posts`
+        }catch(err){
+            redirect('/posts')
+        }
+    }
+    return{
+        title,
+        description: "Technonatura is a platform for learning and sharing knowledge about technology and nature.",
+    }
+}
+
+export default async function Page({searchParams}){
+    return (<PostPage query={searchParams}/>)
 }
 

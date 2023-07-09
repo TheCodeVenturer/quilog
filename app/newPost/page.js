@@ -4,7 +4,6 @@ import { useState, useRef, useEffect } from "react";
 import PostBottom from "../components/postBottom";
 import { useRouter } from 'next/navigation';
 import { useAppState } from "../context/stateContext";
-import { set } from "mongoose";
 
 const activeStyle = "text-blue-500 border-0 border-b-2 border-blue-500";
 const deactiveStyle = "text-slate-200";
@@ -77,7 +76,7 @@ export default function NewPost() {
             <input value={title} onChange={e=>setTitle(e.target.value)} autoFocus className={`w-full outline-0 p-1 pl-3 text-xl rounded-md border-0 bg-zinc-800 text-[#f7cb90]`} placeholder="Enter Title"/>
               <TextBox content={content} setContent={setContent} />
             </div>
-            <PostBottom style={`min-h-[80vh] ${content?"":"text-zinc-600"} ${activeEdit?"hidden":"block"}`} title={title} content={content?content:"#### Nothing to Show Here"} />
+            <PostBottom style={`max-h-[70vh] overflow-y-scroll ${content?"":"text-zinc-600"} ${activeEdit?"hidden":"block"}`} title={title} content={content?content:"#### Nothing to Show Here"} />
         </div>
       </div>
     </>
@@ -88,17 +87,14 @@ export const TextBox = ({ content, setContent }) => {
   const textareaRef = useRef(null);
   function handleChange(e) {
     setContent(e.target.value);
-    textareaRef.current.style.resize = "none";
-    textareaRef.current.style.height = `max(80vh,${textareaRef.current.scrollHeight}px)`;
   }
   return (
     <textarea
       ref={textareaRef}
-      className="mt-2  bg-transparent outline-0 border-0 w-full overflow-hidden"
+      className="mt-2  bg-transparent outline-0 border-0 w-full h-[70vh] resize-none"
       value={content}
       placeholder="Write Your Post Here"
       onChange={handleChange}
-      style={{ minHeight: `80vh`, resize: "none" }}
     />
   );
 };

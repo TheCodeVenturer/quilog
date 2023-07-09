@@ -1,9 +1,8 @@
 import mongoose from "mongoose";
 const UserSchema = new mongoose.Schema({
-    username: {
+    name: {
         type: String,
         required: true,
-        unique: true
     },
     email: {
         type: String,
@@ -16,10 +15,39 @@ const UserSchema = new mongoose.Schema({
     },
     image:{
         type: String,
+        default:"/Images/profile.png"
+    },
+    Linkedin:{
+        type:String,
         default:""
     },
-    socials:[{
+    Twitter:{
         type:String,
+        default:""
+    },
+    Instagram:{
+        type:String,
+        default:""
+    },
+    Youtube:{
+        type:String,
+        default:""
+    },
+    Website:{
+        type:String,
+        default:""
+    },
+    bio:{
+        type:String,
+        default:""
+    },
+    followers: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    }],
+    following: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
     }],
     likedPosts: [{
         type: mongoose.Schema.Types.ObjectId,

@@ -43,7 +43,7 @@ export const authOptions =  {
     session: async ({ session, token }) => {
       if (session?.user) {
         session.user.id = token.uid;
-        session.user.username = token.username;
+        session.user.name = token.name;
         session.user.image = token.image;
       }
       return session;
@@ -51,7 +51,7 @@ export const authOptions =  {
     jwt: async ({ user, token }) => {
       if (user) {
         token.uid = user.id;
-        token.username = user.username;
+        token.name = user.name;
         token.image = user.image;
       }
       return token;

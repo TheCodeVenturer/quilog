@@ -22,7 +22,7 @@ export async function GET(req){
             const dataArray = await Post.find().skip(skip).limit(itemsPerPage).select("_id user title data updatedAt").populate({
                 path:"user",
                 model:"User",
-                select:"_id username image",
+                select:"_id name image",
                 options:{lean:true}
             }).sort({updatedAt:-1})
             dataToUser = {posts:dataArray}
@@ -44,7 +44,7 @@ export async function GET(req){
                     sort: { updatedAt: -1 }
                 }
             })
-            const user = {_id:dataArray._id,username:dataArray.username,image:dataArray.image}
+            const user = {_id:dataArray._id,name:dataArray.name,image:dataArray.image}
             const posts = dataArray.posts.map((post)=>{
                 return {...post,user}})
             dataToUser = {posts}
@@ -65,7 +65,7 @@ export async function GET(req){
                     populate:{
                         path:"user",
                         model:"User",
-                        select:"_id username image",
+                        select:"_id name image",
                         options:{lean:true}
                     },
                     sort: { updatedAt: -1 }

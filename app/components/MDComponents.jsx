@@ -1,5 +1,6 @@
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { synthwave84} from 'react-syntax-highlighter/dist/cjs/styles/prism';
+import SyntaxHighlighter from 'react-syntax-highlighter/dist/esm/prism';
+import synthwave84 from 'react-syntax-highlighter/dist/cjs/styles/prism/synthwave84';
+
 
 const CustomImage = ({ src, children }) => {
   return (
@@ -21,17 +22,18 @@ const CodeBlock = ({ node, inline, className, children, ...props }) => {
         color:"red"
       }}
         customStyle={{
-          backgroundImage:"none",
+          backgroundImage:'transparent !important',
           backgroundColor: 'rgba(0, 0, 0, 0.2) !important',
           margin:"10px",
           borderRadius: "20px",
           padding: "10px",
           border: "3px solid rgba(0, 0, 0, 0.4)",
+          overflow:"hidden"
         }}
         {...props}
       >{String(children).replace(/\n$/, '')}</SyntaxHighlighter>
     ) : (
-      <code className={className} {...props}>
+      <code className={className} style={{background:"transparent !important"}}{...props}>
         {children}
       </code>
     );

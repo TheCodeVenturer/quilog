@@ -18,12 +18,12 @@ export default function Login(){
     redirect('/')
   }
     return(
-        <>
+        <div className="text-black">
         input email: <input className="text-red-600" type="email" value={email} onChange={e => setEmail(e.target.value)} />
         <br/>
         input password: <input className="text-red-600" type="password" value={password} onChange={e => setPassword(e.target.value)} />
         <br/>
         <button onClick={handleSubmit}>Submit</button>
-        </>
+        </div>
     )
 }

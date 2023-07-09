@@ -1,40 +1,58 @@
-'use client'
-import { useEffect,useState } from "react"
+import db from "@/lib/db"
+import User from "@/models/User"
 
-import Image from "next/image"
+import { getServerSession } from "next-auth"
+import { authOptions } from "../api/auth/[...nextauth]/route"
+
+import UserPage from "../components/userPage"
 import { notFound } from "next/navigation"
 
-export default function UserPage({params:{userId}}){
-    const[userData, setUserData] = useState({})
-    const [loading, setLoading] = useState(true)
-    useEffect(()=>{
-        async function getUser(){
-            const res = await fetch(`/api/${userId}`)
-            const response = await res.json()
-            setUserData(response)
-            setLoading(false)
-            console.log(response);
 
+export async function generateMetadata({params:{userId}}){
+    const session = await getServerSession(authOptions);
+  console.log(session);
+    var title =""
+    var description = ""
+    try{
+        db.connect()
+        const user= await User.findOne({ _id: userId })
+        .select("name bio")
+        .lean();
+  
+  
+        title = user.name
+        if (title.length > 6) {
+          title = `${title.slice(0, 6)}...`;
         }
-        getUser()
-    },[])
-    if(loading){
-        return(
-            <div className="m-auto text-center mt-10 w-[80%] md:w-[70%]">
-                Loading...
-            </div>
-        )
+        title = `${title}`;
+        description = `Meet ${user.name} a blogger at Quilog \n ${user.bio}`
+        return {
+            metadataBase: new URL(`http://localhost:3000`),
+            title,
+            description,
+            openGraph: {
+            title,
+            description,
+            type: "website",
+            url: `http://localhost:3000/${userId}`,
+            images:[
+                {
+                url:`http://localhost:3000/api/image?userId=${userId}`,
+                alt:`${user.name} profile picture`
+                }
+            ]
+            }
+        }
     }
-    if(userData.error)
+    catch(error){
         notFound()
-    return(
-        <div className="m-auto text-center mt-10 w-[80%] md:w-[70%]">
-        <div className="flex justify-around">
-        <Image className="m-auto bg-red-500 rounded-full w-48 h-48 md:h-56 md:w-56" src="/Images/profile.png" width={200} height={200} alt=""/>
-        <div>Niraj Modi</div>
-        </div>
+    }
+}
 
-            {userId}
-        </div>
+export default function Page({params:{userId}}){
+    return (
+        <>
+        <UserPage userId={userId}/>
+        </>
     )
 }

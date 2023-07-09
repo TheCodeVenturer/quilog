@@ -10,12 +10,12 @@ export async function GET(req,{params:{postId}}){
         const post = await Post.findOne({_id:postId})
         .populate({
             path:"user",
-            select:"_id username image",
+            select:"_id name image",
             options:{lean:true}
         })
         .populate({
             path:"likedBy",
-            select:"_id username image",
+            select:"_id name image",
             options:{lean:true}
         })
         .populate({
@@ -24,7 +24,7 @@ export async function GET(req,{params:{postId}}){
           populate: {
             path: "user",
             model: "User",
-            select: "_id username image",
+            select: "_id name image",
             options: { 
                 lean: true
              },
@@ -45,9 +45,10 @@ export async function POST(req,{params:{postId}}){
     try {
         const session = await getServerSession(authOptions);
         const data = await req.json()
-        console.log(data)
+
         await db.connect()
         const post = await Post.findOne({_id:postId})
+        
         if(!post){
             throw new Error("Post not found")
         }

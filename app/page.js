@@ -1,6 +1,6 @@
 'use client'
-import Link from "next/link"
 import { useAppState } from "./context/stateContext"
+import Link from "next/link"
 
 
 export default function Home() {

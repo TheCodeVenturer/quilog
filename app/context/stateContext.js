@@ -6,7 +6,7 @@ const context = createContext();
 
 export const StateContext = ({ children }) => {
   const { data: session, status } = useSession();
-
+  console.log(session)
   return (
     <context.Provider
       value={{
