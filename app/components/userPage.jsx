@@ -3,10 +3,10 @@
 import EditUserPage from "./editUserPage";
 
 import { useEffect, useState } from "react";
-import { useAppState } from "../context/stateContext";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
 
-import Image from "next/image";
+
 import { notFound } from "next/navigation";
 
 
@@ -21,7 +21,7 @@ import {
 } from "react-icons/ai";
 
 export default function UserPage({ userId }) {
-  const { session, status } = useAppState();
+  const { data:session, status } = useSession();
   const [userData, setUserData] = useState({});
   const [loading, setLoading] = useState(true);
   const [editBoxVisible, setEditBoxVisible] = useState(false);
@@ -49,16 +49,11 @@ export default function UserPage({ userId }) {
     if (userPronunce.length > 8) userPronunce = userPronunce.slice(0, 8) + "'s";
   }
   return (
-    <div className={`box-border m-5 mx-auto max-w-[85vw] md:max-w-[700px] lg:max-w-[850px] border border-gray-400 bg-white bg-opacity-50 shadow-lg shadow-gray-900/70 backdrop-filter backdrop-blur-sm  relative ${editBoxVisible===true?"h-[700px] sm:h-[730px] md:h-[620px] min-h-[calc(100vh-20px)]":"h-full"} md:h-full `}>
-      <div className="flexrounded-2xl border  bg-white shadow-md shadow-gray-700/50 mx-6 my-7 min-h-[calc(100%-3.5rem)] rounded-3xl md:px-8 lg:px-20 relative">
+    <div className={`box-border m-5 mx-auto max-w-[95vw] md:max-w-[700px] lg:max-w-[850px] border border-gray-400 bg-white bg-opacity-50 shadow-lg shadow-gray-900/70 backdrop-filter backdrop-blur-sm  relative h-[max(650px,calc(100vh-100px))] sm:h-[max(730px,calc(100vh-40px))] md:h-[max(620px,calc(100vh-20px))]`}>
+      <div className="flexrounded-2xl border  bg-white shadow-md shadow-gray-700/50 mx-3 md:mx-6 my-7 min-h-[calc(100%-3.5rem)] rounded-3xl md:px-8 lg:px-20 relative">
         <div className="flex flex-col md:flex-row items-center lg:mt-[3vh]">
-          <Image
-            className="bg-blue-500 border-4 border-gray-400 my-3 relative rounded-full w-44 h-44 md:h-56 md:w-56 mx-auto md:mx-0"
-            src={userData.image}
-            width={200}
-            height={200}
-            alt={userData.name}
-          />
+        
+          <img className="bg-blue-500 border-4 border-gray-400 my-3 relative rounded-full w-44 h-44 md:h-56 md:w-56 mx-auto md:mx-0" src={userData.image} width={200} height={200} alt={userData.name} />
           <div className="text-center md:text-left text-black md:px-5 lg:px-10">
             <h1 className="text-2xl font-bold">
               {userData.name}

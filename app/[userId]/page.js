@@ -10,7 +10,6 @@ import { notFound } from "next/navigation"
 
 export async function generateMetadata({params:{userId}}){
     const session = await getServerSession(authOptions);
-  console.log(session);
     var title =""
     var description = ""
     try{

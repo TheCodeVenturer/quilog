@@ -1,10 +1,9 @@
 /* eslint-disable react/no-danger */
 "use client";
 import PostBottom from "./postBottom";
-import { useAppState } from "@/app/context/stateContext";
+import { useSession } from "next-auth/react";
 
 import Link from "next/link";
-import Image from "next/image";
 
 import { useState,  useEffect ,useRef } from "react";
 
@@ -16,7 +15,7 @@ import {
   AiOutlineComment,
   AiOutlineShareAlt
 } from "react-icons/ai";
-import { FaUserCircle } from "react-icons/fa";
+
 import {BsSend,BsSendFill} from "react-icons/bs";
 
 import toast from "react-hot-toast";
@@ -30,15 +29,14 @@ export async function fetchPostById(postId) {
 }
 
 
-export default function BlogbyId({ postId }) {
+export default function BlogbyId({ postId ,user}) {
   const { data, error, isLoading } = useSWR(postId, fetchPostById, {
     refreshInterval: 0,
   });
-  const { session, status } = useAppState();
+  const { data:session, status } = useSession();
   const [comment, setComment] = useState("");
   const [isliked, setLiked] = useState(false);
   const [belowBox, setBelowBox] = useState("none");
-  const refCommentBok = useRef(null);
   useEffect(() => {
     async function setLike() {
       if (
@@ -67,7 +65,7 @@ export default function BlogbyId({ postId }) {
     } else {
       setLiked((currentLikeState) => {
         if (!currentLikeState) {
-          data.post.likedBy.push({_id: session.user.id, name: session.user.name, image: session.user.image});
+          data.post.likedBy.push({_id: session.user.id, name: user.name, image: user.image});
           console.log(data.post.likedBy);
           return true;
         } else {
@@ -90,15 +88,14 @@ export default function BlogbyId({ postId }) {
     const res = await fetch(`/api/post/${postId}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ comment }),
-      cache:"no-cache"
+      body: JSON.stringify({ comment })
     });
     const response = await res.json();
     if (response.error) {
       console.log(data.error);
     } else {
           data.post.comments.unshift({text: comment, user:{
-            _id: session.user.id, name: session.user.name, image: session.user.image
+            _id: session.user.id, name: user.name, image: user.image
           } });
     }
     setComment("");
@@ -108,7 +105,7 @@ export default function BlogbyId({ postId }) {
   return (
     <div className="w-full sm:w-[400px] my-3 rounded-xl bg-gray-900 mx-auto md:w-[65%]">
       <Link className="w-fit p-4 flex items-center" href={`/${data.post.user._id}`}>
-          <Image className="w-9 h-9 bg-black rounded-full" src={`${data.post.user.image}`} height={100} width = {100} alt={`${data.post.user.name}`}/>
+          <img className="w-9 h-9 bg-black rounded-full" src={`${data.post.user.image}`} height={100} width = {100} alt={`${data.post.user.name}`}/>
           <p className="ml-3 font-bold text-md">{data.post.user.name}</p>
         </Link>
       <PostBottom
@@ -172,9 +169,9 @@ const Likes = ({ likedBy }) => {
             href="#"
           >
             <div className="w-9 h-9 rounded-full text-4xl">
-            <Image
+            <img
             className="w-9 h-9 bg-black rounded-full"
-            src={`${ele.image}`}
+            src={ele.image}
             height={100}
             width={100}
             alt={`${ele.name}`}
@@ -199,9 +196,15 @@ const Comments = ({ comments }) => {
               className="text-red-50 w-fit px-1 rounded bg-zinc-400/20 flex items-center"
               href="#"
             >
-              <div className="text-sm md:text-md mx-1">
-                <FaUserCircle />{" "}
-              </div>
+              <div className="w-9 h-9 rounded-full text-4xl">
+                <img
+                className="w-9 h-9 bg-black rounded-full"
+                src={ele.user.image}
+                height={100}
+                width={100}
+                alt={`${ele.user.name}`}
+              />
+            </div>
               <p className="text-sm md:text-md">{ele.user.name}</p>
             </Link>
             <div className="text-xl">{ele.text}</div>

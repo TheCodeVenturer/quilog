@@ -1,7 +1,12 @@
 "use client";
+
+import Compressor from "compressorjs";
+
 import toast from "react-hot-toast";
 import { useState } from "react";
-import { useAppState } from "../context/stateContext";
+import { useSession } from "next-auth/react";
+
+export const dynamic = 'force-dynamic'
 
 import {
   AiOutlineInstagram,
@@ -14,8 +19,11 @@ import {
 
 import { RxCross2 } from "react-icons/rx";
 
+import { useRouter } from "next/navigation";
+
 export default function EditUserPage({ userData, close }) {
-  const { session, status } = useAppState();
+  const router = useRouter();
+  const { data:session, status, update } = useSession();
   const [user, setUser] = useState(userData);
   const [imageURL, setImageURL] = useState(userData.image);
 
@@ -33,16 +41,27 @@ export default function EditUserPage({ userData, close }) {
   };
   const uploadToClient = (event) => {
     if (event.target.files && event.target.files[0]) {
-      const i = event.target.files[0];
-      if(i.size> 1000000){
+      const profileImg = event.target.files[0];
+      if(profileImg.size> 5000000){
         toast.error("reduce file size under 1mb")
         return
       }
-      if(i.type==="image/png" || i.type==="image/jpeg"){
-        console.log(i)
-        console.log("hello")
-        setUser((prev) => ({ ...prev, image: i }));
-        setImageURL(URL.createObjectURL(i));
+      if(profileImg.type==="image/png" || profileImg.type==="image/jpeg"){
+        let quality=1
+        if(profileImg.size>900000)
+          quality = 500000/profileImg.size
+        const reader = new FileReader();
+        reader.onload = () => {
+          const base64String = reader.result;
+          setUser((prev) => ({ ...prev, image: base64String }));
+        };
+        new Compressor(profileImg, {
+          quality:quality,
+          success(reducedProfileImg) {
+            reader.readAsDataURL(reducedProfileImg);
+            setImageURL(URL.createObjectURL(reducedProfileImg));
+
+        }})
       }
       else{
         toast.error("please Select an Image")
@@ -50,25 +69,26 @@ export default function EditUserPage({ userData, close }) {
     }
   };
   const handleSave = async () => {
-    const body = new FormData();
-    body.append("image",user.image)
-    body.append("name",user.name)
-    body.append("Instagram",user.Instagram)
-    body.append("Twitter",user.Twitter)
-    body.append("Linkedin",user.Linkedin)
-    body.append("Youtube",user.Youtube)
-    body.append("Website",user.Website)
     const res = await fetch(`/api/${session.user.id}`, {
       method: 'PUT',
-      body,
+      body: JSON.stringify(user),
     });
     if(res.status===200){
+      toast.success("User Data Updated")
+      await update({
+        ...session,
+        user: {
+          ...session?.user,
+          image: user.image,
+          name: user.name, 
+      }})
+      router.refresh()
       close(false)
-      toast.success("Saved")
+
     }
   }
   return (
-    <div className=" border  bg-white shadow-md shadow-gray-700/50 mx-6 my-7 min-h-[calc(100%-3.5rem)] w-[calc(100%-3rem)] rounded-3xl md:px-8 lg:px-20 absolute top-0 left-0 z-10">
+    <div className=" border  bg-white shadow-md shadow-gray-700/50 mx-3 md:mx-6 my-7 min-h-[calc(100%-3.5rem)] w-[calc(100%-1.5rem)] md:w-[calc(100%-3rem)] md:rounded-3xl md:px-8 lg:px-20 absolute top-0 left-0 z-10">
       <div className="md:flex md:flex-row items-center lg:mt-[3vh]">
         <div
           className="bg-blue-500 border-4 border-gray-400 my-3 rounded-full w-40 h-40 md:h-56 md:w-56 mx-auto md:mx-0 bg-cover bg-center bg-fit"

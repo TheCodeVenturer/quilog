@@ -1,6 +1,8 @@
 'use client'
 import { useAppState } from "./context/stateContext"
+import { signOut } from "next-auth/react"
 import Link from "next/link"
+import Image from "next/image"
 
 
 export default function Home() {
@@ -9,6 +11,8 @@ export default function Home() {
     return <div className="text-red-400">
       Welcome to Next.js!
       <br/>
+    <button onClick={()=>signOut()}>SignOut</button>
+    <img src="./backGround.png" width="100" height="100" alt=""/>
     </div>
   }
   return <div>

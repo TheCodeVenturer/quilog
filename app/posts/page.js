@@ -7,7 +7,7 @@ import { redirect } from 'next/navigation'
 export async function generateMetadata({searchParams}){
     var title="Posts"
     if(Object.keys(searchParams).length && !searchParams.userId){
-        console.log("redirecting");
+        // console.log("redirecting");
         redirect("/posts")
     }
     if(searchParams.likedPost && searchParams.userId){

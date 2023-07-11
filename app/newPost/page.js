@@ -76,7 +76,7 @@ export default function NewPost() {
             <input value={title} onChange={e=>setTitle(e.target.value)} autoFocus className={`w-full outline-0 p-1 pl-3 text-xl rounded-md border-0 bg-zinc-800 text-[#f7cb90]`} placeholder="Enter Title"/>
               <TextBox content={content} setContent={setContent} />
             </div>
-            <PostBottom style={`max-h-[70vh] overflow-y-scroll ${content?"":"text-zinc-600"} ${activeEdit?"hidden":"block"}`} title={title} content={content?content:"#### Nothing to Show Here"} />
+            <PostBottom style={`${content?"":"text-zinc-600"} ${activeEdit?"hidden":"block"}`} title={title} content={content?content:"#### Nothing to Show Here"} />
         </div>
       </div>
     </>

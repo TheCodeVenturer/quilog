@@ -5,6 +5,8 @@ import db from "@/lib/db";
 import Post from "@/models/Post";
 import User from "@/models/User";
 
+export const dynamic = 'force-dynamic'
+
 
 const websiteUrl = "http://localhost:3000";
 
@@ -17,6 +19,7 @@ const belanosimaRegular = fetch(new URL(`${websiteUrl}/fonts/Belanosima-Regular.
 const ubuntuLight = fetch(new URL(`${websiteUrl}/fonts/Ubuntu-Light.ttf`, import.meta.url)).then(
   (res) => res.arrayBuffer(),
 );
+
 
 
 export async function GET(req) {

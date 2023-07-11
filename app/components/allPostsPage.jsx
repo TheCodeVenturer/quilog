@@ -5,7 +5,6 @@ import InfiniteScroll from "react-infinite-scroll-component";
 
 import { redirect } from "next/navigation";
 import Link from "next/link";
-import Image from "next/image";
 import ReactToMarkDown from "./ReactToMarkDown";
 import { AiOutlineShareAlt } from "react-icons/ai";
 
@@ -67,7 +66,7 @@ function PostBox({ post }) {
           className="w-fit mx-2 flex items-center"
           href={`/${post.user._id}`}
         >
-          <Image
+          <img
             className="w-9 h-9 bg-black rounded-full"
             src={`${post.user.image}`}
             height={100}

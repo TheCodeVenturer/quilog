@@ -1,7 +1,7 @@
 import db from "@/lib/db";
 import Post from "@/models/Post";
 import User from "@/models/User";
-import { data } from "autoprefixer";
+
 export async function GET(req){
     try {
         const queryObject = new URL(req.url).searchParams
