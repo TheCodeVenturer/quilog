@@ -9,7 +9,7 @@ export async function POST(req){
         const isExisting = await User.findOne({email})
         
         if(isExisting){
-            throw new Error("User already exists")
+            throw new Error("exists")
         }
 
         const hashedPassword = await bcrypt.hash(pass, 11)
@@ -22,7 +22,6 @@ export async function POST(req){
 
         return new Response(JSON.stringify(user), {status: 201})
     } catch (error) {
-        console.log(error.message);
-        return new Response(JSON.stringify(error.message), {status: 500})
+        return new Response(JSON.stringify({"error":error.message}), {status: 500})
     }
 }
