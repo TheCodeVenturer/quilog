@@ -18,14 +18,14 @@ export const authOptions =  {
       name: "credentials",
       async authorize(credentials,req){
         const {email,password} = credentials
-        console.log(email,password);
         await db.connect()
-        const foundUser = await User.findOne({email})
+        let foundUser = await User.findOne({email})
         if(foundUser)
         {
           const matched = await compare(password,foundUser.password)
           if(matched){
-            return foundUser
+            
+            return {id:foundUser._id,name:foundUser.name,email:foundUser.email}
           }
           else throw new Error("Invalid credentials")
         }

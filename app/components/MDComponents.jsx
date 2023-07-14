@@ -4,7 +4,10 @@ import synthwave84 from 'react-syntax-highlighter/dist/cjs/styles/prism/synthwav
 
 const CustomImage = ({ src, children }) => {
   return (
+    <>
+    {/* eslint-disable-next-line @next/next/no-img-element */}
     <img src={src} alt={children} className ="w-[80%] m-auto rounded-md" width={"80%"}/>
+    </>
   )
 }
 

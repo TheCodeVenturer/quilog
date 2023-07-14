@@ -1,13 +1,17 @@
 import './globals.css'
+
 import { Inter } from 'next/font/google'
 import { NextAuthProvider } from './sessionProvider'
 import { Toaster } from 'react-hot-toast'
 import { StateContext } from './context/stateContext'
+
+import { LayoutProvider } from './LayoutProvider'
+
 const inter = Inter({ subsets: ['latin'] })
 
+export const dynamic = 'force-static'
 
-import { getServerSession } from 'next-auth/next'
-import { authOptions } from './api/auth/[...nextauth]/route'
+
 export const metadata = {
   title: {
     template : "%s | Quilog",
@@ -17,7 +21,6 @@ export const metadata = {
 }
 
 export default async function RootLayout({ children }) {
-  const session = await getServerSession(authOptions)
   return (
     <html lang="en">
       <head></head>
@@ -27,7 +30,9 @@ export default async function RootLayout({ children }) {
       <NextAuthProvider>
         <Toaster />
           <StateContext>
-             {children}
+          <LayoutProvider>
+            <main className='pt-[56px]'>{children}</main>
+          </LayoutProvider>
           </StateContext>
         </NextAuthProvider>
       </body>

@@ -2,6 +2,9 @@
 import { useState } from "react"
 import {useSession,signIn} from 'next-auth/react'
 import { redirect } from 'next/navigation'
+
+export const dynamic = "force-static"
+
 export default function Login(){
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -19,11 +22,14 @@ export default function Login(){
   }
     return(
         <div className="text-black">
-        input email: <input className="text-red-600" type="email" value={email} onChange={e => setEmail(e.target.value)} />
-        <br/>
-        input password: <input className="text-red-600" type="password" value={password} onChange={e => setPassword(e.target.value)} />
-        <br/>
-        <button onClick={handleSubmit}>Submit</button>
+        <div>
+
+            input email: <input className="text-red-600" type="email" value={email} onChange={e => setEmail(e.target.value)} />
+            <br/>
+            input password: <input className="text-red-600" type="password" value={password} onChange={e => setPassword(e.target.value)} />
+            <br/>
+            <button onClick={handleSubmit}>Submit</button>
+        </div>
         </div>
     )
 }

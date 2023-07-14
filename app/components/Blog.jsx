@@ -1,7 +1,7 @@
 /* eslint-disable react/no-danger */
 "use client";
 import PostBottom from "./postBottom";
-import { useSession } from "next-auth/react";
+import { useAppState } from "next-auth/react";
 
 import Link from "next/link";
 
@@ -29,11 +29,11 @@ export async function fetchPostById(postId) {
 }
 
 
-export default function BlogbyId({ postId ,user}) {
+export default function BlogbyId({ postId}) {
   const { data, error, isLoading } = useSWR(postId, fetchPostById, {
     refreshInterval: 0,
   });
-  const { data:session, status } = useSession();
+  const { session, status,user } = useAppState();
   const [comment, setComment] = useState("");
   const [isliked, setLiked] = useState(false);
   const [belowBox, setBelowBox] = useState("none");
@@ -105,6 +105,7 @@ export default function BlogbyId({ postId ,user}) {
   return (
     <div className="w-full sm:w-[400px] my-3 rounded-xl bg-gray-900 mx-auto md:w-[65%]">
       <Link className="w-fit p-4 flex items-center" href={`/${data.post.user._id}`}>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
           <img className="w-9 h-9 bg-black rounded-full" src={`${data.post.user.image}`} height={100} width = {100} alt={`${data.post.user.name}`}/>
           <p className="ml-3 font-bold text-md">{data.post.user.name}</p>
         </Link>
@@ -169,6 +170,7 @@ const Likes = ({ likedBy }) => {
             href="#"
           >
             <div className="w-9 h-9 rounded-full text-4xl">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
             className="w-9 h-9 bg-black rounded-full"
             src={ele.image}
@@ -197,6 +199,7 @@ const Comments = ({ comments }) => {
               href="#"
             >
               <div className="w-9 h-9 rounded-full text-4xl">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                 className="w-9 h-9 bg-black rounded-full"
                 src={ele.user.image}

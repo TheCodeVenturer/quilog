@@ -1,6 +1,5 @@
 
 import BlogbyId from "@/app/components/Blog"
-import { getUserData } from "@/app/fetchUserDetails";
 import db from "@/lib/db";
 import Post from "@/models/Post";
 import { redirect } from "next/navigation";
@@ -54,12 +53,10 @@ export async function generateMetadata({params:{postId}}){
 
 export default async function Page({params:{postId}}){
   const session = await getServerSession(authOptions);
-  
-  const user = session?await getUserData(session.user.id):""
 
     return (
       <>
-        <BlogbyId postId={postId} user = {user}/>
+        <BlogbyId postId={postId}/>
         </>
     )
 }

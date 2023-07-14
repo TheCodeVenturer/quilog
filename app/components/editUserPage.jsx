@@ -6,6 +6,8 @@ import toast from "react-hot-toast";
 import { useState } from "react";
 import { useSession } from "next-auth/react";
 
+import { useAppState } from "../context/stateContext";
+
 export const dynamic = 'force-dynamic'
 
 import {
@@ -23,20 +25,20 @@ import { useRouter } from "next/navigation";
 
 export default function EditUserPage({ userData, close }) {
   const router = useRouter();
-  const { data:session, status, update } = useSession();
-  const [user, setUser] = useState(userData);
+  const { session, status, user,setUser } = useAppState();
+  const [updatdUser, setUpdatedUser] = useState(userData);
   const [imageURL, setImageURL] = useState(userData.image);
 
   const handleTextArea = (e) => {
     const inputValue = e.target.value;
     if (inputValue.length <= 135) {
-      setUser((prev) => ({ ...prev, bio: inputValue }));
+      setUpdatedUser((prev) => ({ ...prev, bio: inputValue }));
     }
   };
   const handlenameChange = (e) => {
     const inputValue = e.target.value;
     if (inputValue.length <= 20) {
-      setUser((prev) => ({ ...prev, name: inputValue }));
+      setUpdatedUser((prev) => ({ ...prev, name: inputValue }));
     }
   };
   const uploadToClient = (event) => {
@@ -53,7 +55,7 @@ export default function EditUserPage({ userData, close }) {
         const reader = new FileReader();
         reader.onload = () => {
           const base64String = reader.result;
-          setUser((prev) => ({ ...prev, image: base64String }));
+          setUpdatedUser((prev) => ({ ...prev, image: base64String }));
         };
         new Compressor(profileImg, {
           quality:quality,
@@ -71,24 +73,19 @@ export default function EditUserPage({ userData, close }) {
   const handleSave = async () => {
     const res = await fetch(`/api/${session.user.id}`, {
       method: 'PUT',
-      body: JSON.stringify(user),
+      body: JSON.stringify(updatdUser),
     });
     if(res.status===200){
+      setUser({...user,name:updatdUser.name,image:updatdUser.image})
       toast.success("User Data Updated")
-      await update({
-        ...session,
-        user: {
-          ...session?.user,
-          image: user.image,
-          name: user.name, 
-      }})
+      
       router.refresh()
       close(false)
 
     }
   }
   return (
-    <div className=" border  bg-white shadow-md shadow-gray-700/50 mx-3 md:mx-6 my-7 min-h-[calc(100%-3.5rem)] w-[calc(100%-1.5rem)] md:w-[calc(100%-3rem)] md:rounded-3xl md:px-8 lg:px-20 absolute top-0 left-0 z-10">
+    <div className=" border  bg-white shadow-md shadow-gray-700/50 mx-3 md:mx-6 my-4 md:my-7 min-h-[calc(100%-3.5rem)] w-[calc(100%-1.5rem)] md:w-[calc(100%-3rem)] md:rounded-3xl md:px-8 lg:px-20 absolute top-0 left-0 z-10">
       <div className="md:flex md:flex-row items-center lg:mt-[3vh]">
         <div
           className="bg-blue-500 border-4 border-gray-400 my-3 rounded-full w-40 h-40 md:h-56 md:w-56 mx-auto md:mx-0 bg-cover bg-center bg-fit"
@@ -101,19 +98,19 @@ export default function EditUserPage({ userData, close }) {
         <div className="md:w-[50%] ml-[5%] text-black flex flex-col">
           <input
             className={` mx-auto w-full h-10 max-w-[320px] text-2xl font-bold p-1.5 shadow-md mb-2 bg-gray-200/60 rounded-3xl outline-0 ${
-              user.name.length < 20 ? "caret-blue-600" : "caret-red-500"
+              updatdUser.name.length < 20 ? "caret-blue-600" : "caret-red-500"
             }`}
             maxLength={20}
             onChange={handlenameChange}
-            value={user.name}
+            value={updatdUser.name}
           />
           <textarea
             className={`w-full max-w-[320px] p-1.5 resize-none my-2 mx-auto md:mx-0 text-lg leading-5 h-28 shadow-md bg-gray-200/60 rounded-3xl outline-0 ${
-              user.bio.length < 135 ? "caret-blue-600" : "caret-red-500"
+              updatdUser.bio.length < 135 ? "caret-blue-600" : "caret-red-500"
             } scroll-smooth overflow-y-hidden`}
             maxLength={135}
             onChange={handleTextArea}
-            value={user.bio}
+            value={updatdUser.bio}
           />
         </div>
       </div>
@@ -127,8 +124,8 @@ export default function EditUserPage({ userData, close }) {
                 >
                   <AiOutlineInstagram />
                 </span>
-                <input className="ml-1 p-1 px-2 text-lg sm:text-xl w-10/12 max-w-[300px] shadow bg-gray-200/60 rounded-3xl outline-0" value={user.Instagram} 
-                onChange={(e) => setUser((prev) => ({ ...prev, Instagram: e.target.value }))}/>
+                <input className="ml-1 p-1 px-2 text-lg sm:text-xl w-10/12 max-w-[300px] shadow bg-gray-200/60 rounded-3xl outline-0" value={updatdUser.Instagram} 
+                onChange={(e) => setUpdatedUser((prev) => ({ ...prev, Instagram: e.target.value }))}/>
               </span>
             </div>
         </div>
@@ -140,8 +137,8 @@ export default function EditUserPage({ userData, close }) {
                 >
                   <AiOutlineLinkedin />
                 </span>
-                <input className="ml-1 p-1 px-2 text-lg sm:text-xl w-10/12 max-w-[300px] shadow bg-gray-200/60 rounded-3xl outline-0" value={user.Linkedin} 
-                onChange={(e) => setUser((prev) => ({ ...prev, Linkedin: e.target.value }))}/>
+                <input className="ml-1 p-1 px-2 text-lg sm:text-xl w-10/12 max-w-[300px] shadow bg-gray-200/60 rounded-3xl outline-0" value={updatdUser.Linkedin} 
+                onChange={(e) => setUpdatedUser((prev) => ({ ...prev, Linkedin: e.target.value }))}/>
               </span>
             </div>
         </div>
@@ -153,8 +150,8 @@ export default function EditUserPage({ userData, close }) {
                 >
                   <AiOutlineTwitter />
                 </span>
-                <input className="ml-1 p-1 px-2 text-lg sm:text-xl w-10/12 max-w-[300px] shadow bg-gray-200/60 rounded-3xl outline-0" value={user.Twitter} 
-                onChange={(e) => setUser((prev) => ({ ...prev, Twitter: e.target.value }))}/>
+                <input className="ml-1 p-1 px-2 text-lg sm:text-xl w-10/12 max-w-[300px] shadow bg-gray-200/60 rounded-3xl outline-0" value={updatdUser.Twitter} 
+                onChange={(e) => setUpdatedUser((prev) => ({ ...prev, Twitter: e.target.value }))}/>
               </span>
             </div>
         </div>
@@ -166,8 +163,8 @@ export default function EditUserPage({ userData, close }) {
                 >
                   <AiOutlineYoutube />
                 </span>
-                <input className="ml-1 p-1 px-2 text-lg sm:text-xl w-10/12 max-w-[300px] shadow bg-gray-200/60 rounded-3xl outline-0" value={user.Youtube} 
-                onChange={(e) => setUser((prev) => ({ ...prev, Youtube: e.target.value }))}/>
+                <input className="ml-1 p-1 px-2 text-lg sm:text-xl w-10/12 max-w-[300px] shadow bg-gray-200/60 rounded-3xl outline-0" value={updatdUser.Youtube} 
+                onChange={(e) => setUpdatedUser((prev) => ({ ...prev, Youtube: e.target.value }))}/>
               </span>
             </div>
         </div>
@@ -179,8 +176,8 @@ export default function EditUserPage({ userData, close }) {
                 >
                   <AiOutlineGlobal />
                 </span>
-                <input className="ml-1 p-1 px-2 text-lg sm:text-xl w-10/12 max-w-[300px] shadow bg-gray-200/60 rounded-3xl outline-0" value={user.Website} 
-                onChange={(e) => setUser((prev) => ({ ...prev, Website: e.target.value }))}/>
+                <input className="ml-1 p-1 px-2 text-lg sm:text-xl w-10/12 max-w-[300px] shadow bg-gray-200/60 rounded-3xl outline-0" value={updatdUser.Website} 
+                onChange={(e) => setUpdatedUser((prev) => ({ ...prev, Website: e.target.value }))}/>
               </span>
             </div>
         </div>

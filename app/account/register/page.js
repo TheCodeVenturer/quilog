@@ -1,13 +1,13 @@
 'use client'
 import { useState } from "react"
-import {useSession} from 'next-auth/react'
+import { useAppState } from "@/app/context/stateContext"
 import { redirect } from 'next/navigation'
 import {useRouter} from 'next/navigation'
 export default function Register(){
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const { data: session, status } = useSession()
+    const { session, status } = useAppState()
     const router = useRouter()
     const handleSubmit = async (e) => {
         const data = {name,email,password}

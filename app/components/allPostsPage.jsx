@@ -66,6 +66,7 @@ function PostBox({ post }) {
           className="w-fit mx-2 flex items-center"
           href={`/${post.user._id}`}
         >
+        {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             className="w-9 h-9 bg-black rounded-full"
             src={`${post.user.image}`}

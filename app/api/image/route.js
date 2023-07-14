@@ -100,18 +100,20 @@ export async function GET(req) {
         });
         const createdAt = new Date(post.createdAt);
         return new ImageResponse(
-          (<div tw="flex flex-row-reverse h-full bg-neutral-800 ">
-        <div tw="flex w-1/2 h-full">
+          (<div tw={`flex flex-row-reverse h-full bg-neutral-800`} style={{backgroundImage: `url(${websiteUrl}/Images/backGround.png)`}}>
+        <div tw="flex items-center flex-col justify-center w-1/2 h-full" >
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img tw="w-full h-full" src={`${websiteUrl}/svg/Logo.png`} style={{backgroundImage: "radial-gradient(circle, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%)"}} alt="Prism" />
+            <img tw="w-1/3 h-1/3" src={`${websiteUrl}/Images/Logo.png`} alt="Logo" />
+            <h1 tw="text-[90px] font-extrabold p-0 m-0" style={{fontFamily: '"belanosimaRegular"',}}>QUILOG</h1>
+            <p tw="text-3xl p-0 m-0" style={{fontFamily: '"UbuntuLight"',}}>Let{`'`}s blog it </p>
           <div
-            tw="absolute left-[-80px] top-[-30px] w-[120px] h-[120%] bg-neutral-800"
+            tw="absolute left-[-80px] top-[-30px] w-[120px] h-[120%] bg-white"
             style={{ transform: "rotate(8deg)" }}
           />
         </div>
-        <div tw="flex flex-col w-1/2 p-[48px] my-auto text-white">
-          <h1 tw="text-[45px] font-extrabold pb-2 border-b-4 border-zinc-400/50 leading-10" style={{fontFamily: '"belanosimaRegular"',}}>{post.title}</h1>
-          <p tw="text-white m-0 p-0 ml-auto text-lg" style={{fontFamily: '"TypewriterB"',}}>{`${createdAt.toLocaleTimeString()} | ${createdAt.toLocaleDateString(
+        <div tw="flex flex-col justify-center items-center w-1/2 h-full p-[48px] my-auto text-black bg-white overflow-hidden">
+          <h1 tw="text-5xl font-extrabold pb-2 border-b-4 border-zinc-400/50 leading-10" style={{fontFamily: '"belanosimaRegular"',}}>{post.title}</h1>
+          <p tw="m-0 p-0 ml-auto text-xl" style={{fontFamily: '"TypewriterB"',}}>{`${createdAt.toLocaleTimeString()} | ${createdAt.toLocaleDateString(
             undefined,
             {
               weekday: "short",
@@ -124,38 +126,38 @@ export async function GET(req) {
           <div tw="flex w-full items-center">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-                  src={`${websiteUrl}${post.user.image}`}
+                  src={post.user.image}
                   alt="user"
-                  tw="mx-10 bg-red-500 rounded-full w-20 h-20"
+                  tw="mr-5 bg-red-500 rounded-full w-40 h-40 shadow-xl shadow-gray-500/50"
                   width={200}
                   height={200}
                 />
-                <h1 tw="mr-auto flex text-4xl items-center text-white h-full " style={{fontFamily: '"belanosimaRegular"',}}>
+                <h1 tw="mr-auto flex text-6xl items-center h-full " style={{fontFamily: '"belanosimaRegular"',}}>
                   {post.user.name}
                 </h1>
           </div>
-          <div tw="flex mt-5 items-center">
+          <div tw="flex mt-5 items-center justify-around w-10/12">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
                   src={`${websiteUrl}/svg/like.png`}
                   alt="user"
-                  tw="mx-auto bg-red-500 rounded-full w-10 h-10"
+                  tw="bg-red-500 rounded-full w-10 h-10"
                   width={200}
                   height={200}
                 />
-                <h1 tw="mx-auto flex text-4xl items-center text-white h-full font-serif">
+                <h1 tw="flex text-4xl items-center h-full font-serif">
                   {post.likedBy.length}
                 </h1>
-                <span tw="mx-auto border-l-2 border-red-500 w-1 h-12"></span>
+                <span tw="border-l-2 border-red-500 w-1 h-12"></span>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={`${websiteUrl}/svg/comment.png`}
                   alt="user"
-                  tw="mx-auto bg-red-500 rounded-full w-10 h-10"
+                  tw="bg-red-500 rounded-full w-10 h-10"
                   width={100}
                   height={100}
                 />
-                <h1 tw="mx-auto flex text-4xl items-center text-white h-full font-serif">
+                <h1 tw="flex text-4xl items-center h-full font-serif">
                   {post.comments.length}
                 </h1>
           </div>
@@ -176,25 +178,27 @@ export async function GET(req) {
         name = `${name.slice(0, 10)}...`;
       }
       return new ImageResponse(
-        (<div tw="flex flex-row-reverse h-full bg-neutral-800 ">
-      <div tw="flex w-1/2 h-full">
+        (<div tw={`flex flex-row-reverse h-full bg-neutral-800`} style={{backgroundImage: `url(${websiteUrl}/Images/backGround.png)`}}>
+      <div tw="flex items-center flex-col justify-center w-1/2 h-full" >
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img tw="w-full h-full" src={`${websiteUrl}/svg/Logo.png`} style={{backgroundImage: "radial-gradient(circle, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%)"}} alt="Prism" />
+        <img tw="w-1/3 h-1/3" src={`${websiteUrl}/Images/Logo.png`} alt="Logo" />
+            <h1 tw="text-[90px] font-extrabold p-0 m-0" style={{fontFamily: '"belanosimaRegular"',}}>QUILOG</h1>
+            <p tw="text-3xl p-0 m-0" style={{fontFamily: '"UbuntuLight"',}}>Let{`'`}s blog it </p>
         <div
-          tw="absolute left-[-80px] top-[-30px] w-[120px] h-[120%] bg-neutral-800"
+          tw="absolute left-[-80px] top-[-30px] w-[120px] h-[120%] bg-white"
           style={{ transform: "rotate(8deg)" }}
         />
       </div>
-      <div tw="flex flex-col w-1/2 p-[48px] my-auto text-white">
+      <div tw="flex flex-col justify-center items-center w-1/2 h-full p-[48px] my-auto text-black bg-white overflow-hidden">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={`${websiteUrl}${user.image}`}
+          src={user.image}
           alt="user"
-          tw="mx-auto bg-red-500 rounded-full w-40 h-40"
+          tw="mx-auto bg-red-500 rounded-full w-60 h-60"
           width={200}
           height={200}
         />
-        <h1 tw="m-0 mx-auto text-[48px] border-b-4 border-zinc-400/50" style={{fontFamily: '"belanosimaRegular"',}}>{user.name}</h1>
+        <h1 tw="m-0 mx-auto text-6xl border-b-4 border-zinc-400/50" style={{fontFamily: '"belanosimaRegular"',}}>{user.name}</h1>
         {user.bio && <p tw="text-white text-[25px] m-0 mt-2 p-0 text-center  leading-8" style={{fontFamily: '"UbuntuLight"',}}>{user.bio}</p>}
         <hr tw="w-full bg-zinc-300/20 h-1 rounded-xl"/>
         <p tw="w-full text-[30px] m-2 h-fit" style={{fontFamily: '"TypewriterB"',}}>{`${name}'s Created Posts = ${user.posts.length}` }</p>
