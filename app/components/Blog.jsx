@@ -1,7 +1,8 @@
 /* eslint-disable react/no-danger */
 "use client";
 import PostBottom from "./postBottom";
-import { useAppState } from "next-auth/react";
+import { useAppState } from "../context/stateContext";
+
 
 import Link from "next/link";
 

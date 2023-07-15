@@ -31,7 +31,7 @@ export async function generateMetadata({searchParams}){
     }
     return{
         title,
-        description: "Technonatura is a platform for learning and sharing knowledge about technology and nature.",
+        description: "Posts by the Blogers of Quilog",
     }
 }
 

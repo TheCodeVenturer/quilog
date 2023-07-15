@@ -50,7 +50,7 @@ export default function RegisterPage() {
   }
   return (
     <div
-      className={`flex items-center flex-col-reverse md:flex-row justify-center text-black h-[calc(100vh-200px)] sm:h-[calc(100vh-200px)] md:h-[calc(100vh-60px)] w-[85vw] max-w-[1000px] mx-auto`}
+      className={`flex items-center flex-col-reverse md:flex-row justify-center text-black h-[calc(100vh-200px)] md:h-[calc(100vh-60px)] w-[85vw] max-w-[1000px] mx-auto`}
     >
       <div className="md:w-1/2 md:mx-[8%] px-[3%] bg-white pt-14 border border-gray-500/30 rounded-lg shadow-xl shadow-gray-400/30 h-[450px]">
         <h2 className="text-2xl font-bold tracking-wider">Create an account</h2>
