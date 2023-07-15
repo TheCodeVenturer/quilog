@@ -17,7 +17,7 @@ export const NavBar = () => {
       <div className="m-auto md:px-2 flex flex-row max-w-[1200px] justify-between w-full items-center px-2">
         <Link className="flex flex-row items-center" href="/">
           <Image
-            src="/Images/logo.png"
+            src="/icon.png"
             width={50}
             height={50}
             alt="logo"
@@ -46,7 +46,7 @@ export const NavBar = () => {
                 className="rounded-full bg-gray-400 border-2 border-gray-500 shadow-lg w-10 md:w-12 h-10 md:h-12 cursor-pointer"
               />
               <div className="hidden group-hover:block absolute top-[49px] right-2 w-22 h-auto bg-zinc-500/60 backdrop-filter backdrop-blur-sm rounded-md shadow-lg p-2 text-black font-semibold">
-                <Link href={`/${session.user.id}`} className="hover:text-white hover:underline">Account</Link>
+                <Link href={`/${session.user.id}`} className="hover:text-white hover:underline">My Account</Link>
                 <div className="cursor-pointer hover:text-white hover:underline border-t-2 border-gray-200" onClick={()=>signOut()}>signOut</div>
               </div>
             </div>
@@ -83,7 +83,7 @@ export const NavBarForAccount = () =>{
   <div className="m-auto md:px-2 flex flex-row max-w-[1200px] justify-between w-full items-center px-2">
     <Link className="flex flex-row items-center" href="/">
       <Image
-        src="/Images/logo.png"
+        src="/icon.png"
         width={50}
         height={50}
         alt="logo"

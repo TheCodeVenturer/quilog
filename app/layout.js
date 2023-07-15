@@ -13,11 +13,27 @@ export const dynamic = 'force-static'
 
 
 export const metadata = {
+  metadataBase: new URL(`http://localhost:3000`),
   title: {
     template : "%s | Quilog",
     default: "Quilog"
   },
   description: `Quilog a blogger choice blogging app for your personal blog. Whether you're a travel enthusiast, a tech guru, a developer, or a fashion aficionado, QuiLog is the perfect platform to amplify your voice and share your expertise.`,
+  openGraph: {
+    title:{
+      template : "%s | Quilog",
+      default: "Quilog"
+    },
+    description:"Quilog a blogger choice blogging app for your personal blog. Whether you're a travel enthusiast, a tech guru, a developer, or a fashion aficionado, QuiLog is the perfect platform to amplify your voice and share your expertise.",
+    type: "website",
+    url: `http://localhost:3000`,
+    images:[
+      {
+        url:"http://localhost:3000/api/image",
+        alt:"HomePage Image"
+      }
+    ]
+  }
 }
 
 export default async function RootLayout({ children }) {
