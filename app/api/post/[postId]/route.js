@@ -24,7 +24,7 @@ export async function GET(req,{params:{postId}}){
           populate: {
             path: "user",
             model: "User",
-            select: "_id name image",
+            select: "_id name image createdAt",
             options: { 
                 lean: true
              },

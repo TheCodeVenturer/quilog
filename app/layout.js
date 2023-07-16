@@ -47,7 +47,7 @@ export default async function RootLayout({ children }) {
         <Toaster />
           <StateContext>
           <LayoutProvider>
-            <main className='pt-[56px]'>{children}</main>
+            <main className='md:pt-[61px] pt-[53px]'>{children}</main>
           </LayoutProvider>
           </StateContext>
         </NextAuthProvider>

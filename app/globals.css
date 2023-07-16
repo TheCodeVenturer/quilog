@@ -12,6 +12,26 @@ html, body {
   --background-end-rgb: 255, 255, 255;
 }
 
+/* Editing Scrollbar */
+
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 7px;
+  margin-block: 0.5em;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(124, 124, 124, 0.574);
+  border-radius: 7px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: gray;
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;

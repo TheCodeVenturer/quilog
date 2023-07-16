@@ -49,16 +49,16 @@ export default function UserPage({ userId }) {
     if (userPronunce.length > 8) userPronunce = userPronunce.slice(0, 8) + "'s";
   }
   return (
-    <div className={`box-border mb-5 mx-auto max-w-[95vw] md:max-w-[700px] lg:max-w-[850px] border border-gray-400 bg-white bg-opacity-50 shadow-lg shadow-gray-900/70 backdrop-filter backdrop-blur-sm  relative ${editBoxVisible===true?"h-[max(650px,calc(100vh-140px))] sm:h-[max(730px,calc(100vh-100px))] md:h-[max(630px,calc(100vh-60px))]":"h-[max(530px,calc(100vh-100px))] sm:h-[max(730px,calc(100vh-100px))] md:h-[max(600px,calc(100vh-60px))]"}`}>
+    <div className={`box-border mb-5 mx-auto max-w-[95vw] md:max-w-[700px] lg:max-w-[750px] border border-gray-400 bg-white bg-opacity-50 shadow-lg shadow-gray-900/70 backdrop-filter backdrop-blur-sm  relative ${editBoxVisible===true?"h-[max(650px,calc(100vh-145px))] sm:h-[max(730px,calc(100vh-105px))] md:h-[max(630px,calc(100vh-65px))]":"h-[max(530px,calc(100vh-105px))] sm:h-[max(730px,calc(100vh-105px))] md:h-[max(600px,calc(100vh-65px))]"}`}>
       <div className="flexrounded-2xl border  bg-white shadow-md shadow-gray-700/50 mx-3 md:mx-6 my-4 md:my-7 min-h-[calc(100%-3.5rem)] rounded-3xl md:px-8 lg:px-20 relative">
         <div className="flex flex-col md:flex-row items-center lg:mt-[3vh]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img className="bg-blue-500 border-4 border-gray-400 my-3 relative rounded-full w-44 h-44 md:h-56 md:w-56 mx-auto md:mx-0" src={userData.image} width={200} height={200} alt={userData.name} />
-          <div className="text-center md:text-left text-black md:px-5 lg:px-10">
+          <img className="bg-white border-2 border-gray-400 my-3 relative rounded-full w-44 h-44 md:h-56 md:w-56 mx-auto md:mx-0" src={userData.image} width={200} height={200} alt={userData.name} />
+          <div className="text-center md:text-left text-black md:px-3 lg:px-7">
             <h1 className="text-2xl font-bold">
               {userData.name}
             </h1>
-            <p className="my-2 mx-auto md:mx-0 text-xl leading-5 w-[93%] max-w-[450px]">
+            <p className="my-2 mx-auto md:mx-0 text-xl leading-5 max-w-[450px]">
               {userData.bio}
             </p>
             {userData.totalPosts > 0 && (
@@ -156,10 +156,10 @@ const CustomButtons = ({ text, baseLink, className, children, extender }) => {
 
 const SkeletonForUserPage = () =>{
   return (
-    <div className={`box-border mb-5 mx-auto max-w-[95vw] md:max-w-[700px] lg:max-w-[850px] border border-gray-400 bg-white bg-opacity-50 shadow-lg shadow-gray-900/70 backdrop-filter backdrop-blur-sm  relative "h-[max(530px,calc(100vh-100px))] sm:h-[max(730px,calc(100vh-100px))] md:h-[max(600px,calc(100vh-60px))] animate-pulse`}>
+    <div className={`box-border mb-5 mx-auto max-w-[95vw] md:max-w-[700px] lg:max-w-[750px] border border-gray-400 bg-white bg-opacity-50 shadow-lg shadow-gray-900/70 backdrop-filter backdrop-blur-sm  relative "h-[max(530px,calc(100vh-105px))] sm:h-[max(730px,calc(100vh-105px))] md:h-[max(600px,calc(100vh-65px))] animate-pulse`}>
       <div className="flexrounded-2xl border  bg-white shadow-md shadow-gray-700/50 mx-3 md:mx-6 my-4 md:my-7 min-h-[calc(100%-3.5rem)] rounded-3xl md:px-8 lg:px-20 relative">
         <div className="flex flex-col md:flex-row items-center lg:mt-[3vh]">
-          <div className="bg-gray-400/50 border-4 border-gray-400 my-3 relative rounded-full w-44 h-44 md:h-56 md:w-56 mx-auto md:mx-0 " />
+          <div className="bg-gray-400/50 border-2 border-gray-400 my-3 relative rounded-full w-44 h-44 md:h-56 md:w-56 mx-auto md:mx-0 " />
           <div className="text-center md:text-left text-black md:px-5 lg:px-10">
             <div className="mx-auto md:mx-0 h-8 w-60 bg-gray-400/50 rounded-2xl mb-2"/>
             <div className="mx-auto md:mx-0 h-3 w-60 bg-gray-400/50 rounded-xl my-1 md:mt-4"/>

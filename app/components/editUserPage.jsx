@@ -103,6 +103,7 @@ export default function EditUserPage({ userData, close }) {
             maxLength={20}
             onChange={handlenameChange}
             value={updatdUser.name}
+            placeholder="Name"
           />
           <textarea
             className={`w-full max-w-[320px] p-1.5 resize-none my-2 mx-auto md:mx-0 text-lg leading-5 h-28 shadow-md bg-gray-200/60 rounded-3xl outline-0 ${
@@ -111,6 +112,7 @@ export default function EditUserPage({ userData, close }) {
             maxLength={135}
             onChange={handleTextArea}
             value={updatdUser.bio}
+            placeholder="Bio"
           />
         </div>
       </div>

@@ -75,7 +75,7 @@ const Header6 = ({children})=>{
 // Editing all Headers Ends Here 
 const Paragraph = ({children})=>{
   return(
-    <p className="ml-1 text-base my-2">{children}</p>
+    <p className="ml-1 text-base">{children}</p>
   )
 }
 const Anchor = ({children})=>{

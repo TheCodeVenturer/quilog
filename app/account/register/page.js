@@ -52,11 +52,11 @@ export default function RegisterPage() {
     <div
       className={`flex items-center flex-col-reverse md:flex-row justify-center text-black h-[calc(100vh-200px)] md:h-[calc(100vh-60px)] w-[85vw] max-w-[1000px] mx-auto`}
     >
-      <div className="md:w-1/2 md:mx-[8%] px-[3%] bg-white pt-14 border border-gray-500/30 rounded-lg shadow-xl shadow-gray-400/30 h-[450px]">
+      <div className="md:w-[40%] md:mx-[5%] px-[2%] md:px-[5%] bg-white pt-10 border border-gray-500/30 rounded-lg shadow-xl shadow-gray-400/30 h-[450px]">
         <h2 className="text-2xl font-bold tracking-wider">Create an account</h2>
         <h3 className="text-lg mt-1 mb-5">Let{`'`}s blog it with Quilog</h3>
         <input
-          className="text-black pr-[10%] w-full border-b border-zinc-700/80 outline-0 border-0 bg-transparent my-2 text-lg"
+          className="text-black pr-[10%] w-full border-b border-zinc-400/80 outline-0 border-0 bg-transparent my-2 text-base"
           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
@@ -64,7 +64,7 @@ export default function RegisterPage() {
           autoFocus
         />
         <input
-          className={`pr-[10%] w-full border-b border-zinc-700/80 outline-0 border-0 bg-transparent my-2 text-lg ${
+          className={`pr-[10%] w-full border-b border-zinc-400/80 outline-0 border-0 bg-transparent my-2 text-base ${
             emailRegex.test(email) ? "text-black" : "text-red-500"
           }`}
           type="email"
@@ -73,9 +73,9 @@ export default function RegisterPage() {
           placeholder="Email"
           autoFocus
         />
-        <div className="border-b border-zinc-700/80 flex items-center flex-row my-2">
+        <div className="border-b border-zinc-400/80 flex items-center flex-row my-2">
           <input
-            className="text-black w-[90%]  outline-0 border-0 bg-transparent"
+            className="text-black w-[90%]  outline-0 border-0 bg-transparent text-base"
             type={passwordVisibility === true ? "text" : "password"}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -89,7 +89,7 @@ export default function RegisterPage() {
           </span>
         </div>
         <input
-          className={`w-[100%] pr-[10%] outline-0 border-0 bg-transparent border-b border-zinc-700/80 ${
+          className={`w-[100%] pr-[10%] outline-0 border-0 bg-transparent border-b border-zinc-400/80 text-base ${
             password != checkPassword ? "text-red-500" : "text-black"
           } mt-2`}
           type="text"
@@ -111,7 +111,7 @@ export default function RegisterPage() {
           >
             Register
           </button>
-          <p className="text-xs mt-1 mb-2">
+          <p className="text-xs mt-2 mb-2">
             Already have an account?
             <Link href="/account/login" className="text-blue-500">
               {" "}
@@ -121,7 +121,7 @@ export default function RegisterPage() {
         </div>
       </div>
       <div className="md:w-1/2 text-center h-[420px] flex flex-col justify-center">
-        <h1 className="text-3xl tracking-wider font-bold">{`Let's Blog It`}</h1>
+        <h1 className="text-6xl tracking-wider font-bold">{`Let's Blog It`}</h1>
         <Image
           src="/Images/Coder Image.png"
           width={500}

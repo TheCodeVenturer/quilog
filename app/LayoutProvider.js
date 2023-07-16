@@ -12,8 +12,7 @@ export const dynamic = "force-static";
      const pathname = usePathname();
      return (
          <>
-             {pathname !== "/account/login" && pathname !== "/account/register"?<NavBar/>:<NavBarForAccount/>}
-
+             {pathname !== "/account/login" && pathname !== "/account/register"?pathname==="/" ?<NavBar classes=""/>:<NavBar classes="border-b shadow-lg bg-white/10"/>:<NavBarForAccount/>}
              {children}
          </>
      )

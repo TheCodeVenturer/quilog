@@ -42,18 +42,18 @@ export default function LoginPage() {
     <div
       className={`flex items-center flex-col-reverse md:flex-row justify-center text-black h-[calc(100vh-200px)] md:h-[calc(100vh-60px)] w-[85vw] max-w-[1000px] mx-auto`}
     >
-      <div className="md:w-1/2 md:mx-[8%] px-[3%] bg-white pt-14 border border-gray-500/30 rounded-lg shadow-xl shadow-gray-400/30 h-[450px]">
+      <div className="md:w-[40%] md:mx-[5%] px-[2%] md:px-[5%] bg-white pt-10 border border-gray-500/30 rounded-lg shadow-xl shadow-gray-400/30 h-[450px]">
         <h2 className="text-2xl font-bold tracking-wider">Welcome</h2>
         <h3 className="text-lg mt-1 mb-5">Login to your account</h3>
         <input
-          className="text-black pr-[10%] w-full border-b border-zinc-700/80 outline-0 border-0 bg-transparent my-2 text-lg"
+          className="text-black pr-[10%] w-full border-b border-zinc-400/80 outline-0 border-0 bg-transparent my-2 text-base"
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Enter email"
           autoFocus
         />
-        <div className="border-b border-zinc-700/80 flex items-center flex-row mt-2 mb-20">
+        <div className="border-b border-zinc-400/80 flex items-center flex-row my-2 mb-20">
           <input
             className="text-black w-[90%]  outline-0 border-0 bg-transparent"
             type={passwordVisibility === true ? "text" : "password"}
@@ -86,7 +86,7 @@ export default function LoginPage() {
         </div>
       </div>
       <div className="md:w-1/2 text-center h-[420px] flex flex-col justify-center">
-        <h1 className="text-3xl tracking-wider font-bold">{`Let's Blog It`}</h1>
+        <h1 className="text-6xl tracking-wider font-bold">{`Let's Blog It`}</h1>
         <Image
           src="/Images/Coder Image.png"
           width={500}
