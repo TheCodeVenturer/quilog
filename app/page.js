@@ -6,7 +6,7 @@ import Image from "next/image";
 import {AiOutlinePlus} from "react-icons/ai";
 import {CiRead} from "react-icons/ci";
 
-export const dynamic = "force-static";
+
 
 export default function Home() {
   const { session, status } = useAppState();

@@ -83,14 +83,14 @@ export async function PATCH(req,{params:{postId}}){
             await user.save();
             
             await post.save();
-            // console.log("unliked")
+            //unliked
 
           } else {
             post.likedBy.push(userId);
             user.likedPosts.push(postId);
             await user.save();
             await post.save();
-            // console.log("liked")
+            // liked
           }
         return new Response(JSON.stringify({success:"ok"}), {status: 201})
     } catch (error) {

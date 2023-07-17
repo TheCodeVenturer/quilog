@@ -49,7 +49,7 @@ export default function UserPage({ userId }) {
     if (userPronunce.length > 8) userPronunce = userPronunce.slice(0, 8) + "'s";
   }
   return (
-    <div className={`box-border mb-5 mx-auto max-w-[95vw] md:max-w-[700px] lg:max-w-[750px] border border-gray-400 bg-white bg-opacity-50 shadow-lg shadow-gray-900/70 backdrop-filter backdrop-blur-sm  relative ${editBoxVisible===true?"h-[max(650px,calc(100vh-145px))] sm:h-[max(730px,calc(100vh-105px))] md:h-[max(630px,calc(100vh-65px))]":"h-[max(530px,calc(100vh-105px))] sm:h-[max(730px,calc(100vh-105px))] md:h-[max(600px,calc(100vh-65px))]"}`}>
+    <div className={`box-border mb-5 mx-auto max-w-[95vw] md:max-w-[700px] lg:max-w-[750px] border border-gray-400 bg-white bg-opacity-50 shadow-lg shadow-gray-900/70 backdrop-filter backdrop-blur-sm  relative "h-[max(530px,calc(100vh-105px))] sm:h-[max(730px,calc(100vh-105px))] md:h-[max(600px,calc(100vh-64px))] ${editBoxVisible===true && "overflow-y-scroll"}`}>
       <div className="flexrounded-2xl border  bg-white shadow-md shadow-gray-700/50 mx-3 md:mx-6 my-4 md:my-7 min-h-[calc(100%-3.5rem)] rounded-3xl md:px-8 lg:px-20 relative">
         <div className="flex flex-col md:flex-row items-center lg:mt-[3vh]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -58,7 +58,7 @@ export default function UserPage({ userId }) {
             <h1 className="text-2xl font-bold">
               {userData.name}
             </h1>
-            <p className="my-2 mx-auto md:mx-0 text-xl leading-5 max-w-[450px]">
+            <p className="my-2 mx-auto md:mx-0 text-lg leading-5 max-w-[450px]">
               {userData.bio}
             </p>
             {userData.totalPosts > 0 && (

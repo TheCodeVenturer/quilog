@@ -9,7 +9,7 @@ import { LayoutProvider } from './LayoutProvider'
 
 const inter = Inter({ subsets: ['latin'] })
 
-export const dynamic = 'force-static'
+
 
 
 export const metadata = {

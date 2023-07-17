@@ -49,7 +49,6 @@ export default function BlogbyId({ postId }) {
       )
         setLiked(true);
     }
-    console.log(data);
     setLike();
   }, [status, isLoading]);
   const handleLikeClick = async () => {
@@ -63,7 +62,7 @@ export default function BlogbyId({ postId }) {
     });
     const response = await res.json();
     if (response.error) {
-      console.log(data.error);
+      // console.log(data.error);
     } else {
       setLiked((currentLikeState) => {
         if (!currentLikeState) {
@@ -72,7 +71,6 @@ export default function BlogbyId({ postId }) {
             name: user.name,
             image: user.image,
           });
-          console.log(data.post.likedBy);
           return true;
         } else {
           const index = data.post.likedBy.findIndex(
@@ -81,7 +79,6 @@ export default function BlogbyId({ postId }) {
           if (index !== -1) {
             data.post.likedBy.splice(index, 1);
           }
-          console.log(data.post.likedBy);
           return false;
         }
       });
@@ -100,7 +97,7 @@ export default function BlogbyId({ postId }) {
     });
     const response = await res.json();
     if (response.error) {
-      console.log(data.error);
+      // console.log(data.error);
     } else {
       data.post.comments.unshift({
         text: comment,

@@ -4,8 +4,9 @@ import db from "@/lib/db";
 import Post from "@/models/Post";
 import { redirect } from "next/navigation";
 
-import { getServerSession } from "next-auth/next";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+
+export const dynamic = "force-dynamic"
+
 export async function generateMetadata({params:{postId}}){
   var title =""
   var description = ""
@@ -52,7 +53,6 @@ export async function generateMetadata({params:{postId}}){
 
 
 export default async function Page({params:{postId}}){
-  const session = await getServerSession(authOptions);
 
     return (
       <>
@@ -60,4 +60,4 @@ export default async function Page({params:{postId}}){
         </>
     )
 }
-const Share = "https://codevoweb.com/setup-and-use-nextauth-in-nextjs-13-app-directory/#:~:text=bit%20of%20preparation.-,Get%20the%20Session%20in%20a%20Server%20Component,file%20during%20the%20NextAuth%20setup."
+// const Share = "https://codevoweb.com/setup-and-use-nextauth-in-nextjs-13-app-directory/#:~:text=bit%20of%20preparation.-,Get%20the%20Session%20in%20a%20Server%20Component,file%20during%20the%20NextAuth%20setup."

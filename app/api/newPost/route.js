@@ -5,7 +5,6 @@ import User from "@/models/User";
 export async function POST(req){
     try {
         const {userId,title,content} = await req.json()
-        // console.log(name, email, pass)
         await db.connect()
         const user = await User.findOne({_id:userId})
         
@@ -21,7 +20,7 @@ export async function POST(req){
 
         return new Response(JSON.stringify(postId), {status: 201})
     } catch (error) {
-        console.log(error.message);
+        // console.log(error.message);
         return new Response(JSON.stringify(error.message), {status: 500})
     }
 }

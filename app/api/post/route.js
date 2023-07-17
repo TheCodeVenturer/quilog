@@ -88,7 +88,7 @@ export async function GET(req) {
     }
     return new Response(JSON.stringify(dataToUser), { status: 200 });
   } catch (error) {
-    console.log(error.message);
+    // console.log(error.message);
     return new Response(JSON.stringify(error.message), { status: 500 });
   }
 }
