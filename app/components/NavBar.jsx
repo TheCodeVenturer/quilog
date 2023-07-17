@@ -11,7 +11,6 @@ export const dynamic = "force-static";
 
 export const NavBar = ({classes}) => {
   const { session, user, status } = useAppState();
-  const a = 5;
   return (
     <nav className={`w-full z-10 bg-transparent shadow-gray-600/20 fixed left-0 top-0 border-gray-400 text-black py-2 md:py-3 h-[53px] md:h-[62px] ${classes}`}>
       <div className="m-auto flex flex-row max-w-[1200px] justify-between w-full items-center px-4">
@@ -82,8 +81,8 @@ export const NavBar = ({classes}) => {
 function SkeletonForUser() {
   return (
     <div className="flex items-center justify-end w-44 h-full p-0 animate-pulse">
-      <div className="rounded-md bg-gray-400/50  shadow-lg w-2/4 h-4 mr-2" />
-      <div className="rounded-full bg-gray-400/50  shadow-lg w-8 h-8 md:w-9.5 md:h-9.5" />
+      <div className="rounded-md bg-gray-400/50  shadow-lg w-3/4 h-5 mr-2" />
+      <div className="rounded-full border-2 border-gray-400/70 bg-gray-400/50 shadow-lg w-10 md:w-12 h-10 md:h-12 " />
     </div>
   );
 }

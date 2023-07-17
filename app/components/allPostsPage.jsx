@@ -46,9 +46,12 @@ export default function PostPage({ query }) {
   useEffect(() => {
     const fetchInitialPosts = async () => {
       await fetchPosts();
+      setTimeout(() => {
+        setLoading(false);
+    }, 200);
     };
     fetchInitialPosts();
-    setLoading(false);
+    
   }, []);
 
   return (
@@ -56,20 +59,18 @@ export default function PostPage({ query }) {
       className={`text-black h-full max-h-[calc(100vh-53px)] md:max-h-[calc(100vh-65px)] w-[95vw] md:w-[85vw] max-w-[750px] mx-auto bg-white/50 px-[2%] pt-5 border-2 shadow-lg shadow-gray-400/20 overflow-y-scroll`}
     >
       <h1 className="text-2xl md:ml-7 font-semibold">Blogs</h1>
-      {loading === true ? (
-        <SkeletonForAllPostPage />
-      ) : (
+      <SkeletonForAllPostPage className={`${loading===false && "hidden"}`}/>
         <InfiniteScroll
           dataLength={postArray.length}
           next={fetchPosts}
           hasMore={postArray.length < totalPosts}
           loader={<SkeletonForAllPostPage />}
+          className={`${loading===true && "hidden"}`}
         >
           {postArray.map((post) => {
             return <PostBox key={post._id} post={post} />;
           })}
         </InfiniteScroll>
-      )}
     </div>
   );
 }
@@ -144,38 +145,38 @@ function stringShortner(str) {
   return str;
 }
 
-function SkeletonForAllPostPage() {
+function SkeletonForAllPostPage({className}) {
   return (
-    <>
+    <div className={className}>
       <SkeletonForPost />
       <SkeletonForPost />
       <SkeletonForPost />
-    </>
+    </div>
   );
 }
 
 function SkeletonForPost() {
   return (
-    <div className="rounded-xl bg-white m-auto my-5 px-4 py-2 border-[2.5px] shadow-lg shadow-gray-500/60 ">
-      <div className="flex justify-between animate-pulse">
+    <div className="rounded-xl bg-white m-auto my-5 px-3 md:mx-6 py-2 relative border-[2.5px] shadow-md shadow-gray-400/10 ">
+      <div className="flex justify-between ml-3 mt-3 md:ml-5 md:mt-5 animate pulse">
         <div className="w-fit flex items-center">
           <div className="w-9 h-9 md:w-11 md:h-11 bg-gray-400/70 border-2 rounded-full" />
-          <div className="ml-3 font-bold text-md w-28 h-6 bg-gray-400/70 rounded-xl" />
+          <div className="ml-3 w-28 h-6 bg-gray-400/70 rounded-xl" />
         </div>
-        <div className="text-3xl w-8 h-8 rounded-full md:mr-4 bg-gray-400/70" />
+        <div className="m-2 rounded-full md:mr-6 h-6 md:h-8" />
       </div>
 
       <div className=" h-fit max-h-[30vh] overflow-hidden animate-pulse">
-        <div className="mx-auto h-7 my-2 w-[250px] bg-gray-400/70 rounded-xl" />
-        <div className="h-4 my-2 w-[250px] bg-gray-400/70 rounded-xl" />
-        <div className="h-4 my-2 w-[200px] bg-gray-400/70 rounded-xl" />
-        <div className="h-4 my-2 w-[230px] bg-gray-400/70 rounded-xl" />
-        <div className="h-4 my-2 w-[180px] bg-gray-400/70 rounded-xl" />
+        <div className="h-7 my-2 w-[300px] bg-gray-400/70 rounded-xl" />
+        <div className="h-4 my-2 w-[280px] bg-gray-400/70 rounded-xl" />
+        <div className="h-4 my-2 w-[210px] bg-gray-400/70 rounded-xl" />
+        <div className="h-4 my-2 w-[270px] bg-gray-400/70 rounded-xl" />
+        <div className="h-4 my-2 w-[220px] bg-gray-400/70 rounded-xl" />
         <div className="h-4 my-2 w-[150px] bg-gray-400/70 rounded-xl" />
       </div>
-      <div className="flex justify-around text-xl animate-pulse">
-        <span className="inline-block mr-2 h-8 w-8 bg-gray-400/70 rounded-full" />
-        <span className="inline-block mr-2 h-8 w-8 bg-gray-400/70 rounded-full" />
+      <div className="flex justify-start ml-3 md:ml-5 mt-1 md:mt-2 mb-5 animate-pulse">
+        <span className="inline-block mr-2 h-8 w-10 bg-gray-400/70 rounded-full" />
+        <span className="inline-block mr-2 h-8 w-10 bg-gray-400/70 rounded-full" />
       </div>
     </div>
   );

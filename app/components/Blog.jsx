@@ -318,20 +318,22 @@ function SkeletonForPost() {
         </div>
       </div>
 
-      <div className=" h-fit animate-pulse">
-        <div className=" h-7 my-2 w-[250px] md:w-[350px] bg-gray-400/70 rounded-xl" />
+      <div className=" h-fit ml-3 md:ml-5 animate-pulse">
+        <div className=" h-7 my-2 w-[300px] md:w-[350px] bg-gray-400/70 rounded-xl" />
         <div className="h-7 my-3 w-[150px] md:hidden  bg-gray-400/70 rounded-xl mb-3" />
         <div className="h-4 my-3 w-[250px] bg-gray-400/70 rounded-xl" />
-        <div className="h-4 my-3 w-[200px] bg-gray-400/70 rounded-xl" />
+        <div className="h-4 my-3 w-[280px] bg-gray-400/70 rounded-xl" />
         <div className="h-4 my-3 w-[230px] bg-gray-400/70 rounded-xl" />
-        <div className="h-4 my-3 w-[180px] bg-gray-400/70 rounded-xl" />
+        <div className="h-4 my-3 w-[220px] bg-gray-400/70 rounded-xl" />
         <div className="h-4 my-3 w-[250px] bg-gray-400/70 rounded-xl" />
         <div className="h-4 my-3 w-[150px] bg-gray-400/70 rounded-xl" />
         <div className="h-4 my-3 w-[200px] bg-gray-400/70 rounded-xl" />
         <div className="h-4 my-3 w-[250px] bg-gray-400/70 rounded-xl" />
         <div className="h-4 my-3 w-[200px] bg-gray-400/70 rounded-xl" />
         <div className="h-4 my-3 w-[250px] bg-gray-400/70 rounded-xl" />
+        <div className="h-4 my-3 w-[220px] bg-gray-400/70 rounded-xl" />
         <div className="h-4 my-3 w-[200px] bg-gray-400/70 rounded-xl" />
+        <div className="h-4 my-3 w-[250px] bg-gray-400/70 rounded-xl" />
         <div className="h-4 my-3 w-[250px] bg-gray-400/70 rounded-xl" />
         <div className="h-4 my-3 w-[230px] bg-gray-400/70 rounded-xl" />
         <div className="h-4 my-3 w-[180px] bg-gray-400/70 rounded-xl" />
