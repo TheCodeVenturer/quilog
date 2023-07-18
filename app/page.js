@@ -28,7 +28,7 @@ export default function Home() {
           )}
         </div>
         <Image
-          src="/Images/coder Image.png"
+          src="/Images/Coder Image.png"
           width={500}
           height={500}
           alt="Coder"
