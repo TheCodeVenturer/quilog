@@ -1,6 +1,6 @@
 import './globals.css'
 
-import Image from './opengraph-image'
+import Image from './open'
 
 import { Inter } from 'next/font/google'
 import { NextAuthProvider } from './sessionProvider'
@@ -38,15 +38,13 @@ export default async function RootLayout({ children }) {
     <html lang="en">
       <head></head>
 
-      <body className={`${inter.className} box-border bg-[url('/Images/backGround.png')] bg-cover bg-opacity-50 bg-fixed bg-no-repeat h-[calc(100vh-20px)] m-0 p-0 relative`} >
+      <body className={`${inter.className} box-border bg-[url('https://raw.githubusercontent.com/TheCodeVenturer/blogHub/main/app/Images/backGround.png')] bg-cover bg-opacity-50 bg-fixed bg-no-repeat h-[calc(100vh-20px)] m-0 p-0 relative`} >
 
       <NextAuthProvider>
         <Toaster />
           <StateContext>
           <LayoutProvider>
-          <>
-            <main className='md:pt-[61px] pt-[53px] h-[calc(100vh-200px)] md:h-[calc(100vh-60px)] md:overflow-hidden'>{children}</main>
-          </>
+            <main className='md:pt-[61px] pt-[53px] h-[calc(100vh-200px)] md:h-[calc(100vh-65px)] '>{children}</main>
           </LayoutProvider>
           </StateContext>
         </NextAuthProvider>

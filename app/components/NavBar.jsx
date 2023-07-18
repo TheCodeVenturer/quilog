@@ -39,7 +39,7 @@ export const NavBar = ({classes}) => {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 alt={user.name}
-                src={user.image}
+                src={user.image?user.image:"https://raw.githubusercontent.com/TheCodeVenturer/blogHub/main/app/Images/profile.png"}
                 width={100}
                 height={100}
                 className="rounded-full bg-white border-2 border-gray-400/70 shadow-lg w-10 md:w-12 h-10 md:h-12 cursor-pointer"
