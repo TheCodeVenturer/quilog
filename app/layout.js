@@ -47,7 +47,7 @@ export default async function RootLayout({ children }) {
         <Toaster />
           <StateContext>
           <LayoutProvider>
-            <main className='md:pt-[61px] pt-[53px] h-[calc(100vh-200px)] md:h-[calc(100vh-60px)] overflow-hidden'>{children}</main>
+            <main className='md:pt-[61px] pt-[53px] h-[calc(100vh-200px)] md:h-[calc(100vh-60px)] md:overflow-hidden'>{children}</main>
           </LayoutProvider>
           </StateContext>
         </NextAuthProvider>
