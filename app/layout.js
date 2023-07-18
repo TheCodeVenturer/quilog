@@ -10,31 +10,26 @@ import { LayoutProvider } from './LayoutProvider'
 const inter = Inter({ subsets: ['latin'] })
 
 
-
-
-export const metadata = {
-  metadataBase: new URL(`https://quilog.vercel.app/`),
-  title: {
-    template : "%s | Quilog",
-    default: "Quilog"
-  },
-  description: `Quilog a blogger choice blogging app for your personal blog. Whether you're a travel enthusiast, a tech guru, a developer, or a fashion aficionado, QuiLog is the perfect platform to amplify your voice and share your expertise.`,
-  openGraph: {
-    title:{
+export async function generateMetadata(){
+  return {
+    metadataBase: new URL(`https://quilog.vercel.app/`),
+    title: {
       template : "%s | Quilog",
       default: "Quilog"
     },
-    description:"Quilog a blogger choice blogging app for your personal blog. Whether you're a travel enthusiast, a tech guru, a developer, or a fashion aficionado, QuiLog is the perfect platform to amplify your voice and share your expertise.",
-    type: "website",
-    url: `https://quilog.vercel.app/`,
-    images:[
-      {
-        url:"https://quilog.vercel.app/api/image",
-        alt:"HomePage Image"
-      }
-    ]
+    description: `Quilog a blogger choice blogging app for your personal blog. Whether you're a travel enthusiast, a tech guru, a developer, or a fashion aficionado, QuiLog is the perfect platform to amplify your voice and share your expertise.`,
+    openGraph: {
+      title:{
+        template : "%s | Quilog",
+        default: "Quilog"
+      },
+      description:"Quilog a blogger choice blogging app for your personal blog. Whether you're a travel enthusiast, a tech guru, a developer, or a fashion aficionado, QuiLog is the perfect platform to amplify your voice and share your expertise.",
+      type: "website",
+      url: `https://quilog.vercel.app/`,
+    }
   }
 }
+
 
 export default async function RootLayout({ children }) {
   return (
