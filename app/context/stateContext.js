@@ -3,8 +3,6 @@ import { createContext, useContext, useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
 
 
-
-import { getUserData } from "../fetchUserDetails";
 const context = createContext();
 
 export const StateContext = ({ children }) => {
@@ -13,8 +11,10 @@ export const StateContext = ({ children }) => {
   useEffect(() => {
     if(status==="authenticated"){
       async function getUser() {
-        const userData = await getUserData(session.user.id);
-        setUser(userData);
+        const res = await fetch(`/api/${session.user.id}`);
+        const userData = await res.json();
+        if(userData.error) return;
+        setUser({name:userData.name,image:userData.image})
       }
       getUser();
     }
