@@ -7,7 +7,8 @@ import User from "@/models/User";
 
 export const dynamic = "force-dynamic";
 
-const websiteUrl = "http://localhost:3000";
+const websiteUrl = "https://quilog.vercel.app/";
+
 
 const typewrB = fetch(
   new URL(`${websiteUrl}/fonts/TYPEWR_B.ttf`, import.meta.url)

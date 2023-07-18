@@ -13,7 +13,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 
 export const metadata = {
-  metadataBase: new URL(`http://localhost:3000`),
+  metadataBase: new URL(`https://quilog.vercel.app/`),
   title: {
     template : "%s | Quilog",
     default: "Quilog"
@@ -26,10 +26,10 @@ export const metadata = {
     },
     description:"Quilog a blogger choice blogging app for your personal blog. Whether you're a travel enthusiast, a tech guru, a developer, or a fashion aficionado, QuiLog is the perfect platform to amplify your voice and share your expertise.",
     type: "website",
-    url: `http://localhost:3000`,
+    url: `https://quilog.vercel.app/`,
     images:[
       {
-        url:"http://localhost:3000/api/image",
+        url:"https://quilog.vercel.app/api/image",
         alt:"HomePage Image"
       }
     ]
