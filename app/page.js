@@ -12,7 +12,7 @@ export default function Home() {
   const { session, status } = useAppState();
   return (
     <div
-      className={`flex items-center flex-col justify-center mt-[100px] md:mt-0 text-black h-[calc(100vh-200px)] md:h-[calc(100vh-60px)] w-[85vw] max-w-[1000px] mx-auto`}
+      className={`flex items-center flex-col justify-center mt-[100px] md:mt-0 text-black h-[calc(100vh-200px)] md:h-[calc(100vh-65px)] w-[85vw] max-w-[1000px] mx-auto`}
     >
       <h1 className="md:ml-12 mb-6 md:mb-0 w-full md:w-[70%] self-start text-4xl md:text-5xl pt-6 md:pt-10 font-semibold leading-10">{`"The secret to getting ahead is getting started."`}</h1>
       <div className="flex flex-col md:flex-row items-center justify-between max-w-[1000px] w-[95vw]">
@@ -27,8 +27,8 @@ export default function Home() {
           </Link>
           )}
         </div>
-        <Image
-          src="/Images/Coder Image.png"
+        <img
+          src="https://raw.githubusercontent.com/TheCodeVenturer/blogHub/main/app/Images/Coder%20Image.png"
           width={500}
           height={500}
           alt="Coder"
