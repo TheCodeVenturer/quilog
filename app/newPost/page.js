@@ -106,11 +106,11 @@ export default function NewPost() {
             <TextBox content={content} setContent={setContent} />
           </div>
           <div className="h-fit ml-2 mt-3 md:ml-5">
-            <h1 className="text-2xl md:text-3xl font-semibold my-1 ml-1">{title}</h1>
+            <h1 className={`text-2xl md:text-3xl font-semibold my-1 ml-1 ${title.length==0 && "text-zinc-600" }`}>{title.length>0?title:"Add Title to this blog"}</h1>
             <div
               className={`${content ? "" : "text-zinc-600"} ${
                 activeEdit ? "hidden" : "block"
-              } overflow-y-scroll h-[calc(70vh+24px)]`}
+              } overflow-y-scroll h-[calc(70vh)] pb-3`}
             >
               <ReactToMarkDown
                 content={content ? content : "#### Nothing to Show Here"}

@@ -33,6 +33,12 @@ export async function generateMetadata({searchParams}){
     return{
         title,
         description: "Posts by the Blogers of Quilog",
+        opengraph:{
+            title,
+            description: "Posts by the Blogers of Quilog",
+            type: "website",
+            url: `https://quilog.vercel.app/posts`,
+        }
     }
 }
 

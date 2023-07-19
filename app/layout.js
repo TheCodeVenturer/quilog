@@ -46,7 +46,7 @@ export default async function RootLayout({ children }) {
         <Toaster />
           <StateContext>
           <LayoutProvider>
-            <main className='md:pt-[61px] pt-[53px] h-[calc(100vh-150px)] md:h-[calc(100vh)] '>{children}</main>
+            <main className='md:pt-[61px] pt-[53px] h-[100vh]'>{children}</main>
           </LayoutProvider>
           </StateContext>
         </NextAuthProvider>

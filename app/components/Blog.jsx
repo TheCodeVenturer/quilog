@@ -112,7 +112,7 @@ export default function BlogbyId({ postId }) {
     setComment("");
   };
   return (
-    <div className="text-black h-[100vh] max-h-[calc(100vh-53px)] md:max-h-[calc(100vh-65px)] w-[85vw] max-w-[750px] mx-auto bg-white/50 px-[2%] pt-3 md:pt-5 border-2 shadow-lg shadow-gray-400/20 overflow-y-scroll">
+    <div className="text-black h-[100vh] max-h-[calc(100vh-53px)] md:max-h-[calc(100vh-65px)] w-[92vw] max-w-[750px] mx-auto bg-white/50 px-[2%] pt-3 md:pt-5 border-2 shadow-lg shadow-gray-400/20 overflow-y-scroll">
       {isLoading ===true?<SkeletonForPost/>: <div className="rounded-xl bg-white m-auto my-5 px-3 md:mx-6 py-2 relative border-[2.5px] shadow-md shadow-gray-400/10">
       <Link
           className="w-fit flex items-center ml-3 mt-3 md:ml-5 md:mt-5"
