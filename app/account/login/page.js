@@ -93,7 +93,7 @@ export default function LoginPage() {
       </div>
       <div className="md:w-1/2 text-center flex flex-col justify-center h-[450px]">
         <h1 className="text-4xl md:text-6xl tracking-wider font-bold mb-2 md:mb-0">{`Let's Blog It`}</h1>
-        <img
+        <Image
           src="https://raw.githubusercontent.com/TheCodeVenturer/blogHub/main/app/Images/Coder%20Image.png"
           width={500}
           height={500}

@@ -27,7 +27,7 @@ export default function Home() {
           </Link>
           )}
         </div>
-        <img
+        <Image
           src="https://raw.githubusercontent.com/TheCodeVenturer/blogHub/main/app/Images/Coder%20Image.png"
           width={500}
           height={500}

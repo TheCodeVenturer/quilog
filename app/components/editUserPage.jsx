@@ -27,7 +27,7 @@ export default function EditUserPage({ userData, close }) {
   const router = useRouter();
   const { session, status, user,setUser } = useAppState();
   const [updatdUser, setUpdatedUser] = useState(userData);
-  const [imageURL, setImageURL] = useState(userData.image?userData.image:"https://raw.githubusercontent.com/TheCodeVenturer/blogHub/main/app/Images/profile.png");
+  const [imageURL, setImageURL] = useState(userData.image);
 
   const handleTextArea = (e) => {
     const inputValue = e.target.value;

@@ -15,7 +15,7 @@ const UserSchema = new mongoose.Schema({
     },
     image:{
         type: String,
-        default:""
+        default:"https://raw.githubusercontent.com/TheCodeVenturer/blogHub/main/app/Images/profile.png"
     },
     Linkedin:{
         type:String,

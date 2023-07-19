@@ -53,7 +53,7 @@ export default function UserPage({ userId }) {
       <div className="flexrounded-2xl border  bg-white shadow-md shadow-gray-700/50 mx-3 md:mx-6 my-4 md:my-7 min-h-[calc(100%-3.5rem)] rounded-3xl md:px-8 lg:px-20 relative">
         <div className="flex flex-col md:flex-row items-center lg:mt-[3vh]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img className="bg-white border-2 border-gray-400 my-3 relative rounded-full w-44 h-44 md:h-56 md:w-56 mx-auto md:mx-0" src={userData.image?userData.image:"https://raw.githubusercontent.com/TheCodeVenturer/blogHub/main/app/Images/profile.png"} width={200} height={200} alt={userData.name} />
+          <img className="bg-white border-2 border-gray-400 my-3 relative rounded-full w-44 h-44 md:h-56 md:w-56 mx-auto md:mx-0" src={userData.image} width={200} height={200} alt={userData.name} />
           <div className="text-center md:text-left text-black md:px-3 lg:px-7">
             <h1 className="text-2xl font-bold">
               {userData.name}

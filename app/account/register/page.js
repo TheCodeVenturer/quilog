@@ -20,6 +20,7 @@ export default function RegisterPage() {
   const [passwordVisibility, setPasswordVisibility] = useState(false);
   const [password, setPassword] = useState("");
   const [checkPassword, setCheckPassword] = useState("");
+  const [emailCheck, setEmailCheck] = useState(false);
   const { session, status } = useAppState();
   const router = useRouter();
 
@@ -63,12 +64,12 @@ export default function RegisterPage() {
           autoFocus
         />
         <input
-          className={`pr-[10%] w-full border-b border-zinc-400/80 outline-0 border-0 bg-transparent my-2 text-base${
-            emailRegex.test(email) ? "text-black" : "text-red-500"
+          className={`pr-[10%] w-full border-b border-zinc-400/80 outline-0 border-0 bg-transparent my-2 text-base ${
+            emailCheck ===true ? "text-black" : "text-red-500"
           }`}
           type="email"
           value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={(e) => {setEmail(e.target.value) ; setEmailCheck(emailRegex.test(e.target.value))}}
           placeholder="Email"
           autoFocus
         />
@@ -128,7 +129,7 @@ export default function RegisterPage() {
       </div>
       <div className="md:w-1/2 text-center flex flex-col justify-center h-[450px]">
         <h1 className="text-4xl md:text-6xl tracking-wider font-bold mb-2 md:mb-0">{`Let's Blog It`}</h1>
-        <img
+        <Image
           src="https://raw.githubusercontent.com/TheCodeVenturer/blogHub/main/app/Images/Coder%20Image.png"
           width={500}
           height={500}
