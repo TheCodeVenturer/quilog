@@ -6,6 +6,7 @@ import { Inter } from 'next/font/google'
 import { NextAuthProvider } from './sessionProvider'
 import { Toaster } from 'react-hot-toast'
 import { StateContext } from './context/stateContext'
+import db from '@/lib/db'
 
 import { LayoutProvider } from './LayoutProvider'
 
@@ -13,6 +14,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 
 export async function generateMetadata(){
+  await db.connect()
   return {
     metadataBase: new URL(`https://quilog.vercel.app/`),
     title: {
