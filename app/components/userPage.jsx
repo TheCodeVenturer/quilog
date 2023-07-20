@@ -84,7 +84,7 @@ export default function UserPage({ userId }) {
           <CustomButtons
             text={`${userData.Instagram}`}
             className="group-hover/edit:bg-gradient-to-br from-orange-400 via-red-500 to-pink-500 group-hover/edit:text-white group-hover/edit:shadow-pink-500/80"
-            baseLink = "https://www.instagram.com/"
+            baselink = "https://www.instagram.com/"
             extender = "@"
           >
             <AiOutlineInstagram />
@@ -93,7 +93,7 @@ export default function UserPage({ userId }) {
           <CustomButtons
             text={`${userData.Linkedin}`}
             className="group-hover/edit:bg-gradient-to-b from-sky-400 to-sky-700 group-hover/edit:text-white group-hover/edit:shadow-sky-700/80"
-            baseLink="https://www.linkedin.com/in/"
+            baselink="https://www.linkedin.com/in/"
           >
             <AiOutlineLinkedin />
           </CustomButtons>
@@ -101,7 +101,7 @@ export default function UserPage({ userId }) {
           <CustomButtons
             text={`${userData.Twitter}`}
             className="group-hover/edit:bg-gradient-to-bl to-sky-400 from-blue-500  group-hover/edit:text-white group-hover/edit:shadow-sky-500/80"
-            baseLink= "https://twitter.com/"
+            baselink= "https://twitter.com/"
             extender = "@"
           >
             <AiOutlineTwitter />
@@ -109,7 +109,7 @@ export default function UserPage({ userId }) {
           <CustomButtons
             text={`${userData.Youtube}`}
             className="group-hover/edit:bg-[#ff0000] group-hover/edit:text-white group-hover/edit:shadow-red-500/80"
-            baseLink="https://www.youtube.com/"
+            baselink="https://www.youtube.com/"
           >
             <AiOutlineYoutube />
           </CustomButtons>
@@ -121,7 +121,7 @@ export default function UserPage({ userId }) {
           </CustomButtons>
         </div>
         {/* Social Section Ends here */}
-        {userPronunce==="My" && <div className="absolute top-1 right-1 sm:top-5 sm:right-5 text-3xl text-black hover:bg-zinc-700 hover:text-white p-1.5 rounded-full cursor-pointer shadow-md hover:shadow-gray-500" onClick={()=>setEditBoxVisible(true)} baseLink = "">
+        {userPronunce==="My" && <div className="absolute top-1 right-1 sm:top-5 sm:right-5 text-3xl text-black hover:bg-zinc-700 hover:text-white p-1.5 rounded-full cursor-pointer shadow-md hover:shadow-gray-500" onClick={()=>setEditBoxVisible(true)} baselink = "">
           <AiOutlineEdit/>
         </div>}
       </div>
@@ -130,13 +130,13 @@ export default function UserPage({ userId }) {
   );
 }
 
-const CustomButtons = ({ text, baseLink, className, children, extender }) => {
+const CustomButtons = ({ text, baselink, className, children, extender }) => {
     var visualText = `${extender?"@":""}${text}`;
     if(visualText.slice(0,4) === "http") visualText = visualText.slice(visualText.indexOf("/")+2)
   return (
     <div className="text-center md:text-left group" >
       {text.length > 0 && (
-        <a href={`${baseLink?baseLink:""}${text?text:""}`} className="inline-block group/item">
+        <a href={`${baselink?baselink:""}${text?text:""}`} className="inline-block group/item">
           <span className="flex items-center group/edit">
             <span
               className={`p-1 group-hover/edit:shadow-lg ${className} rounded-full`}

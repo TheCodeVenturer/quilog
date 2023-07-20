@@ -20,8 +20,8 @@ export async function generateMetadata({params:{userId}}){
   
   
         title = user.name
-        if (title.length > 6) {
-          title = `${title.slice(0, 6)}...`;
+        if (title.length > 10) {
+          title = `${title.slice(0, 10)}...`;
         }
         title = `${title}`;
         description = `Meet ${user.name} a blogger at Quilog \n ${user.bio}`
