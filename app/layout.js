@@ -1,16 +1,20 @@
 import './globals.css'
 
-import Image from './open'
+import db from '@/lib/db'
 
-import { Inter } from 'next/font/google'
 import { NextAuthProvider } from './sessionProvider'
 import { Toaster } from 'react-hot-toast'
 import { StateContext } from './context/stateContext'
-import db from '@/lib/db'
 
 import { LayoutProvider } from './LayoutProvider'
 
-const inter = Inter({ subsets: ['latin'] })
+
+
+
+import { Montserrat } from 'next/font/google'
+
+
+const montserrat = Montserrat({ subsets: ['latin']})
 
 
 export async function generateMetadata(){
@@ -40,7 +44,7 @@ export default async function RootLayout({ children }) {
     <html lang="en">
       <head></head>
 
-      <body className={`${inter.className} box-border bg-[url('https://raw.githubusercontent.com/TheCodeVenturer/blogHub/main/app/Images/backGround.png')] bg-cover bg-opacity-50 bg-fixed bg-no-repeat h-[calc(100vh-20px)] m-0 p-0 relative`} >
+      <body className={`${montserrat.variable} font-montserrat box-border bg-[url('https://raw.githubusercontent.com/TheCodeVenturer/blogHub/main/app/Images/backGround.png')] bg-cover bg-opacity-50 bg-fixed bg-no-repeat h-[calc(100vh-20px)] m-0 p-0 relative`} >
 
       <NextAuthProvider>
         <Toaster />
