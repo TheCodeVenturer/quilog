@@ -34,14 +34,14 @@ export default async function Image({ params: { postId } }) {
         <div tw="flex items-center flex-col justify-center w-1/2 h-full">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img tw="w-1/3 h-1/3" src="https://raw.githubusercontent.com/TheCodeVenturer/blogHub/main/app/icon.png" alt="Logo" />
-          <h1 tw="text-[90px] font-extrabold p-0 m-0">QUILOG</h1>
+          <h1 tw="text-7xl font-extrabold p-0 m-0">QUILOG</h1>
           <p tw="text-3xl p-0 m-0">Let{`'`}s blog it </p>
           <div
-            tw="absolute left-[-80px] top-[-30px] w-[120px] h-[120%] bg-white"
+            tw="absolute left-[-80px] top-[-30px] w-[120px] h-[120%] bg-white/50"
             style={{ transform: "rotate(8deg)" }}
           />
         </div>
-        <div tw="flex flex-col justify-center items-center w-1/2 h-full p-[48px] my-auto text-black bg-white overflow-hidden">
+        <div tw="flex flex-col justify-center items-center w-1/2 h-full p-[48px] my-auto text-black bg-white/30 overflow-hidden">
           <h1 tw="text-5xl font-extrabold pb-2 border-b-4 border-zinc-400/50 leading-10">
             {post.title.length>29?post.title.slice(0,28)+"...":post.title}
           </h1>

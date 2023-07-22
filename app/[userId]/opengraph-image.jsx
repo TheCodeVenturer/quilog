@@ -35,14 +35,14 @@ export default async function Image({ params: { userId } }) {
         <div tw="flex items-center flex-col justify-center w-1/2 h-full">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img tw="w-1/3 h-1/3" src="https://raw.githubusercontent.com/TheCodeVenturer/blogHub/main/app/icon.png" alt="Logo" />
-          <h1 tw="text-[90px] font-extrabold p-0 m-0">QUILOG</h1>
+          <h1 tw="text-7xl p-0 m-0" >QUILOG</h1>
           <p tw="text-3xl p-0 m-0">Let{`'`}s blog it </p>
           <div
-            tw="absolute left-[-80px] top-[-30px] w-[120px] h-[120%] bg-white"
+            tw="absolute left-[-80px] top-[-30px] w-[120px] h-[120%] bg-white/50"
             style={{ transform: "rotate(8deg)" }}
           />
         </div>
-        <div tw="flex flex-col justify-center items-center w-1/2 h-full p-[48px] my-auto text-black bg-white overflow-hidden">
+        <div tw="flex flex-col justify-center items-center w-1/2 h-full p-[48px] my-auto text-black bg-white/30 overflow-hidden">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={user.image}
@@ -55,7 +55,7 @@ export default async function Image({ params: { userId } }) {
             {user.name}
           </h1>
           {user.bio && (
-            <p tw="text-black text-[25px] m-0 mt-2 p-0 text-center  leading-8">
+            <p tw="text-black text-[25px] m-0 mt-2 p-0 text-center leading-6">
               {user.bio}
             </p>
           )}
