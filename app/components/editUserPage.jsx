@@ -127,7 +127,7 @@ export default function EditUserPage({ userData, close }) {
                   <AiOutlineInstagram />
                 </span>
                 <input className="ml-1 p-1 px-2 text-lg sm:text-xl w-10/12 max-w-[300px] shadow bg-gray-200/60 rounded-3xl outline-0" value={updatdUser.Instagram} 
-                onChange={(e) => setUpdatedUser((prev) => ({ ...prev, Instagram: e.target.value }))}/>
+                onChange={(e) => setUpdatedUser((prev) => ({ ...prev, Instagram: e.target.value }))} placeholder="thecodeventurer"/>
               </span>
             </div>
         </div>
@@ -140,7 +140,7 @@ export default function EditUserPage({ userData, close }) {
                   <AiOutlineLinkedin />
                 </span>
                 <input className="ml-1 p-1 px-2 text-lg sm:text-xl w-10/12 max-w-[300px] shadow bg-gray-200/60 rounded-3xl outline-0" value={updatdUser.Linkedin} 
-                onChange={(e) => setUpdatedUser((prev) => ({ ...prev, Linkedin: e.target.value }))}/>
+                onChange={(e) => setUpdatedUser((prev) => ({ ...prev, Linkedin: e.target.value }))} placeholder="thecodeventurer"/>
               </span>
             </div>
         </div>
@@ -153,7 +153,7 @@ export default function EditUserPage({ userData, close }) {
                   <AiOutlineTwitter />
                 </span>
                 <input className="ml-1 p-1 px-2 text-lg sm:text-xl w-10/12 max-w-[300px] shadow bg-gray-200/60 rounded-3xl outline-0" value={updatdUser.Twitter} 
-                onChange={(e) => setUpdatedUser((prev) => ({ ...prev, Twitter: e.target.value }))}/>
+                onChange={(e) => setUpdatedUser((prev) => ({ ...prev, Twitter: e.target.value }))} placeholder="thecodeventurer"/>
               </span>
             </div>
         </div>
@@ -166,7 +166,7 @@ export default function EditUserPage({ userData, close }) {
                   <AiOutlineYoutube />
                 </span>
                 <input className="ml-1 p-1 px-2 text-lg sm:text-xl w-10/12 max-w-[300px] shadow bg-gray-200/60 rounded-3xl outline-0" value={updatdUser.Youtube} 
-                onChange={(e) => setUpdatedUser((prev) => ({ ...prev, Youtube: e.target.value }))}/>
+                onChange={(e) => setUpdatedUser((prev) => ({ ...prev, Youtube: e.target.value }))} placeholder="@thecodeventurer"/>
               </span>
             </div>
         </div>
@@ -179,7 +179,7 @@ export default function EditUserPage({ userData, close }) {
                   <AiOutlineGlobal />
                 </span>
                 <input className="ml-1 p-1 px-2 text-lg sm:text-xl w-10/12 max-w-[300px] shadow bg-gray-200/60 rounded-3xl outline-0" value={updatdUser.Website} 
-                onChange={(e) => setUpdatedUser((prev) => ({ ...prev, Website: e.target.value }))}/>
+                onChange={(e) => setUpdatedUser((prev) => ({ ...prev, Website: e.target.value }))} placeholder="https://thecodeventurer.github.io"/>
               </span>
             </div>
         </div>
