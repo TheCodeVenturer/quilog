@@ -60,12 +60,7 @@ export async function PUT(req,{params:{userId}}){
     }
 }
 
-const saveFile = async (file,userId) => {
-    const data = fs.readFileSync(file.path);
-    fs.writeFileSync(`./public/Image/${userId}.png`, data);
-    fs.unlinkSync(file.path);
-    return;
-};
+
 
 
 
