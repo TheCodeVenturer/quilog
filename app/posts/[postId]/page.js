@@ -33,7 +33,6 @@ export async function generateMetadata({params:{postId}}){
       redirect('/posts')
   }
   return{
-    metadataBase: new URL(`https://quilog.vercel.app/posts`),
     title,
     description,
     openGraph: {
@@ -41,12 +40,6 @@ export async function generateMetadata({params:{postId}}){
       description,
       type: "website",
       url: `https://quilog.vercel.app/posts/${postId}`,
-      images:[
-        {
-          url:"https://quilog.vercel.app/api/image?postId="+postId,
-          alt:"new"
-        }
-      ]
     }
   }
 }

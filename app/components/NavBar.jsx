@@ -12,7 +12,7 @@ export const dynamic = "force-static";
 export const NavBar = ({classes}) => {
   const { session, user, status } = useAppState();
   return (
-    <nav className={`w-full z-10 bg-transparent shadow-gray-600/20 fixed left-0 top-0 border-gray-400 text-black py-2 md:py-3 h-[53px] md:h-[62px] ${classes}`}>
+    <nav className={`w-full z-10 bg-transparent shadow-gray-600/20 fixed left-0 top-0 border-gray-400 text-black py-1.5 h-[53px] md:h-[62px] ${classes}`}>
       <div className="m-auto flex flex-row max-w-[1200px] justify-between w-full items-center px-4">
         <Link className="flex flex-row items-center" href="/">
           <Image

@@ -49,7 +49,7 @@ export default function UserPage({ userId }) {
     if (userPronunce.length > 8) userPronunce = userPronunce.slice(0, 8) + "'s";
   }
   return (
-    <div className={`box-border mb-5 mx-auto max-w-[95vw] md:max-w-[700px] lg:max-w-[750px] border border-gray-400 bg-white bg-opacity-50 shadow-lg shadow-gray-900/70 backdrop-filter backdrop-blur-sm  relative "h-[max(530px,calc(100vh-105px))] sm:h-[max(730px,calc(100vh-105px))] md:h-[max(600px,calc(100vh-64px))] ${editBoxVisible===true && "overflow-y-scroll"}`}>
+    <div className={`box-border mb-5 mx-auto max-w-[95vw] md:max-w-[700px] lg:max-w-[750px] border border-gray-400 bg-white bg-opacity-50 shadow-lg shadow-gray-900/70 backdrop-filter backdrop-blur-sm  relative h-[max(530px,calc(100vh-105px))] sm:h-[max(730px,calc(100vh-105px))] md:h-[max(600px,calc(100vh-64px))] ${editBoxVisible===true && "overflow-y-scroll"}`}>
       <div className="flexrounded-2xl border  bg-white shadow-md shadow-gray-700/50 mx-3 md:mx-6 my-4 md:my-7 min-h-[calc(100%-3.5rem)] rounded-3xl md:px-8 lg:px-20 relative">
         <div className="flex flex-col md:flex-row items-center lg:mt-[3vh]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -156,7 +156,7 @@ const CustomButtons = ({ text, baselink, className, children, extender }) => {
 
 const SkeletonForUserPage = () =>{
   return (
-    <div className={`box-border mb-5 mx-auto max-w-[95vw] md:max-w-[700px] lg:max-w-[750px] border border-gray-400 bg-white bg-opacity-50 shadow-lg shadow-gray-900/70 backdrop-filter backdrop-blur-sm  relative "h-[max(530px,calc(100vh-105px))] sm:h-[max(730px,calc(100vh-105px))] md:h-[max(600px,calc(100vh-65px))] animate-pulse`}>
+    <div className={`box-border mb-5 mx-auto max-w-[95vw] md:max-w-[700px] lg:max-w-[750px] border border-gray-400 bg-white bg-opacity-50 shadow-lg shadow-gray-900/70 backdrop-filter backdrop-blur-sm  relative h-[max(530px,calc(100vh-105px))] sm:h-[max(730px,calc(100vh-105px))] md:h-[max(600px,calc(100vh-64px))] animate-pulse`}>
       <div className="flexrounded-2xl border  bg-white shadow-md shadow-gray-700/50 mx-3 md:mx-6 my-4 md:my-7 min-h-[calc(100%-3.5rem)] rounded-3xl md:px-8 lg:px-20 relative">
         <div className="flex flex-col md:flex-row items-center lg:mt-[3vh]">
           <div className="bg-gray-400/50 border-2 border-gray-400 my-3 relative rounded-full w-44 h-44 md:h-56 md:w-56 mx-auto md:mx-0 " />
