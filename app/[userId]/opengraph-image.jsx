@@ -4,7 +4,7 @@ import { ImageResponse } from "next/server";
 export const runtime = "edge";
 
 // Image metadata
-export const alt = "Quilog HomePage";
+export const alt = "Profile Picture";
 
 // Font
 

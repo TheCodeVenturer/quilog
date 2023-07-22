@@ -26,20 +26,13 @@ export async function generateMetadata({params:{userId}}){
         title = `${title}`;
         description = `Meet ${user.name} a blogger at Quilog \n ${user.bio}`
         return {
-            metadataBase: new URL(`http://localhost:3000`),
             title,
             description,
             openGraph: {
             title,
             description,
             type: "website",
-            url: `http://localhost:3000/${userId}`,
-            images:[
-                {
-                url:`http://localhost:3000/api/image?userId=${userId}`,
-                alt:`${user.name} profile picture`
-                }
-            ]
+            url: `https://quilog.vercel.app/${userId}`,
             }
         }
     }
