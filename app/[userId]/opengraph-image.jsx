@@ -55,7 +55,7 @@ export default async function Image({ params: { userId } }) {
             {user.name}
           </h1>
           {user.bio && (
-            <p tw="text-white text-[25px] m-0 mt-2 p-0 text-center  leading-8">
+            <p tw="text-black text-[25px] m-0 mt-2 p-0 text-center  leading-8">
               {user.bio}
             </p>
           )}
