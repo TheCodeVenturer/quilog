@@ -43,7 +43,7 @@ export default async function Image({ params: { postId } }) {
         </div>
         <div tw="flex flex-col justify-center items-center w-1/2 h-full p-[48px] my-auto text-black bg-white overflow-hidden">
           <h1 tw="text-5xl font-extrabold pb-2 border-b-4 border-zinc-400/50 leading-10">
-            {post.title}
+            {post.title.length>29?post.title.slice(0,28)+"...":post.title}
           </h1>
           <p tw="m-0 p-0 ml-auto text-2xl">{`${createdAt.toLocaleTimeString()}` }</p>
           <p tw="m-0 p-0 ml-auto text-2xl">
@@ -63,12 +63,12 @@ export default async function Image({ params: { postId } }) {
             <img
               src={post.user.image}
               alt="user"
-              tw="mr-5 bg-red-500 rounded-full w-40 h-40 shadow-xl shadow-gray-500/50"
+              tw="mr-5 bg-gray-500/40 border-2 border-gray-400 rounded-full w-40 h-40 shadow-xl shadow-gray-500/50"
               width={200}
               height={200}
             />
             <h1 tw="mr-auto flex text-6xl items-center h-full ">
-              {post.user.name}
+              {post.user.name.length>12?post.user.name.slice(0,10)+"...":post.user.name}
             </h1>
           </div>
           <div tw="flex mt-5 items-center justify-around w-10/12">

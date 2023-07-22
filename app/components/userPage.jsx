@@ -33,7 +33,9 @@ export default function UserPage({ userId }) {
       const res = await fetch(`/api/${userId}`);
       const response = await res.json();
       setUserData(response);
-      setLoading(false);
+      setTimeout(() => {
+        setLoading(false);
+    }, 150);
     }
     getUser();
   }, []);
@@ -46,7 +48,8 @@ export default function UserPage({ userId }) {
   if (session?.user?.id === userId) userPronunce = "My";
   else {
     userPronunce = userData.name;
-    if (userPronunce.length > 8) userPronunce = userPronunce.slice(0, 8) + "'s";
+    if (userPronunce.length > 8) userPronunce = userPronunce.slice(0, 8);
+    userPronunce = `${userPronunce}'s`;
   }
   return (
     <div className={`box-border mb-5 mx-auto max-w-[95vw] md:max-w-[700px] lg:max-w-[750px] border border-gray-400 bg-white bg-opacity-50 shadow-lg shadow-gray-900/70 backdrop-filter backdrop-blur-sm  relative h-[max(530px,calc(100vh-105px))] sm:h-[max(730px,calc(100vh-105px))] md:h-[max(600px,calc(100vh-64px))] ${editBoxVisible===true && "overflow-y-scroll"}`}>
