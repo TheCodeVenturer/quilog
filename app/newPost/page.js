@@ -55,7 +55,7 @@ export default function NewPost() {
   return (
     <>
       <div className="text-black h-full max-h-[calc(100vh-53px)] md:max-h-[calc(100vh-65px)] w-[95vw] md:w-[85vw] max-w-[750px] mx-auto bg-white/50 px-[2%] pt-5 border-2 shadow-lg shadow-gray-400/20 overflow-hidden">
-        <div className="flex p-1 sm:ml-2 justify-between sticky bg-white/70 w-[calc(100%-8px)]">
+        <div className="flex p-1 sm:ml-2 justify-between sticky bg-white/30 w-[calc(100%-8px)]">
           <div className="flex">
             <button
               className={`px-1 mx-2 text-sm sm:text-lg font-bold tracking-wider ${
@@ -105,12 +105,12 @@ export default function NewPost() {
             />
             <TextBox content={content} setContent={setContent} />
           </div>
-          <div className="h-fit ml-2 mt-3 md:ml-5">
+          <div className={`h-fit ml-2 mt-3 md:ml-5 ${
+                activeEdit ? "hidden" : "block"
+              }`}>
             <h1 className={`text-2xl md:text-3xl font-semibold my-1 ml-1 ${title.length==0 && "text-zinc-600" }`}>{title.length>0?title:"Add Title to this blog"}</h1>
             <div
-              className={`${content ? "" : "text-zinc-600"} ${
-                activeEdit ? "hidden" : "block"
-              } overflow-y-scroll h-[calc(70vh)] pb-3`}
+              className={`${content ? "" : "text-zinc-600"} overflow-y-scroll h-[calc(70vh)] pb-3`}
             >
               <ReactToMarkDown
                 content={content ? content : "#### Nothing to Show Here"}

@@ -6,7 +6,7 @@ const CustomImage = ({ src, children }) => {
   return (
     <>
     {/* eslint-disable-next-line @next/next/no-img-element */}
-    <img src={src} alt={children} className ="w-[80%] m-auto rounded-md" width={"80%"}/>
+    <img src={src} alt={children} className ="max-w-[80%] rounded-md"/>
     </>
   )
 }
@@ -75,94 +75,95 @@ const Header6 = ({children})=>{
 // Editing all Headers Ends Here 
 const Paragraph = ({children})=>{
   return(
-    <p className="ml-1 text-base">{children}</p>
+    <p className="p-1 text-base">{children}</p>
   )
 }
 const Anchor = ({children})=>{
   return(
-    <a className="ml-1 text-base my-2 cursor-pointer text-blue-600 underline">{children}</a>
+    <a className="p-1 text-base my-2 cursor-pointer text-blue-600 underline">{children}</a>
   )
 }
 const UnorderedList = ({children})=>{
   return(
-    <ul className="ml-1 p-1 sm:p-2 min-w-[60%] w-fit bg-[#5a59595e] text-base rounded-md my-2">{children}</ul>
+    <ul className="p-1 w-fit text-base my-2 list-disc">{children}</ul>
   )
 }
 const OrderedList = ({children})=>{
   return(
-    <ol className="ml-1 p-1 sm:p-2 min-w-[60%] w-fit text-base bg-[#5a59595e] rounded-md my-2 ">{children}</ol>
+    <ol className="p-1 w-fit text-base my-2 list-decimal">{children}</ol>
   )
 }
 const ListItem = ({children})=>{
   return(
-    <li className="ml-1 p-1 rounded text-lg text-sky-400 bg-[#5a59595e] my-2">{children}</li>
+    <li className="p-1 rounded text-lg list-item">{children}</li>
   )
 }
 const HorizontalRule = ({children})=>{
   return(
-    <hr className="ml-1 my-2 bg-[#5a59597a]">{children}</hr>
+    <hr className="p-1 my-2 bg-[#5a59597a]">{children}</hr>
   )
 }
 const Table = ({children})=>{
   return(
-    <table className="text-base text-center m-auto my-2">{children}</table>
+    <table className="table-auto border-collapse border border-gray-300 shadow-lg text-center my-2 rounded-lg">{children}</table>
   )
 }
 const TableHead = ({children})=>{
   return(
 
-    <thead className="ml-1 text-base my-2">{children}</thead>
+    <thead className='bg-[#cac0b0]'>{children}</thead>
   )
 }
 const TableBody = ({children})=>{
   return(
-    <tbody className="ml-1 text-base my-2">{children}</tbody>
+    <tbody className="p-1 text-base  ">{children}</tbody>
   )
 }
 const TableRow = ({children})=>{
   return(
-    <tr className="ml-1 text-base my-3 border-b-2">{children}</tr>
+    <tr className={`text-black p-1 [&:nth-child(odd)]:bg-[#FEFCFF]/50 [&:nth-child(even)]:bg-[#d2c7b4]/30`} >{children}</tr>
   )
 }
+
 const TableHeadCell = ({children})=>{
   return(
-    <th className="ml-1 text-base my-2">{children}</th>
+    <th className="border border-gray-300 py-1.5 px-2.5 p-1 text-lg font-semibold ">{children}</th>
   )
 }
 const TableCell = ({children})=>{
   return(
-    <td className="ml-1 text-base my-2">{children}</td>
+    <td className="border border-gray-300 py-1 px-1.5 p-1 text-base">{children}</td>
   )
 }
 const Emphasis = ({children})=>{
   return(
-    <em className="ml-1 text-base my-2">{children}</em>
+    <em className="p-1 text-base my-2">{children}</em>
   )
 }
 const Strong = ({children})=>{
   return(
 
-    <strong className="ml-1 text-base my-2">{children}</strong>
+    <strong className="p-1 text-base my-2">{children}</strong>
   )
 }
 const Strikethrough = ({children})=>{
   return(
-    <del className="ml-1 text-base my-2">{children}</del>
+    <del className="p-1 text-base my-2">{children}</del>
   )
 }
 const InlineCode = ({children})=>{
   return(
-    <code className="ml-1 text-base my-2">{children}</code>
+    <code className="p-1 text-base my-2">{children}</code>
   )
 }
 const Pre = ({children})=>{
   return(
-    <pre className="ml-1 text-base my-2">{children}</pre>
+    <pre className="p-1 text-base my-2">{children}</pre>
   )
 }
 const Break = ({children})=>{
   return(
-    <br className="ml-1 text-base my-2">{children}</br>
+    <br className="p-1 text-base my-2">{children}</br>
   )
 }
 const MDComponents = {
