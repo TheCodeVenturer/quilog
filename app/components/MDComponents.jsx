@@ -1,5 +1,5 @@
 import SyntaxHighlighter from 'react-syntax-highlighter/dist/esm/prism';
-import synthwave84 from 'react-syntax-highlighter/dist/cjs/styles/prism/synthwave84';
+import {vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 
 const CustomImage = ({ src, children }) => {
@@ -16,7 +16,7 @@ const CodeBlock = ({ node, inline, className, children, ...props }) => {
     return !inline && match ? (
       <SyntaxHighlighter
         language={match[1]}
-        style={synthwave84}
+        style={vscDarkPlus}
         PreTag="div"
         showLineNumbers   // Add this line to enable line numbers
       lineNumberStyle={{
@@ -25,18 +25,17 @@ const CodeBlock = ({ node, inline, className, children, ...props }) => {
         color:"red"
       }}
         customStyle={{
-          backgroundImage:'transparent !important',
-          backgroundColor: 'rgba(0, 0, 0, 0.2) !important',
+          // background: 'rgba(118, 121, 131,1)',
           margin:"10px",
-          borderRadius: "20px",
+          borderRadius: "10px",
           padding: "10px",
-          border: "3px solid rgba(0, 0, 0, 0.4)",
+          border: "1px solid rgba(0, 0, 0, 0.4)",
           overflow:"hidden"
         }}
         {...props}
       >{String(children).replace(/\n$/, '')}</SyntaxHighlighter>
     ) : (
-      <code className={className} style={{background:"transparent !important"}}{...props}>
+      <code className={`${className} my-2 px-1 py-1 rounded-md bg-gray-500/30 [&>span]:text-xl`} style={{background:"transparent !important"}}{...props}>
         {children}
       </code>
     );
@@ -80,24 +79,27 @@ const Paragraph = ({children})=>{
 }
 const Anchor = ({children})=>{
   return(
-    <a className="p-1 text-base my-2 cursor-pointer text-blue-600 underline">{children}</a>
+    <a className="text-base my-0.5 cursor-pointer text-blue-600 underline">{children}</a>
   )
 }
 const UnorderedList = ({children})=>{
   return(
-    <ul className="p-1 w-fit text-base my-2 list-disc">{children}</ul>
+    <ul className="p-1 w-fit my-2 list-disc">{children}</ul>
   )
 }
+
 const OrderedList = ({children})=>{
   return(
-    <ol className="p-1 w-fit text-base my-2 list-decimal">{children}</ol>
+    <ol className="p-1 w-fit my-2 list-decimal">{children}</ol>
   )
 }
+
 const ListItem = ({children})=>{
   return(
-    <li className="p-1 rounded text-lg list-item">{children}</li>
+    <li className="mt-1 ml-10">{children}</li>
   )
 }
+
 const HorizontalRule = ({children})=>{
   return(
     <hr className="p-1 my-2 bg-[#5a59597a]">{children}</hr>
@@ -105,7 +107,7 @@ const HorizontalRule = ({children})=>{
 }
 const Table = ({children})=>{
   return(
-    <table className="table-auto border-collapse border border-gray-300 shadow-lg text-center my-2 rounded-lg">{children}</table>
+    <table className="table-auto border-collapse border border-gray-300 shadow-lg text-center my-2">{children}</table>
   )
 }
 const TableHead = ({children})=>{
@@ -153,17 +155,22 @@ const Strikethrough = ({children})=>{
 }
 const InlineCode = ({children})=>{
   return(
-    <code className="p-1 text-base my-2">{children}</code>
-  )
-}
-const Pre = ({children})=>{
+    <code className="p-0.5 text-base my-2 px-1 py-2 rounded-md bg-gray-500/30">{children}</code>
+    )
+  }
+  const Pre = ({children})=>{
   return(
-    <pre className="p-1 text-base my-2">{children}</pre>
+    <pre className="p-2 text-base my-2">{children}</pre>
   )
 }
 const Break = ({children})=>{
   return(
     <br className="p-1 text-base my-2">{children}</br>
+  )
+}
+const Blockquote = ({children})=>{
+  return(
+    <blockquote className="p-1 text-base my-2 pl-4 border-l-4 border-zinc-500 ml-1">{children}</blockquote>
   )
 }
 const MDComponents = {
@@ -193,6 +200,7 @@ const MDComponents = {
     inlineCode:InlineCode,
     pre:Pre,
     br:Break,
+    blockquote:Blockquote,
 };
 
 export default MDComponents;
