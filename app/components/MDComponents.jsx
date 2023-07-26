@@ -25,7 +25,7 @@ const CodeBlock = ({ node, inline, className, children, ...props }) => {
         color:"red"
       }}
         customStyle={{
-          // background: 'rgba(118, 121, 131,1)',
+          background: 'rgb(42, 43, 46)',
           margin:"10px",
           borderRadius: "10px",
           padding: "10px",
