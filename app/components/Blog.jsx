@@ -138,7 +138,7 @@ export default function BlogbyId({ postId }) {
         </div>
         <div className={`flex items-start justify-around h-14 overflow-hidden mt-4`}>
           <div
-            className={`text-center w-fit min-w-[115px] ${
+            className={`text-center w-[100px] ${
               belowBox === "likes" && "border-b border-gray-600"
             } h-14 overflow-hidden`}
           >
@@ -146,7 +146,7 @@ export default function BlogbyId({ postId }) {
               {isliked ? <AiFillLike /> : <AiOutlineLike />}
             </button>
             <span
-              className="block text-xs text-center mb-1 cursor-pointer underline text-blue-600 relative -top-1 w-[115px]"
+              className="block text-xs text-center mb-1 cursor-pointer underline text-blue-600 relative -top-1"
               onClick={() =>
                 setBelowBox(belowBox === "likes" ? "none" : "likes")
               }
@@ -156,7 +156,7 @@ export default function BlogbyId({ postId }) {
             </span>
           </div>
           <div
-            className={`text-center w-fit min-w-[80px] h-full ${
+            className={`text-center w-[100px] h-full ${
               belowBox === "comments" && "border-b-2 border-gray-600"
             } `}
             onClick={() =>
@@ -167,7 +167,7 @@ export default function BlogbyId({ postId }) {
               <AiOutlineComment />
             </button>
           </div>
-          <div className="text-center w-[40px] h-full">
+          <div className="text-center w-[100px] h-full">
             <button className="text-3xl m-0.5 relative group ">
               <AiOutlineShareAlt className="block group-hover:hidden" />
               <div className="absolute -top-3.5 -left-28  w-0 h-0 hidden group-hover:block">
