@@ -31,16 +31,51 @@ export async function fetchPostById(postId) {
   return { post };
 }
 
-export const randomPraiseGenerator = () =>{
-  const randomPraise = ["Astonishing","Awesome","Beautiful","Breathtaking","Brilliant","Charming","Dazzling","Delightful","Elegant","Enchanting","Excellent","Exceptional","Exquisite","Fabulous","Fantastic","Fascinating","Glorious","Gorgeous","Graceful","Impressive","Incredible","Lovely","Magnificent","Marvelous","Outstanding","Pleasant","Pretty","Remarkable","Spectacular","Splendid","Stunning","Superb","Terrific","Wonderful","Wondrous"]
+export const randomPraiseGenerator = () => {
+  const randomPraise = [
+    "Astonishing",
+    "Awesome",
+    "Beautiful",
+    "Breathtaking",
+    "Brilliant",
+    "Charming",
+    "Dazzling",
+    "Delightful",
+    "Elegant",
+    "Enchanting",
+    "Excellent",
+    "Exceptional",
+    "Exquisite",
+    "Fabulous",
+    "Fantastic",
+    "Fascinating",
+    "Glorious",
+    "Gorgeous",
+    "Graceful",
+    "Impressive",
+    "Incredible",
+    "Lovely",
+    "Magnificent",
+    "Marvelous",
+    "Outstanding",
+    "Pleasant",
+    "Pretty",
+    "Remarkable",
+    "Spectacular",
+    "Splendid",
+    "Stunning",
+    "Superb",
+    "Terrific",
+    "Wonderful",
+    "Wondrous",
+  ];
   return randomPraise[Math.floor(Math.random() * randomPraise.length)];
-}
+};
 
 export default function BlogbyId({ postId }) {
   const { data, error, isLoading } = useSWR(postId, fetchPostById, {
     refreshInterval: 0,
   });
-
   const { session, status, user } = useAppState();
   const [comment, setComment] = useState("");
   const [isliked, setLiked] = useState(false);
@@ -52,7 +87,7 @@ export default function BlogbyId({ postId }) {
         !isLoading &&
         data &&
         (await data.post.likedBy.find((ele) => ele._id === session.user.id))
-      )
+      ) 
         setLiked(true);
     }
     setLike();
@@ -117,6 +152,18 @@ export default function BlogbyId({ postId }) {
     }
     setComment("");
   };
+
+  const handleShareClick = async () => {
+    try {
+      await navigator.share({
+        title: `${data.post.title}`,
+        url: `${window.location.href}`,
+      });
+      console.log("Shared successfully");
+    } catch (error) {
+      console.error('Error sharing:', error);
+    }
+  };
   return (
     <div className="text-black h-[100vh] max-h-[calc(100vh-53px)] md:max-h-[calc(100vh-65px)] w-[92vw] max-w-[750px] mx-auto bg-white/50 px-[2%] pt-3 md:pt-5 border-2 shadow-lg shadow-gray-400/20 overflow-y-scroll">
       {isLoading === true ? (
@@ -145,9 +192,7 @@ export default function BlogbyId({ postId }) {
             </h1>
             <ReactToMarkDown content={data.post.data} />
           </div>
-          <div
-            className={`flex items-start justify-around h-14 mt-4`}
-          >
+          <div className={`flex items-start justify-around h-14 mt-4`}>
             <div
               className={`text-center w-[100px] ${
                 belowBox === "likes" && "border-b border-gray-600"
@@ -179,12 +224,16 @@ export default function BlogbyId({ postId }) {
               </button>
             </div>
             <div className="text-center w-[100px] h-full">
-              <button className="text-3xl m-0.5 relative group ">
-                <AiOutlineShareAlt/>
+              <div className="text-3xl m-0.5 relative group ">
+                <AiOutlineShareAlt />
                 <div className="absolute top-6 -left-24  w-0 h-0 hidden group-hover:block">
-                  <div className="flex flex-row w-fit bg-gray-400/80 rounded-lg px-1 py-0.5 text-3xl">
+                  <div className="flex flex-row w-fit bg-gray-400/80 rounded-lg px-1 py-0.5 text-3xl cursor-pointer">
                     <a
-                      href={`whatsapp://send?text=Hey, check this ${randomPraiseGenerator()} blog on *${data.post.title}* by *${data.post.user.name}* on Quilog at ${window.location.href} it's a must-read!`}
+                      href={`whatsapp://send?text=Hey, check this ${randomPraiseGenerator()} blog on *${
+                        data.post.title
+                      }* by *${data.post.user.name}* on Quilog at ${
+                        window.location.href
+                      } it's a must-read!`}
                       data-action="share/whatsapp/share"
                       className="p-0 px-1 m-0 h-8 overflow-hidden"
                       target="_blank"
@@ -200,7 +249,11 @@ export default function BlogbyId({ postId }) {
                       <AiOutlineLinkedin className="relative bottom-2 inline-block rounded-md text-sky-500 hover:bg-gradient-to-b from-sky-400 to-sky-700 hover:text-white hover:shadow-md hover:shadow-sky-700/80" />
                     </a>
                     <a
-                      href={`https://twitter.com/intent/tweet?text=Hey, check this ${randomPraiseGenerator()} blog on ${data.post.title} by ${data.post.user.name} on Quilog at &url=${window.location.href}`}
+                      href={`https://twitter.com/intent/tweet?text=Hey, check this ${randomPraiseGenerator()} blog on ${
+                        data.post.title
+                      } by ${data.post.user.name} on Quilog at &url=${
+                        window.location.href
+                      }`}
                       data-action="share/Twitter/share"
                       className="p-0 px-1 m-0 h-8 overflow-hidden"
                       target="_blank"
@@ -211,11 +264,11 @@ export default function BlogbyId({ postId }) {
                       data-action="share/device/share"
                       className="p-0 px-1 m-0 h-8 overflow-hidden"
                     >
-                      <BsThreeDotsVertical className="relative bottom-2 inline-block rounded-full text-zinc-700 hover:text-black" />
+                      <BsThreeDotsVertical onClick={handleShareClick} className="relative bottom-2 inline-block rounded-full text-zinc-700 hover:text-black" />
                     </button>
                   </div>
                 </div>
-              </button>
+              </div>
             </div>
           </div>
           <div className="w-full h-fit">

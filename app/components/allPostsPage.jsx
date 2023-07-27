@@ -79,10 +79,16 @@ export default function PostPage({ query }) {
 // Each Post in the posts page
 
 function PostBox({ post }) {
-  const shareData = {
-    title: post.title,
-    text: post.data,
-    url: `https://Quilog.vercel.app/posts/${post._id}`,
+  const handleShareClick = async () => {
+    try {
+      await navigator.share({
+        title: `${post.title}`,
+        url: `${window.location.href}/${post._id}`,
+      });
+      console.log("Shared successfully");
+    } catch (error) {
+      console.error('Error sharing:', error);
+    }
   };
   return (
     <div className="rounded-xl bg-white m-auto my-5 px-3 md:mx-6 py-2 relative border-[2.5px] shadow-md shadow-gray-400/10 ">
@@ -98,7 +104,7 @@ function PostBox({ post }) {
           />
           <p className="ml-3 font-bold text-md">{post.user.name}</p>
         </Link>
-        <button className="text-2xl md:text-3xl m-2 rounded-full md:mr-6 relative group h-6 md:h-8">
+        <div className="text-2xl md:text-3xl m-2 rounded-full md:mr-6 relative group h-6 md:h-8 cursor-pointer">
           <AiOutlineShareAlt />
           <div className="absolute -top-8 -left-[108px] md:-left-24  w-fit hidden group-hover:block">
             <div className="flex flex-row w-fit bg-gray-400/80 rounded-lg p-1 text-3xl h-fit">
@@ -129,12 +135,13 @@ function PostBox({ post }) {
               <button
                 data-action="share/device/share"
                 className="p-0 px-1 m-0 h-8 overflow-hidden"
+                onClick={handleShareClick}
               >
-                <BsThreeDotsVertical className="relative bottom-2 inline-block rounded-full text-zinc-700 hover:bg-gradient-to-b from-sky-400 to-sky-700 hover:text-white hover:shadow-md hover:shadow-sky-700/80" />
+                <BsThreeDotsVertical className="relative bottom-2 inline-block rounded-full text-zinc-700 hover:text-black hover:shadow-md" />
               </button>
             </div>
           </div>
-        </button>
+        </div>
       </div>
 
       <Link href={`/posts/${post._id}`}>
