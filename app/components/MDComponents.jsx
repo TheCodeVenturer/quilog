@@ -47,27 +47,27 @@ const CodeBlock = ({ node, inline, className, children, ...props }) => {
 };
 // Editing All Headers
 const Header1 = ({ children }) => {
-  return <h1 className="ml-2 text-4xl font-bold my-2">{children}</h1>;
+  return <h1 className="ml-2 text-3xl font-bold my-2">{children}</h1>;
 };
 
 const Header2 = ({ children }) => {
-  return <h2 className="ml-2 text-3xl font-bold my-2">{children}</h2>;
+  return <h2 className="ml-2 text-2xl font-bold my-2">{children}</h2>;
 };
 
 const Header3 = ({ children }) => {
-  return <h3 className="ml-2 text-2xl font-bold my-2">{children}</h3>;
+  return <h3 className="ml-2 text-xl font-bold my-2">{children}</h3>;
 };
 
 const Header4 = ({ children }) => {
-  return <h4 className="ml-2 text-xl font-bold my-2">{children}</h4>;
+  return <h4 className="ml-2 text-lg font-bold my-2">{children}</h4>;
 };
 
 const Header5 = ({ children }) => {
-  return <h5 className="ml-2 text-lg font-bold my-2">{children}</h5>;
+  return <h5 className="ml-2 text-base font-bold my-2">{children}</h5>;
 };
 
 const Header6 = ({ children }) => {
-  return <h6 className="ml-2 text-base font-bold my-2">{children}</h6>;
+  return <h6 className="ml-2 text-sm font-bold my-2">{children}</h6>;
 };
 
 // Editing all Headers Ends Here

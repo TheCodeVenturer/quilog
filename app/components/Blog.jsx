@@ -187,7 +187,7 @@ export default function BlogbyId({ postId }) {
             </p>
           </Link>
           <div className="h-fit ml-3 mt-3 md:ml-5">
-            <h1 className="text-2xl md:text-3xl font-semibold my-1">
+            <h1 className="text-3xl font-bold my-1">
               {data.post.title}
             </h1>
             <ReactToMarkDown content={data.post.data} />
