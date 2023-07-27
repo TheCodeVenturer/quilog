@@ -238,7 +238,7 @@ export default function BlogbyId({ postId }) {
                       className="p-0 px-1 m-0 h-8 overflow-hidden"
                       target="_blank"
                     >
-                      <AiOutlineWhatsApp className="relative bottom-2 inline-block rounded-full text-green-600 hover:bg-green-600 hover:text-white hover:shadow-md hover:shadow-green-600/80" />
+                      <AiOutlineWhatsApp className="relative bottom-1.5 inline-block rounded-full text-green-600 hover:bg-green-600 hover:text-white hover:shadow-md hover:shadow-green-600/80" />
                     </a>
                     <a
                       href={`https://www.linkedin.com/sharing/share-offsite/?url=${window.location.href}`}
@@ -246,7 +246,7 @@ export default function BlogbyId({ postId }) {
                       className="p-0 px-1 m-0 h-8 overflow-hidden"
                       target="_blank"
                     >
-                      <AiOutlineLinkedin className="relative bottom-2 inline-block rounded-md text-sky-500 hover:bg-gradient-to-b from-sky-400 to-sky-700 hover:text-white hover:shadow-md hover:shadow-sky-700/80" />
+                      <AiOutlineLinkedin className="relative bottom-1.5 inline-block rounded-md text-sky-500 hover:bg-gradient-to-b from-sky-400 to-sky-700 hover:text-white hover:shadow-md hover:shadow-sky-700/80" />
                     </a>
                     <a
                       href={`https://twitter.com/intent/tweet?text=Hey, check this ${randomPraiseGenerator()} blog on ${
@@ -258,13 +258,13 @@ export default function BlogbyId({ postId }) {
                       className="p-0 px-1 m-0 h-8 overflow-hidden"
                       target="_blank"
                     >
-                      <AiOutlineTwitter className="relative bottom-2 inline-block rounded-full text-sky-500 hover:bg-gradient-to-b from-sky-400 to-sky-700 hover:text-white hover:shadow-md hover:shadow-sky-700/80" />
+                      <AiOutlineTwitter className="relative bottom-1.5 inline-block rounded-full text-sky-500 hover:bg-gradient-to-b from-sky-400 to-sky-700 hover:text-white hover:shadow-md hover:shadow-sky-700/80" />
                     </a>
                     <button
                       data-action="share/device/share"
                       className="p-0 px-1 m-0 h-8 overflow-hidden"
                     >
-                      <BsThreeDotsVertical onClick={handleShareClick} className="relative bottom-2 inline-block rounded-full text-zinc-700 hover:text-black" />
+                      <BsThreeDotsVertical onClick={handleShareClick} className="relative bottom-1.5 inline-block rounded-full text-zinc-700 hover:text-black" />
                     </button>
                   </div>
                 </div>
