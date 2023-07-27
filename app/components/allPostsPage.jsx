@@ -48,10 +48,9 @@ export default function PostPage({ query }) {
       await fetchPosts();
       setTimeout(() => {
         setLoading(false);
-    }, 200);
+      }, 200);
     };
     fetchInitialPosts();
-    
   }, []);
 
   return (
@@ -59,18 +58,18 @@ export default function PostPage({ query }) {
       className={`text-black h-full max-h-[calc(100vh-53px)] md:max-h-[calc(100vh-65px)] w-[95vw] md:w-[85vw] max-w-[750px] mx-auto bg-white/50 px-[2%] pt-5 border-2 shadow-lg shadow-gray-400/20 overflow-y-scroll`}
     >
       <h1 className="text-2xl md:ml-7 font-semibold">Blogs</h1>
-      <SkeletonForAllPostPage className={`${loading===false && "hidden"}`}/>
-        <InfiniteScroll
-          dataLength={postArray.length}
-          next={fetchPosts}
-          hasMore={postArray.length < totalPosts}
-          loader={<SkeletonForAllPostPage />}
-          className={`${loading===true && "hidden"}`}
-        >
-          {postArray.map((post) => {
-            return <PostBox key={post._id} post={post} />;
-          })}
-        </InfiniteScroll>
+      <SkeletonForAllPostPage className={`${loading === false && "hidden"}`} />
+      <InfiniteScroll
+        dataLength={postArray.length}
+        next={fetchPosts}
+        hasMore={postArray.length < totalPosts}
+        loader={<SkeletonForAllPostPage />}
+        className={`${loading === true && "hidden"}`}
+      >
+        {postArray.map((post) => {
+          return <PostBox key={post._id} post={post} />;
+        })}
+      </InfiniteScroll>
     </div>
   );
 }
@@ -101,10 +100,36 @@ function PostBox({ post }) {
           <AiOutlineShareAlt className="block group-hover:hidden" />
           <div className="absolute -top-1 -left-[108px] md:-left-24  w-0 h-0 hidden group-hover:block">
             <div className="flex flex-row w-fit bg-gray-400/80 rounded-lg p-1 text-3xl ">
-              <AiOutlineWhatsApp className="inline-block px-1 rounded-full text-green-600 hover:bg-green-600 hover:text-white hover:shadow-lg hover:shadow-green-600/80" />
-              <AiOutlineLinkedin className="inline-block px-1 rounded-full text-sky-500 hover:bg-gradient-to-b from-sky-400 to-sky-700 hover:text-white hover:shadow-lg hover:shadow-sky-700/80" />
-              <AiOutlineTwitter className="inline-block px-1 rounded-full text-sky-500 hover:bg-gradient-to-b from-sky-400 to-sky-700 hover:text-white hover:shadow-lg hover:shadow-sky-700/80" />
-              <BsThreeDotsVertical className="inline-block px-1 rounded-full text-zinc-700 hover:bg-gradient-to-b from-sky-400 to-sky-700 hover:text-white hover:shadow-lg hover:shadow-sky-700/80" />
+              <a
+                href={`whatsapp://send?text=Hey, check this incredible blog on ${post.title} by ${post.user.name} on Quilog at ${window.location.href}/${post._id} it's a must-read!`}
+                data-action="share/whatsapp/share"
+                className="p-0 px-1 m-0"
+                target="_blank"
+              >
+                <AiOutlineWhatsApp className="m-0 p-0 inline-block rounded-full text-green-600 hover:bg-green-600 hover:text-white hover:shadow-lg hover:shadow-green-600/80" />
+              </a>
+              <a
+                href={`https://www.linkedin.com/sharing/share-offsite/?url=${window.location.href}/${post._id}`}
+                data-action="share/Linkedin/share"
+                className="p-0 px-1 m-0 h-fit"
+                target="_blank"
+              >
+                <AiOutlineLinkedin className="inline-block rounded-md text-sky-500 hover:bg-gradient-to-b from-sky-400 to-sky-700 hover:text-white hover:shadow-lg hover:shadow-sky-700/80" />
+              </a>
+              <a
+                href={`https://twitter.com/intent/tweet?text=Hey, check this incredible blog on ${post.title} by ${post.user.name} on Quilog at &url=${window.location.href}/${post._id}`}
+                data-action="share/Twitter/share"
+                className="p-0 px-1 m-0 h-fit"
+                target="_blank"
+              >
+                <AiOutlineTwitter className="inline-block rounded-full text-sky-500 hover:bg-gradient-to-b from-sky-400 to-sky-700 hover:text-white hover:shadow-lg hover:shadow-sky-700/80" />
+              </a>
+              <a
+                data-action="share/device/share"
+                className="p-0 px-1 m-0 h-fit"
+              >
+                <BsThreeDotsVertical className="inline-block rounded-full text-zinc-700 hover:bg-gradient-to-b from-sky-400 to-sky-700 hover:text-white hover:shadow-lg hover:shadow-sky-700/80" />
+              </a>
             </div>
           </div>
         </button>
@@ -112,18 +137,14 @@ function PostBox({ post }) {
 
       <Link href={`/posts/${post._id}`}>
         <div className=" h-fit max-h-[25vh] overflow-hidden mt-2 ml-3 md:ml-5">
-          <h1 className="text-2xl font-semibold my-1">
-            {post.title}
-          </h1>
+          <h1 className="text-2xl font-semibold my-1">{post.title}</h1>
           <ReactToMarkDown content={stringShortner(post.data)} />
         </div>
         <div className="flex justify-start text-xl ml-3 md:ml-5 mt-1 md:mt-2 mb-5">
           {post.likedBy.length > 0 && (
             <span className="flex flex-row items-center">
               <AiOutlineLike className="inline-block mr-1 text-2xl" />
-              <p className="p-0 m-0">
-                {post.likedBy.length}
-              </p>
+              <p className="p-0 m-0">{post.likedBy.length}</p>
             </span>
           )}
           {post.comments.length > 0 && (
@@ -145,7 +166,7 @@ function stringShortner(str) {
   return str;
 }
 
-function SkeletonForAllPostPage({className}) {
+function SkeletonForAllPostPage({ className }) {
   return (
     <div className={className}>
       <SkeletonForPost />

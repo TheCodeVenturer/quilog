@@ -35,6 +35,7 @@ export default function BlogbyId({ postId }) {
   const { data, error, isLoading } = useSWR(postId, fetchPostById, {
     refreshInterval: 0,
   });
+
   const { session, status, user } = useAppState();
   const [comment, setComment] = useState("");
   const [isliked, setLiked] = useState(false);
@@ -113,95 +114,127 @@ export default function BlogbyId({ postId }) {
   };
   return (
     <div className="text-black h-[100vh] max-h-[calc(100vh-53px)] md:max-h-[calc(100vh-65px)] w-[92vw] max-w-[750px] mx-auto bg-white/50 px-[2%] pt-3 md:pt-5 border-2 shadow-lg shadow-gray-400/20 overflow-y-scroll">
-      {isLoading ===true?<SkeletonForPost/>: <div className="rounded-xl bg-white m-auto my-5 px-3 md:mx-6 py-2 relative border-[2.5px] shadow-md shadow-gray-400/10">
-      <Link
-          className="w-fit flex items-center ml-3 mt-3 md:ml-5 md:mt-5"
-          href={`/${data.post.user._id}`}
-        >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            className="w-9 h-9 md:w-11 md:h-11 bg-gray-500 border-2 border-gray-700 rounded-full"
-            src={`${data.post.user.image}`}
-            height={100}
-            width={100}
-            alt={`${data.post.user.name}`}
-          />
-          <p className="ml-3 font-bold text-md md:text-lg">
-            {data.post.user.name}
-          </p>
-        </Link>
-        <div className="h-fit ml-3 mt-3 md:ml-5">
-          <h1 className="text-2xl md:text-3xl font-semibold my-1">
-            {data.post.title}
-          </h1>
-          <ReactToMarkDown content={data.post.data} />
-        </div>
-        <div className={`flex items-start justify-around h-14 overflow-hidden mt-4`}>
-          <div
-            className={`text-center w-[100px] ${
-              belowBox === "likes" && "border-b border-gray-600"
-            } h-14 overflow-hidden`}
+      {isLoading === true ? (
+        <SkeletonForPost />
+      ) : (
+        <div className="rounded-xl bg-white m-auto my-5 px-3 md:mx-6 py-2 relative border-[2.5px] shadow-md shadow-gray-400/10">
+          <Link
+            className="w-fit flex items-center ml-3 mt-3 md:ml-5 md:mt-5"
+            href={`/${data.post.user._id}`}
           >
-            <button className={`text-3xl m-0.5`} onClick={handleLikeClick}>
-              {isliked ? <AiFillLike /> : <AiOutlineLike />}
-            </button>
-            <span
-              className="block text-xs text-center mb-1 cursor-pointer underline text-blue-600 relative -top-1"
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              className="w-9 h-9 md:w-11 md:h-11 bg-gray-500 border-2 border-gray-700 rounded-full"
+              src={`${data.post.user.image}`}
+              height={100}
+              width={100}
+              alt={`${data.post.user.name}`}
+            />
+            <p className="ml-3 font-bold text-md md:text-lg">
+              {data.post.user.name}
+            </p>
+          </Link>
+          <div className="h-fit ml-3 mt-3 md:ml-5">
+            <h1 className="text-2xl md:text-3xl font-semibold my-1">
+              {data.post.title}
+            </h1>
+            <ReactToMarkDown content={data.post.data} />
+          </div>
+          <div
+            className={`flex items-start justify-around h-14 overflow-hidden mt-4`}
+          >
+            <div
+              className={`text-center w-[100px] ${
+                belowBox === "likes" && "border-b border-gray-600"
+              } h-14 overflow-hidden`}
+            >
+              <button className={`text-3xl m-0.5`} onClick={handleLikeClick}>
+                {isliked ? <AiFillLike /> : <AiOutlineLike />}
+              </button>
+              <span
+                className="block text-xs text-center mb-1 cursor-pointer underline text-blue-600 relative -top-1"
+                onClick={() =>
+                  setBelowBox(belowBox === "likes" ? "none" : "likes")
+                }
+              >
+                {data.post.likedBy.length > 0 &&
+                  `liked by ${data.post.likedBy.length} people`}
+              </span>
+            </div>
+            <div
+              className={`text-center w-[100px] h-full ${
+                belowBox === "comments" && "border-b-2 border-gray-600"
+              } `}
               onClick={() =>
-                setBelowBox(belowBox === "likes" ? "none" : "likes")
+                setBelowBox(belowBox === "comments" ? "none" : "comments")
               }
             >
-              {data.post.likedBy.length > 0 &&
-                `liked by ${data.post.likedBy.length} people`}
-            </span>
-          </div>
-          <div
-            className={`text-center w-[100px] h-full ${
-              belowBox === "comments" && "border-b-2 border-gray-600"
-            } `}
-            onClick={() =>
-              setBelowBox(belowBox === "comments" ? "none" : "comments")
-            }
-          >
-            <button className=" text-3xl m-0.5 ">
-              <AiOutlineComment />
-            </button>
-          </div>
-          <div className="text-center w-[100px] h-full">
-            <button className="text-3xl m-0.5 relative group ">
-              <AiOutlineShareAlt className="block group-hover:hidden" />
-              <div className="absolute -top-3.5 -left-28  w-0 h-0 hidden group-hover:block">
-                <div className="flex flex-row w-fit bg-gray-400/80 rounded-lg p-1 text-3xl ">
-                  <AiOutlineWhatsApp className="inline-block px-1 rounded-full text-green-600 hover:bg-green-600 hover:text-white hover:shadow-lg hover:shadow-green-600/80" />
-                  <AiOutlineLinkedin className="inline-block px-1 rounded-full text-sky-500 hover:bg-gradient-to-b from-sky-400 to-sky-700 hover:text-white hover:shadow-lg hover:shadow-sky-700/80" />
-                  <AiOutlineTwitter className="inline-block px-1 rounded-full text-sky-500 hover:bg-gradient-to-b from-sky-400 to-sky-700 hover:text-white hover:shadow-lg hover:shadow-sky-700/80" />
-                  <BsThreeDotsVertical className="inline-block px-1 rounded-full text-zinc-700 hover:bg-gradient-to-b from-sky-400 to-sky-700 hover:text-white hover:shadow-lg hover:shadow-sky-700/80" />
+              <button className=" text-3xl m-0.5 ">
+                <AiOutlineComment />
+              </button>
+            </div>
+            <div className="text-center w-[100px] h-full">
+              <button className="text-3xl m-0.5 relative group ">
+                <AiOutlineShareAlt className="block group-hover:hidden" />
+                <div className="absolute -top-3.5 -left-28  w-0 h-0 hidden group-hover:block">
+                  <div className="flex flex-row w-fit bg-gray-400/80 rounded-lg p-1 text-3xl md:text-4xl">
+                    <a
+                      href={`whatsapp://send?text=Hey, check this incredible blog on ${data.post.title} by ${data.post.user.name} on Quilog at ${window.location.href} it's a must-read!`}
+                      data-action="share/whatsapp/share"
+                      className="p-0 px-1 m-0"
+                      target="_blank"
+                    >
+                      <AiOutlineWhatsApp className="m-0 p-0 inline-block rounded-full text-green-600 hover:bg-green-600 hover:text-white hover:shadow-lg hover:shadow-green-600/80" />
+                    </a>
+                    <a
+                      href={`https://www.linkedin.com/sharing/share-offsite/?url=${window.location.href}`}
+                      data-action="share/Linkedin/share"
+                      className="p-0 px-1 m-0 h-fit"
+                      target="_blank"
+                    >
+                      <AiOutlineLinkedin className="inline-block rounded-md text-sky-500 hover:bg-gradient-to-b from-sky-400 to-sky-700 hover:text-white hover:shadow-lg hover:shadow-sky-700/80" />
+                    </a>
+                    <a
+                      href={`https://twitter.com/intent/tweet?text=Hey, check this incredible blog on ${data.post.title} by ${data.post.user.name} on Quilog at &url=${window.location.href}`}
+                      data-action="share/Twitter/share"
+                      className="p-0 px-1 m-0 h-fit"
+                      target="_blank"
+                    >
+                      <AiOutlineTwitter className="inline-block rounded-full text-sky-500 hover:bg-gradient-to-b from-sky-400 to-sky-700 hover:text-white hover:shadow-lg hover:shadow-sky-700/80" />
+                    </a>
+                    <a
+                      
+                      data-action="share/device/share"
+                      className="p-0 px-1 m-0 h-fit"
+                    >
+                      <BsThreeDotsVertical className="inline-block rounded-full text-zinc-700 hover:bg-gradient-to-b from-sky-400 to-sky-700 hover:text-white hover:shadow-lg hover:shadow-sky-700/80" />
+                    </a>
+                  </div>
                 </div>
-              </div>
-            </button>
+              </button>
+            </div>
+          </div>
+          <div className="w-full h-fit">
+            <div
+              className={`text-center ${
+                belowBox === "comments" ? "block" : "hidden"
+              }`}
+            >
+              <CommentInput
+                comment={comment}
+                setComment={setComment}
+                handleSubmit={handleCommentSubmit}
+              />
+              {data.post.comments.length > 0 && (
+                <Comments comments={data.post.comments} />
+              )}
+            </div>
+            <div className={`${belowBox === "likes" ? "block" : "hidden"}`}>
+              <Likes likedBy={data.post.likedBy} />
+            </div>
           </div>
         </div>
-        <div className="w-full h-fit">
-          <div
-            className={`text-center ${
-              belowBox === "comments" ? "block" : "hidden"
-            }`}
-          >
-            <CommentInput
-              comment={comment}
-              setComment={setComment}
-              handleSubmit={handleCommentSubmit}
-            />
-            {data.post.comments.length > 0 && (
-              <Comments comments={data.post.comments} />
-            )}
-          </div>
-          <div className={`${belowBox === "likes" ? "block" : "hidden"}`}>
-            <Likes likedBy={data.post.likedBy} />
-          </div>
-        </div>
-      </div>
-      }
+      )}
     </div>
   );
 }
@@ -209,7 +242,7 @@ export default function BlogbyId({ postId }) {
 const Likes = ({ likedBy }) => {
   return (
     <div className="text-left py-2 ml-3 md:ml-5">
-    <h1 className="text-xl font-semibold my-1">Liked By</h1>
+      <h1 className="text-xl font-semibold my-1">Liked By</h1>
       {likedBy.map((ele, id) => {
         return (
           <Link
@@ -241,31 +274,33 @@ const Comments = ({ comments }) => {
       {comments.map((ele, id) => {
         const date = new Date(ele.createdAt);
 
-        const day = date.getDate(); 
-        const month = date.toLocaleString("default", { month: "short" }); 
+        const day = date.getDate();
+        const month = date.toLocaleString("default", { month: "short" });
 
         const formattedDate = `${day} ${month}`;
         return (
           <div key={id} className="p-1 bg-zinc-400/10 m-2 rounded">
-          <div className="flex items-center ">
-            <Link
-              className="w-fit flex items-center md:ml-2"
-              href={`/${ele.user._id}`}
-            >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                className="w-7 h-7 md:w-9 md:h-9 bg-gray-500 rounded-full"
-                src={ele.user.image}
-                height={100}
-                width={100}
-                alt={ele.user.name}
-              />
-              <p className="ml-1 font-semibold text-md md:text-lg">
-                {ele.user.name}
+            <div className="flex items-center ">
+              <Link
+                className="w-fit flex items-center md:ml-2"
+                href={`/${ele.user._id}`}
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  className="w-7 h-7 md:w-9 md:h-9 bg-gray-500 rounded-full"
+                  src={ele.user.image}
+                  height={100}
+                  width={100}
+                  alt={ele.user.name}
+                />
+                <p className="ml-1 font-semibold text-md md:text-lg">
+                  {ele.user.name}
+                </p>
+              </Link>
+              <p className="m-0 p-0 ml-2 text-gray-500 font-bold text-xs">
+                {formattedDate}
               </p>
-            </Link>
-              <p className="m-0 p-0 ml-2 text-gray-500 font-bold text-xs" >{formattedDate}</p>
-              </div>
+            </div>
             <div className="ml-8 pl-1 md:ml-12 text-lg border border-gray-400 rounded-md">
               {ele.text}
             </div>

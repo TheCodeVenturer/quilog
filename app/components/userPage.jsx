@@ -38,7 +38,7 @@ export default function UserPage({ userId }) {
     }, 150);
     }
     getUser();
-  }, []);
+  }, [editBoxVisible]);
   if (loading) {
     return (
        <SkeletonForUserPage/>
