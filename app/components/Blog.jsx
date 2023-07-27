@@ -304,7 +304,7 @@ const Likes = ({ likedBy }) => {
         return (
           <Link
             key={id}
-            className="w-fit m-1.5 flex items-center rounded-3xl bg-zinc-400/10"
+            className="w-fit m-1.5 flex items-center rounded-3xl "
             href={`/${ele._id}`}
           >
             <div className="w-9 h-9 rounded-full text-4xl">
@@ -336,7 +336,7 @@ const Comments = ({ comments }) => {
 
         const formattedDate = `${day} ${month}`;
         return (
-          <div key={id} className="p-1 bg-zinc-400/10 m-2 rounded">
+          <div key={id} className="p-1 m-2 rounded">
             <div className="flex items-center ">
               <Link
                 className="w-fit flex items-center md:ml-2"
