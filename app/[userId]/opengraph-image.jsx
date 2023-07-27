@@ -42,7 +42,7 @@ export default async function Image({ params: { userId } }) {
             style={{ transform: "rotate(8deg)" }}
           />
         </div>
-        <div tw="flex flex-col justify-center items-center w-1/2 h-full p-[48px] my-auto text-black bg-white/30 overflow-hidden">
+        <div tw="flex flex-col justify-center items-center w-1/2 h-full p-[48px] my-auto text-black bg-white/70 overflow-hidden">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={user.image}

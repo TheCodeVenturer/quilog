@@ -17,6 +17,8 @@ import { redirect } from "next/navigation";
 import Link from "next/link";
 import ReactToMarkDown from "./ReactToMarkDown";
 
+import { randomPraiseGenerator } from "./Blog";
+
 // This is the post component that is used in the post page
 
 export default function PostPage({ query }) {
@@ -97,39 +99,39 @@ function PostBox({ post }) {
           <p className="ml-3 font-bold text-md">{post.user.name}</p>
         </Link>
         <button className="text-2xl md:text-3xl m-2 rounded-full md:mr-6 relative group h-6 md:h-8">
-          <AiOutlineShareAlt className="block group-hover:hidden" />
-          <div className="absolute -top-1 -left-[108px] md:-left-24  w-0 h-0 hidden group-hover:block">
-            <div className="flex flex-row w-fit bg-gray-400/80 rounded-lg p-1 text-3xl ">
+          <AiOutlineShareAlt />
+          <div className="absolute -top-8 -left-[108px] md:-left-24  w-fit hidden group-hover:block">
+            <div className="flex flex-row w-fit bg-gray-400/80 rounded-lg p-1 text-3xl h-fit">
               <a
-                href={`whatsapp://send?text=Hey, check this incredible blog on ${post.title} by ${post.user.name} on Quilog at ${window.location.href}/${post._id} it's a must-read!`}
+                href={`whatsapp://send?text=Hey, check this ${randomPraiseGenerator()} blog on *${post.title}* by *${post.user.name}* on Quilog at ${window.location.href}/${post._id} it's a must-read!`}
                 data-action="share/whatsapp/share"
-                className="p-0 px-1 m-0"
+                className="p-0 px-1 m-0 h-8 overflow-hidden"
                 target="_blank"
               >
-                <AiOutlineWhatsApp className="m-0 p-0 inline-block rounded-full text-green-600 hover:bg-green-600 hover:text-white hover:shadow-lg hover:shadow-green-600/80" />
+                <AiOutlineWhatsApp className="relative bottom-2 m-0 p-0 inline-block rounded-full text-green-600 hover:bg-green-600 hover:text-white hover:shadow-md hover:shadow-green-600/80" />
               </a>
               <a
                 href={`https://www.linkedin.com/sharing/share-offsite/?url=${window.location.href}/${post._id}`}
                 data-action="share/Linkedin/share"
-                className="p-0 px-1 m-0 h-fit"
+                className="p-0 px-1 m-0 h-8 overflow-hidden"
                 target="_blank"
               >
-                <AiOutlineLinkedin className="inline-block rounded-md text-sky-500 hover:bg-gradient-to-b from-sky-400 to-sky-700 hover:text-white hover:shadow-lg hover:shadow-sky-700/80" />
+                <AiOutlineLinkedin className="relative bottom-2 inline-block rounded-md text-sky-500 hover:bg-gradient-to-b from-sky-400 to-sky-700 hover:text-white hover:shadow-md hover:shadow-sky-700/80" />
               </a>
               <a
-                href={`https://twitter.com/intent/tweet?text=Hey, check this incredible blog on ${post.title} by ${post.user.name} on Quilog at &url=${window.location.href}/${post._id}`}
+                href={`https://twitter.com/intent/tweet?text=Hey, check this ${randomPraiseGenerator()} blog on ${post.title} by ${post.user.name} on Quilog at &url=${window.location.href}/${post._id}`}
                 data-action="share/Twitter/share"
-                className="p-0 px-1 m-0 h-fit"
+                className="p-0 px-1 m-0 h-8 overflow-hidden"
                 target="_blank"
               >
-                <AiOutlineTwitter className="inline-block rounded-full text-sky-500 hover:bg-gradient-to-b from-sky-400 to-sky-700 hover:text-white hover:shadow-lg hover:shadow-sky-700/80" />
+                <AiOutlineTwitter className="relative bottom-2 inline-block rounded-full text-sky-500 hover:bg-gradient-to-b from-sky-400 to-sky-700 hover:text-white hover:shadow-md hover:shadow-sky-700/80" />
               </a>
-              <a
+              <button
                 data-action="share/device/share"
-                className="p-0 px-1 m-0 h-fit"
+                className="p-0 px-1 m-0 h-8 overflow-hidden"
               >
-                <BsThreeDotsVertical className="inline-block rounded-full text-zinc-700 hover:bg-gradient-to-b from-sky-400 to-sky-700 hover:text-white hover:shadow-lg hover:shadow-sky-700/80" />
-              </a>
+                <BsThreeDotsVertical className="relative bottom-2 inline-block rounded-full text-zinc-700 hover:bg-gradient-to-b from-sky-400 to-sky-700 hover:text-white hover:shadow-md hover:shadow-sky-700/80" />
+              </button>
             </div>
           </div>
         </button>

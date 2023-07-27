@@ -41,7 +41,7 @@ export default async function Image({ params: { postId } }) {
             style={{ transform: "rotate(8deg)" }}
           />
         </div>
-        <div tw="flex flex-col justify-center items-center w-1/2 h-full p-[48px] my-auto text-black bg-white/30 overflow-hidden">
+        <div tw="flex flex-col justify-center items-center w-1/2 h-full p-[48px] my-auto text-black bg-white/70 overflow-hidden">
           <h1 tw="text-5xl font-extrabold pb-2 border-b-4 border-zinc-400/50 leading-10">
             {post.title.length>29?post.title.slice(0,28)+"...":post.title}
           </h1>

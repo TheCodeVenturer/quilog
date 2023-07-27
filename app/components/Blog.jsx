@@ -31,6 +31,11 @@ export async function fetchPostById(postId) {
   return { post };
 }
 
+export const randomPraiseGenerator = () =>{
+  const randomPraise = ["Astonishing","Awesome","Beautiful","Breathtaking","Brilliant","Charming","Dazzling","Delightful","Elegant","Enchanting","Excellent","Exceptional","Exquisite","Fabulous","Fantastic","Fascinating","Glorious","Gorgeous","Graceful","Impressive","Incredible","Lovely","Magnificent","Marvelous","Outstanding","Pleasant","Pretty","Remarkable","Spectacular","Splendid","Stunning","Superb","Terrific","Wonderful","Wondrous"]
+  return randomPraise[Math.floor(Math.random() * randomPraise.length)];
+}
+
 export default function BlogbyId({ postId }) {
   const { data, error, isLoading } = useSWR(postId, fetchPostById, {
     refreshInterval: 0,
@@ -141,7 +146,7 @@ export default function BlogbyId({ postId }) {
             <ReactToMarkDown content={data.post.data} />
           </div>
           <div
-            className={`flex items-start justify-around h-14 overflow-hidden mt-4`}
+            className={`flex items-start justify-around h-14 mt-4`}
           >
             <div
               className={`text-center w-[100px] ${
@@ -175,40 +180,39 @@ export default function BlogbyId({ postId }) {
             </div>
             <div className="text-center w-[100px] h-full">
               <button className="text-3xl m-0.5 relative group ">
-                <AiOutlineShareAlt className="block group-hover:hidden" />
-                <div className="absolute -top-3.5 -left-28  w-0 h-0 hidden group-hover:block">
-                  <div className="flex flex-row w-fit bg-gray-400/80 rounded-lg p-1 text-3xl md:text-4xl">
+                <AiOutlineShareAlt/>
+                <div className="absolute top-6 -left-24  w-0 h-0 hidden group-hover:block">
+                  <div className="flex flex-row w-fit bg-gray-400/80 rounded-lg px-1 py-0.5 text-3xl">
                     <a
-                      href={`whatsapp://send?text=Hey, check this incredible blog on ${data.post.title} by ${data.post.user.name} on Quilog at ${window.location.href} it's a must-read!`}
+                      href={`whatsapp://send?text=Hey, check this ${randomPraiseGenerator()} blog on *${data.post.title}* by *${data.post.user.name}* on Quilog at ${window.location.href} it's a must-read!`}
                       data-action="share/whatsapp/share"
-                      className="p-0 px-1 m-0"
+                      className="p-0 px-1 m-0 h-8 overflow-hidden"
                       target="_blank"
                     >
-                      <AiOutlineWhatsApp className="m-0 p-0 inline-block rounded-full text-green-600 hover:bg-green-600 hover:text-white hover:shadow-lg hover:shadow-green-600/80" />
+                      <AiOutlineWhatsApp className="relative bottom-2 inline-block rounded-full text-green-600 hover:bg-green-600 hover:text-white hover:shadow-md hover:shadow-green-600/80" />
                     </a>
                     <a
                       href={`https://www.linkedin.com/sharing/share-offsite/?url=${window.location.href}`}
                       data-action="share/Linkedin/share"
-                      className="p-0 px-1 m-0 h-fit"
+                      className="p-0 px-1 m-0 h-8 overflow-hidden"
                       target="_blank"
                     >
-                      <AiOutlineLinkedin className="inline-block rounded-md text-sky-500 hover:bg-gradient-to-b from-sky-400 to-sky-700 hover:text-white hover:shadow-lg hover:shadow-sky-700/80" />
+                      <AiOutlineLinkedin className="relative bottom-2 inline-block rounded-md text-sky-500 hover:bg-gradient-to-b from-sky-400 to-sky-700 hover:text-white hover:shadow-md hover:shadow-sky-700/80" />
                     </a>
                     <a
-                      href={`https://twitter.com/intent/tweet?text=Hey, check this incredible blog on ${data.post.title} by ${data.post.user.name} on Quilog at &url=${window.location.href}`}
+                      href={`https://twitter.com/intent/tweet?text=Hey, check this ${randomPraiseGenerator()} blog on ${data.post.title} by ${data.post.user.name} on Quilog at &url=${window.location.href}`}
                       data-action="share/Twitter/share"
-                      className="p-0 px-1 m-0 h-fit"
+                      className="p-0 px-1 m-0 h-8 overflow-hidden"
                       target="_blank"
                     >
-                      <AiOutlineTwitter className="inline-block rounded-full text-sky-500 hover:bg-gradient-to-b from-sky-400 to-sky-700 hover:text-white hover:shadow-lg hover:shadow-sky-700/80" />
+                      <AiOutlineTwitter className="relative bottom-2 inline-block rounded-full text-sky-500 hover:bg-gradient-to-b from-sky-400 to-sky-700 hover:text-white hover:shadow-md hover:shadow-sky-700/80" />
                     </a>
-                    <a
-                      
+                    <button
                       data-action="share/device/share"
-                      className="p-0 px-1 m-0 h-fit"
+                      className="p-0 px-1 m-0 h-8 overflow-hidden"
                     >
-                      <BsThreeDotsVertical className="inline-block rounded-full text-zinc-700 hover:bg-gradient-to-b from-sky-400 to-sky-700 hover:text-white hover:shadow-lg hover:shadow-sky-700/80" />
-                    </a>
+                      <BsThreeDotsVertical className="relative bottom-2 inline-block rounded-full text-zinc-700 hover:text-black" />
+                    </button>
                   </div>
                 </div>
               </button>
