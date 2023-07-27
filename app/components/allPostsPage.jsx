@@ -40,6 +40,7 @@ export default function PostPage({ query }) {
     );
     const data = await fetchedPost.json();
     if (!data || data.error) redirect("/posts");
+    console.log("hello")
     if (pageNo == 1) setTotalPosts(data.count);
     setPostArray([...postArray, ...data.posts]);
     setPageNo(pageNo + 1);
@@ -50,28 +51,29 @@ export default function PostPage({ query }) {
       await fetchPosts();
       setTimeout(() => {
         setLoading(false);
-      }, 200);
+      }, 100);
     };
     fetchInitialPosts();
   }, []);
-
+  
   return (
     <div
-      className={`text-black h-full max-h-[calc(100vh-53px)] md:max-h-[calc(100vh-65px)] w-[95vw] md:w-[85vw] max-w-[750px] mx-auto bg-white/50 px-[2%] pt-5 border-2 shadow-lg shadow-gray-400/20 overflow-y-scroll`}
+      className={`text-black h-full max-h-[calc(100vh-53px)] md:max-h-[calc(100vh-65px)] w-[95vw] md:w-[85vw] max-w-[750px] mx-auto bg-white/50 px-[2%] pt-5 border-2 shadow-lg shadow-gray-400/20 overflow-hidden`}
     >
       <h1 className="text-2xl md:ml-7 font-semibold">Blogs</h1>
       <SkeletonForAllPostPage className={`${loading === false && "hidden"}`} />
-      <InfiniteScroll
+      {loading !==true && <InfiniteScroll
         dataLength={postArray.length}
         next={fetchPosts}
         hasMore={postArray.length < totalPosts}
         loader={<SkeletonForAllPostPage />}
-        className={`${loading === true && "hidden"}`}
+        height = {`calc(100vh - 85px)`}
       >
         {postArray.map((post) => {
           return <PostBox key={post._id} post={post} />;
         })}
-      </InfiniteScroll>
+      </InfiniteScroll>}
+      
     </div>
   );
 }
@@ -85,7 +87,6 @@ function PostBox({ post }) {
         title: `${post.title}`,
         url: `${window.location.href}/${post._id}`,
       });
-      console.log("Shared successfully");
     } catch (error) {
       console.error('Error sharing:', error);
     }

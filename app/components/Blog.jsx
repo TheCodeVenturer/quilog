@@ -159,7 +159,6 @@ export default function BlogbyId({ postId }) {
         title: `${data.post.title}`,
         url: `${window.location.href}`,
       });
-      console.log("Shared successfully");
     } catch (error) {
       console.error('Error sharing:', error);
     }
