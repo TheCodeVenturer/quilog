@@ -128,7 +128,7 @@ export default function BlogbyId({ postId }) {
 
   const handleCommentSubmit = async (e) => {
     if (status === "unauthenticated") {
-      toast.error("Please login to like the post");
+      toast.error("Please login to Comment on the post");
       return;
     }
     const res = await fetch(`/api/post/${postId}`, {
