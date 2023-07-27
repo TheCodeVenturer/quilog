@@ -106,7 +106,7 @@ function PostBox({ post }) {
         </Link>
         <div className="text-2xl md:text-3xl m-2 rounded-full md:mr-6 relative group h-6 md:h-8 cursor-pointer">
           <AiOutlineShareAlt />
-          <div className="absolute -top-8 -left-[108px] md:-left-24  w-fit hidden group-hover:block">
+          <div className="absolute -top-8 -left-[120px] md:-left-24  w-fit hidden group-hover:block">
             <div className="flex flex-row w-fit bg-gray-400/80 rounded-lg p-1 text-3xl h-fit">
               <a
                 href={`whatsapp://send?text=Hey, check this ${randomPraiseGenerator()} blog on *${post.title}* by *${post.user.name}* on Quilog at ${window.location.href}/${post._id} it's a must-read!`}

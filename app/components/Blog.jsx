@@ -224,9 +224,9 @@ export default function BlogbyId({ postId }) {
               </button>
             </div>
             <div className="text-center w-[100px] h-full">
-              <div className="text-3xl m-0.5 relative group ">
+              <div className="text-3xl m-0.5 relative group cursor-pointer w-fit mx-auto">
                 <AiOutlineShareAlt />
-                <div className="absolute top-6 -left-24  w-0 h-0 hidden group-hover:block">
+                <div className="absolute top-6 -left-20  w-0 h-0 hidden group-hover:block">
                   <div className="flex flex-row w-fit bg-gray-400/80 rounded-lg px-1 py-0.5 text-3xl cursor-pointer">
                     <a
                       href={`whatsapp://send?text=Hey, check this ${randomPraiseGenerator()} blog on *${
