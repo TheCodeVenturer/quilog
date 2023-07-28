@@ -2,14 +2,14 @@
   "name": "quilog",
   "version": "0.1.0",
   "description": "Quilog is A simple blog app built with Next.js and MongoDB",
-  "main":"/app/page.js",
+  "main": "/app/page.js",
   "private": true,
-  "author" : "Niraj Modi",
+  "author": "Niraj Modi",
   "repository": {
     "type": "git",
     "url": "https://github.com/TheCodeVenturer/quilog.git"
   },
-  "homepage":"https://quilog.vercel.app",
+  "homepage": "https://quilog.vercel.app",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -17,6 +17,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@auth/mongodb-adapter": "^1.0.0",
     "autoprefixer": "10.4.14",
     "bcrypt": "^5.1.0",
     "compressorjs": "^1.2.1",

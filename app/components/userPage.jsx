@@ -139,7 +139,7 @@ const CustomButtons = ({ text, baselink, className, children, extender }) => {
   return (
     <div className="text-center md:text-left group" >
       {text.length > 0 && (
-        <a href={`${baselink?baselink:""}${text?text:""}`} className="inline-block group/item">
+        <a href={`${baselink?baselink:""}${text?text:""}`} className="inline-block group/item" target="_blank">
           <span className="flex items-center group/edit">
             <span
               className={`p-1 group-hover/edit:shadow-lg ${className} rounded-full`}

@@ -6,6 +6,8 @@ import toast from "react-hot-toast";
 import { useAppState } from "@/app/context/stateContext";
 import { redirect, useRouter } from "next/navigation";
 
+import { signIn } from "next-auth/react";
+
 import Image from "next/image";
 import Link from "next/link";
 
@@ -47,6 +49,11 @@ export default function RegisterPage() {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (status === "authenticated") {
     redirect("/");
+  }
+
+  const signInWithGoogle = async(e) =>{
+    e.preventDefault()
+    await signIn("google")
   }
   return (
     <div
@@ -112,8 +119,7 @@ export default function RegisterPage() {
             Register
           </button>
           <button
-            onClick={handleSubmit}
-            disabled
+            onClick={signInWithGoogle}
             className="flex items-center  justify-center text-black mt-2 w-full border border-zinc-400/50 rounded-md text-base md:text-lg font-semibold hover:shadow-lg hover:shadow-gray-500/30 "
           ><FcGoogle className="inline-block mr-2"/>
             Sign Up with Google

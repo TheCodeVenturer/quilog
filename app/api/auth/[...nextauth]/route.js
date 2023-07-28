@@ -1,8 +1,7 @@
 import NextAuth from "next-auth"
 import GoogleProvider from "next-auth/providers/google"
-import GithubProvider from "next-auth/providers/github"
-// import { MongoDBAdapter } from "@next-auth/mongodb-adapter"
-// import clientPromise from "../../../../lib/mongodb"
+import { MongoDBAdapter } from "@auth/mongodb-adapter"
+import clientPromise from "@/lib/mongodb"
 import { NextAuthOptions } from "next-auth"
 import db from "../../../../lib/db"
 import CredentialsProvider from "next-auth/providers/credentials"
@@ -10,9 +9,9 @@ import User from "@/models/User"
 import { compare } from "bcrypt"
 export const authOptions =  {
   providers: [
-    GithubProvider({
-      clientId: process.env.GitHub_Client_Id,
-      clientSecret: process.env.GitHub_Client_Secret,
+    GoogleProvider({
+      clientId: process.env.Google_Client_Id,
+      clientSecret: process.env.Google_Client_Secret,
     }),
     CredentialsProvider({
       name: "credentials",
@@ -37,7 +36,7 @@ export const authOptions =  {
   pages:{
     signIn:"/login",
   },
-  // adapter: MongoDBAdapter(clientPromise),
+  adapter: MongoDBAdapter(clientPromise),
   secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
     session: async ({ session, token }) => {

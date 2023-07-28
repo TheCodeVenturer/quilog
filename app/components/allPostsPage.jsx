@@ -67,7 +67,7 @@ export default function PostPage({ query }) {
         next={fetchPosts}
         hasMore={postArray.length < totalPosts}
         loader={<SkeletonForAllPostPage />}
-        height = {`calc(100vh - 85px)`}
+        height = {`calc(100vh - 90px)`}
       >
         {postArray.map((post) => {
           return <PostBox key={post._id} post={post} />;
