@@ -37,6 +37,12 @@ export default function LoginPage() {
   if (status === "authenticated") {
     redirect("/");
   }
+
+  const signInWithGoogle = async(e) =>{
+    e.preventDefault()
+    await signIn("google")
+  }
+
   return (
     <div
       className={`flex items-center flex-col-reverse md:flex-row justify-center text-black h-[calc(100vh-150px)] md:h-[calc(100vh-60px)]  md:w-[85vw] max-w-[1000px] mx-auto `}
@@ -76,9 +82,8 @@ export default function LoginPage() {
             Login
           </button>
           <button
-            onClick={handleSubmit}
+            onClick={signInWithGoogle}
             className="flex items-center  justify-center text-black mt-2 w-full border border-zinc-400/50 rounded-md text-base md:text-lg font-semibold hover:shadow-lg hover:shadow-gray-500/30  "
-            disabled
           ><FcGoogle className="inline-block mr-2"/>
             Sign in with Google
           </button>
