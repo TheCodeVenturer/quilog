@@ -76,9 +76,9 @@ export async function PATCH(req,{params:{postId}}){
 
         const user = await User.findById(userId)
         if (post.likedBy.includes(userId)) {
-            post.likedBy = post.likedBy.filter((id) => { id !== userId});
+            post.likedBy = post.likedBy.filter((id) =>  id !== userId);
             
-            user.likedPosts = user.likedPosts.filter((id) => { id !== postId});
+            user.likedPosts = user.likedPosts.filter((id) =>  id !== postId);
 
             await user.save();
             
