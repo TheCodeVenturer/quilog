@@ -3,6 +3,7 @@ import { ImageResponse } from "next/server";
 // Route segment config
 export const runtime = "edge";
 
+export const dynamic = "force-dynamic"
 // Image metadata
 export const alt = "Profile Picture";
 

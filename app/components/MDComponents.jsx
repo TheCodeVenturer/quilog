@@ -75,9 +75,9 @@ const Paragraph = ({ children }) => {
   return <p className="p-1 text-base">{children}</p>;
 };
 
-const Anchor = ({ children }) => {
+const Anchor = ({ children,href }) => {
   return (
-    <a className="text-base my-0.5 cursor-pointer text-blue-600 underline">
+    <a className="text-base my-0.5 cursor-pointer text-blue-600 underline" href={href}>
       {children}
     </a>
   );

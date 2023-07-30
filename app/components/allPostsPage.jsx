@@ -146,7 +146,7 @@ function PostBox({ post }) {
       </div>
 
       <Link href={`/posts/${post._id}`}>
-        <div className=" h-fit max-h-[25vh] overflow-hidden mt-2 ml-3 md:ml-5">
+        <div className=" h-fit max-h-[25vh] lg:max-h-[22vh] overflow-hidden mt-2 ml-3 md:ml-5">
           <h1 className="text-3xl font-bold my-1">{post.title}</h1>
           <ReactToMarkDown content={stringShortner(post.data)} />
         </div>
