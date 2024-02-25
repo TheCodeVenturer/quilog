@@ -1,9 +1,9 @@
-import { ImageResponse } from "next/server";
+import { ImageResponse } from "next/og";
 
 // Route segment config
 export const runtime = "edge";
 
-export const dynamic = "force-dynamic"
+export const dynamic = "force-dynamic";
 // Image metadata
 export const alt = "Profile Picture";
 
@@ -35,8 +35,12 @@ export default async function Image({ params: { userId } }) {
       >
         <div tw="flex items-center flex-col justify-center w-1/2 h-full">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img tw="w-1/3 h-1/3" src="https://raw.githubusercontent.com/TheCodeVenturer/blogHub/main/app/icon.png" alt="Logo" />
-          <h1 tw="text-7xl p-0 m-0" >QUILOG</h1>
+          <img
+            tw="w-1/3 h-1/3"
+            src="https://raw.githubusercontent.com/TheCodeVenturer/blogHub/main/app/icon.png"
+            alt="Logo"
+          />
+          <h1 tw="text-7xl p-0 m-0">QUILOG</h1>
           <p tw="text-3xl p-0 m-0">Let{`'`}s blog it </p>
           <div
             tw="absolute left-[-80px] top-[-30px] w-[120px] h-[120%] bg-white/50"
@@ -62,9 +66,7 @@ export default async function Image({ params: { userId } }) {
           )}
           <hr tw="w-full bg-zinc-300/20 h-1 rounded-xl" />
           <p tw="w-full text-[30px] m-2 h-fit">{`${name}'s Created Posts = ${user.totalPosts}`}</p>
-          <p
-            tw="w-full text-[30px] m-2 h-fit"
-          >{`${name}'s Liked Posts = ${user.totalLikedPosts}`}</p>
+          <p tw="w-full text-[30px] m-2 h-fit">{`${name}'s Liked Posts = ${user.totalLikedPosts}`}</p>
         </div>
       </div>
     ),

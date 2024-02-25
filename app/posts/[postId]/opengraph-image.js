@@ -1,11 +1,9 @@
-
-import { ImageResponse } from "next/server";
+import { ImageResponse } from "next/og";
 
 // Route segment config
 export const runtime = "edge";
 
-export const dynamic = "force-dynamic"
-
+export const dynamic = "force-dynamic";
 
 // Image metadata
 export const alt = "Post";
@@ -14,12 +12,10 @@ export const alt = "Post";
 
 export const contentType = "image/png";
 
-
-
 // Image generation
 export default async function Image({ params: { postId } }) {
-  const data = await fetch("https://quilog.vercel.app/api/post/" + postId)
-  const post = await data.json()
+  const data = await fetch("https://quilog.vercel.app/api/post/" + postId);
+  const post = await data.json();
   const createdAt = new Date(post.createdAt);
   const size = {
     width: 1200,
@@ -36,7 +32,11 @@ export default async function Image({ params: { postId } }) {
       >
         <div tw="flex items-center flex-col justify-center w-1/2 h-full">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img tw="w-1/3 h-1/3" src="https://raw.githubusercontent.com/TheCodeVenturer/blogHub/main/app/icon.png" alt="Logo" />
+          <img
+            tw="w-1/3 h-1/3"
+            src="https://raw.githubusercontent.com/TheCodeVenturer/blogHub/main/app/icon.png"
+            alt="Logo"
+          />
           <h1 tw="text-7xl font-extrabold p-0 m-0">QUILOG</h1>
           <p tw="text-3xl p-0 m-0">Let{`'`}s blog it </p>
           <div
@@ -46,19 +46,18 @@ export default async function Image({ params: { postId } }) {
         </div>
         <div tw="flex flex-col justify-center items-center w-1/2 h-full p-[48px] my-auto text-black bg-white/70 overflow-hidden">
           <h1 tw="text-5xl font-extrabold pb-2 border-b-4 border-zinc-400/50 leading-10">
-            {post.title.length>29?post.title.slice(0,28)+"...":post.title}
+            {post.title.length > 29
+              ? post.title.slice(0, 28) + "..."
+              : post.title}
           </h1>
-          <p tw="m-0 p-0 ml-auto text-2xl">{`${createdAt.toLocaleTimeString()}` }</p>
+          <p tw="m-0 p-0 ml-auto text-2xl">{`${createdAt.toLocaleTimeString()}`}</p>
           <p tw="m-0 p-0 ml-auto text-2xl">
-          {` ${createdAt.toLocaleDateString(
-            undefined,
-            {
+            {` ${createdAt.toLocaleDateString(undefined, {
               weekday: "short",
               year: "numeric",
               month: "short",
               day: "numeric",
-            }
-          )}`}
+            })}`}
           </p>
           <p tw="w-[100%] m-3 text-2xl">published by,</p>
           <div tw="flex w-full items-center">
@@ -71,7 +70,9 @@ export default async function Image({ params: { postId } }) {
               height={200}
             />
             <h1 tw="mr-auto flex text-6xl items-center h-full ">
-              {post.user.name.length>12?post.user.name.slice(0,10)+"...":post.user.name}
+              {post.user.name.length > 12
+                ? post.user.name.slice(0, 10) + "..."
+                : post.user.name}
             </h1>
           </div>
           <div tw="flex mt-5 items-center justify-around w-10/12">
