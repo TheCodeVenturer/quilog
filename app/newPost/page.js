@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 
-import ReactToMarkDown from "../components/ReactToMarkDown";
+import ReactToMarkDown from "../_components/ReactToMarkDown";
 import { useRouter } from "next/navigation";
 import { useAppState } from "../context/stateContext";
 
@@ -10,7 +10,6 @@ import toast from "react-hot-toast";
 
 const activeStyle = "text-blue-500 border-0 border-b-2 border-blue-500";
 const deactiveStyle = "text-black";
-
 
 export default function NewPost() {
   const [title, setTitle] = useState("");
@@ -30,14 +29,14 @@ export default function NewPost() {
   }
 
   async function handleSubmit() {
-    if(!title){
+    if (!title) {
       toast.error("Title required");
       return;
-    } 
-    if(!content){
+    }
+    if (!content) {
       toast.error("Content required");
       return;
-    } 
+    }
     const data = { userId: session.user.id, title, content };
     const res = await fetch("/api/newPost", {
       method: "POST",
@@ -105,12 +104,22 @@ export default function NewPost() {
             />
             <TextBox content={content} setContent={setContent} />
           </div>
-          <div className={`h-fit ml-2 mt-3 md:ml-5 ${
-                activeEdit ? "hidden" : "block"
-              }`}>
-            <h1 className={`text-2xl md:text-3xl font-semibold my-1 ml-1 ${title.length==0 && "text-zinc-600" }`}>{title.length>0?title:"Add Title to this blog"}</h1>
+          <div
+            className={`h-fit ml-2 mt-3 md:ml-5 ${
+              activeEdit ? "hidden" : "block"
+            }`}
+          >
+            <h1
+              className={`text-2xl md:text-3xl font-semibold my-1 ml-1 ${
+                title.length == 0 && "text-zinc-600"
+              }`}
+            >
+              {title.length > 0 ? title : "Add Title to this blog"}
+            </h1>
             <div
-              className={`${content ? "" : "text-zinc-600"} overflow-y-scroll h-[calc(70vh)] pb-3`}
+              className={`${
+                content ? "" : "text-zinc-600"
+              } overflow-y-scroll h-[calc(70vh)] pb-3`}
             >
               <ReactToMarkDown
                 content={content ? content : "#### Nothing to Show Here"}
