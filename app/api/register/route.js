@@ -1,26 +1,32 @@
 import db from "@/lib/db";
 import User from "@/models/User";
 import bcrypt from "bcrypt";
-export async function POST(req){
-    try {
-        const {name, email, password: pass} = await req.json()
-        // console.log(name, email, pass)
-        await db.connect()
-        const isExisting = await User.findOne({email})
-        
-        if(isExisting){
-            throw new Error("exists")
-        }
+export async function POST(req) {
+	try {
+		const { name, email, password: pass } = await req.json();
+		// console.log(name, email, pass)
+		await db.connect();
+		const isExisting = await User.findOne({ email });
 
-        const hashedPassword = await bcrypt.hash(pass, 11)
+		if (isExisting) {
+			throw new Error("exists");
+		}
 
-        const newUser = await User.create({name:name, email, password: hashedPassword})
+		const hashedPassword = await bcrypt.hash(pass, 11);
 
-        const {password, ...user} = newUser._doc
+		const newUser = await User.create({
+			name: name,
+			email,
+			password: hashedPassword,
+		});
 
-        return new Response(JSON.stringify(user), {status: 201})
-    } catch (error) {
-        // console.log(error.message);
-        return new Response(JSON.stringify({"error":error.message}), {status: 500})
-    }
+		const { password, ...user } = newUser._doc;
+
+		return new Response(JSON.stringify(user), { status: 201 });
+	} catch (error) {
+		// console.log(error.message);
+		return new Response(JSON.stringify({ error: error.message }), {
+			status: 500,
+		});
+	}
 }
